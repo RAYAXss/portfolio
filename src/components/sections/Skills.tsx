@@ -21,7 +21,7 @@ const skills: Skill[] = [
   { name: 'Exploitation des données', level: 80, category: 'healthcare' }, // Capitalisation + Dashboard
 
   // Mecanical skills
-  { name: 'Test de traction,, ', level: 75, category: 'mecanical' },
+  { name: 'Test de traction', level: 75, category: 'mecanical' },
   { name: 'Eléments finis', level: 80, category: 'mecanical' },
   { name: 'Logiciels CAO: CATIA V5, Fusion 360, Solidworks', level: 80, category: 'mecanical' },
   { name: 'Matlab', level: 60, category: 'mecanical' },

@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                 <Linkedin size={20} />
               </a>
               <a 
-                href="mailto:qcolpart@gmail.com"
+                href="#contact"
                 className={`hover:text-blue-500 transition-colors ${
                   scrolled ? 'text-gray-700' : 'text-white'
                 }`}
@@ -118,8 +118,9 @@ const Header: React.FC = () => {
                   <Linkedin size={20} />
                 </a>
                 <a 
-                  href="mailto:qcolpart@gmail.com"
+                  href="#contact"
                   className="text-gray-700 hover:text-blue-500 transition-colors"
+                  onClick={() => setIsOpen(false)}
                 >
                   <Mail size={20} />
                 </a>

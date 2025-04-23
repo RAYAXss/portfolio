@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Section from '../ui/Section';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
-import { Clock, Users, ExternalLink, ChevronRight } from 'lucide-react';
+import { Clock, Users, ChevronRight } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -21,7 +21,7 @@ const projectsData: Project[] = [
     id: 1,
     title: "IA dans le traitement d'AVC ischémique",
     category: "Associé à l'AP-HP",
-    image: "/images/IRM.png",
+    image: "./images/IRM.png",
     summary: "Déploiement d'outils d'intelligence artificielle sur le base d'IRM pour l'aide au diagnostic et le suivi des patients post AVC.",
     period: "Septembre 2023 - Janvier 2024",
     team: "5 ingénieurs, 2 professionnels de santé",
@@ -36,7 +36,7 @@ const projectsData: Project[] = [
     id: 2,
     title: "Prothèse de Hanche",
     category: "Associé à l'EPF",
-    image: "/images/hanche.png",
+    image: "./images/hanche.png",
     summary: "Étude de faisabilité technico-économique et environnementale d’un stem de prothèse de hanche en titane imprimé en 3D.",
     period: "Septembre 2023 - Décembre 2023",
     team: "2 ingénieurs",
@@ -51,7 +51,7 @@ const projectsData: Project[] = [
     id: 3,
     title: "Pied Prothétique",
     category: "Associé à l'EPF",
-    image: "/images/pieds.png",
+    image: "./images/pieds.png",
     summary: "Conception d’un produit adapté à la croissance et aux besoins biomécaniques spécifiques des enfants.",
     period: "Janvier 2023 - Juin 2023",
     team: "6 étudiants ingénieurs",
@@ -199,10 +199,7 @@ const Projects: React.FC = () => {
                   >
                     Fermer
                   </Button>
-                  <Button>
-                    <ExternalLink size={16} className="mr-2" />
-                    Détails du projet
-                  </Button>
+                  
                 </div>
               </div>
             </div>

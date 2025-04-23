@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
           Quentin COLPART
         </h1>
         <h2 className="text-xl md:text-3xl text-blue-200 mb-8 max-w-3xl mx-auto animate-fadeIn animation-delay-200">
-          Ingénieur Généraliste | Chef de projet
+          Ingénieur en Systèmes d'information | Chef de projet SI
         </h2>
         <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 animate-fadeIn animation-delay-400">
           Concevoir et piloter des solutions techniques dans des environnements exigeants et réglementés

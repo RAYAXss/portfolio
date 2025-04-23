@@ -6,6 +6,8 @@ import Skills from './components/sections/Skills';
 import Education from './components/sections/Education';
 import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
+import Volunteer from './components/sections/Volunteer';
+import Interests from './components/sections/Interests';
 import Contact from './components/sections/Contact';
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
       <Education />
       <Experience />
       <Projects />
+      <Volunteer />
+      <Interests />
       <Contact />
     </Layout>
   );

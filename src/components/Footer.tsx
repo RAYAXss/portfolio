@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { Linkedin, ArrowUp } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h2 className="text-2xl font-bold mb-2">Quentin Colpart</h2>
-            <p className="text-gray-400">Ingénieur Généraliste | Chef de projet</p>
+            <p className="text-gray-400">Ingénieur en Systèmes d'information | Chef de projet</p>
           </div>
           
           <div className="flex flex-col items-center md:items-end">
@@ -30,13 +30,7 @@ const Footer: React.FC = () => {
               >
                 <Linkedin size={20} />
               </a>
-              <a 
-                href="mailto:qcolpart@gmail.com"
-                className="hover:text-blue-400 transition-colors"
-                aria-label="Email"
-              >
-                <Mail size={20} />
-              </a>
+              
             </div>
             <button 
               onClick={scrollToTop}
