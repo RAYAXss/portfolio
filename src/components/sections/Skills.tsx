@@ -9,15 +9,15 @@ interface Skill {
 
 const skills: Skill[] = [
   // Technical skills
-  { name: 'Python & SQL', level: 90, category: 'technical' },
-  { name: 'Microsoft 365 & Power Platform', level: 90, category: 'technical' },
+  { name: 'Python et SQL', level: 90, category: 'technical' },
+  { name: 'Microsoft 365 et Power Platform', level: 90, category: 'technical' },
   { name: 'Outils collaboratifs', level: 80, category: 'technical' }, // Trello, Jira, Confluence
-  { name: 'Scripting & automatisation', level: 65, category: 'technical' },       // VBA + Batch
+  { name: 'Scripting et automatisation', level: 65, category: 'technical' },       // VBA + Batch
 
   // Healthcare skills
   { name: 'Pilotage de projet', level: 70, category: 'healthcare' }, // Gestion de projet + animation de réunion
   { name: 'Conduite du changement', level: 90, category: 'healthcare' }, 
-  { name: 'Communication & coordination', level: 70, category: 'healthcare' }, // interactions + communication
+  { name: 'Communication et coordination', level: 70, category: 'healthcare' }, // interactions + communication
   { name: 'Exploitation des données', level: 80, category: 'healthcare' }, // Capitalisation + Dashboard
 
   // Mecanical skills

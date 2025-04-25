@@ -7,7 +7,7 @@ import Education from './components/sections/Education';
 import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
 import Volunteer from './components/sections/Volunteer';
-import Interests from './components/sections/Interests';
+// import Interests from './components/sections/Interests';
 import Contact from './components/sections/Contact';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
       <Experience />
       <Projects />
       <Volunteer />
-      <Interests />
+      {/* <Interests /> */}
       <Contact />
     </Layout>
   );

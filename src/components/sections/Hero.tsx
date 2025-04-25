@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
             size="lg"
             onClick={scrollToAbout}
           >
-            Découvrer mes travaux
+            Découvrir mes travaux
           </Button>
           <Button 
             variant="outline" 
