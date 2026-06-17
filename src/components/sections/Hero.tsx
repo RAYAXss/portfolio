@@ -19,18 +19,17 @@ const Hero: React.FC = () => {
 
   return (
     <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center bg-gray-900 pt-16"
-    >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        {/* Animated Welcome Card */}
+        {/* Animated Welcome Text */}
         <motion.div
-          className="mb-8 inline-block"
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
-          <div className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 p-0.5 shadow-2xl">
-            <div className="px-6 py-2 rounded-full bg-gray-900">
+          <h3 className="text-sm tracking-wide font-medium animate-gradient bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto]">
+            {lang === "fr" ? "BIENVENUE SUR MON PORTFOLIO" : "WELCOME TO MY PORTFOLIO"}
+          </h3>
+        </motion.div>
               <span className="text-sm text-gray-300">
                 {lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}
               </span>
