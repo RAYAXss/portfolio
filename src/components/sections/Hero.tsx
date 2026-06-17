@@ -20,100 +20,98 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black pt-16"
+      className="min-h-screen flex items-center justify-center bg-gray-900 pt-16"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-          {/* Left Column - Content */}
-          <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {translations.hero.name}
-            </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-300 mb-6">
-              {translations.hero.title}
-            </h2>
-            <p className="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
-              {translations.hero.description}
-            </p>
-
-            {/* Social Buttons */}
-            <div className="flex flex-wrap gap-4 mb-8">
-              <a
-                href="https://github.com/RAYAXss"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
-              >
-                <Github size={20} />
-                <span>GitHub</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/quentin-colpart/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
-              >
-                <Linkedin size={20} />
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href="https://www.root-me.org/RAYAX?lang=fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
-              >
-                <ExternalLink size={20} />
-                <span>RootMe</span>
-              </a>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        {/* Animated Welcome Card */}
+        <motion.div
+          className="mb-8 inline-block"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 p-0.5 shadow-2xl">
+            <div className="px-6 py-2 rounded-full bg-gray-900">
+              <span className="text-sm text-gray-300">
+                {lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}
+              </span>
             </div>
+          </div>
+        </motion.div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => scrollToSection('projects')}
-              >
-                {translations.hero.viewProjects}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => scrollToSection('contact')}
-              >
-                {translations.hero.contactMe}
-              </Button>
-            </div>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            {translations.hero.name}
+          </h1>
+          <h2 className="text-2xl md:text-3xl text-gray-300 mb-6">
+            {translations.hero.title}
+          </h2>
+          <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+            {translations.hero.description}
+          </p>
 
-          {/* Right Column - Photo */}
-          <motion.div
-            className="lg:col-span-2 flex justify-center"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.div
-              className="relative w-64 h-64 md:w-80 md:h-80"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          {/* Stack badges */}
+          <div className="flex justify-center gap-3 mb-8">
+            <span className="px-4 py-2 bg-blue-600/20 border border-blue-500 text-blue-300 rounded-full text-sm font-medium">
+              Python
+            </span>
+            <span className="px-4 py-2 bg-purple-600/20 border border-purple-500 text-purple-300 rounded-full text-sm font-medium">
+              Bash
+            </span>
+          </div>
+
+          {/* Social Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <a
+              href="https://github.com/RAYAXss"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
             >
-              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-400 to-purple-400 p-1 shadow-2xl">
-                <div className="w-full h-full rounded-2xl bg-gray-800 flex items-center justify-center">
-                  {/* Placeholder - Replace with actual photo */}
-                  <div className="w-full h-full rounded-2xl bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-blue-400">
-                    <span className="text-6xl font-bold">QC</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+              <Github size={20} />
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/quentin-colpart/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
+            >
+              <Linkedin size={20} />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://www.root-me.org/RAYAX?lang=fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
+            >
+              <ExternalLink size={20} />
+              <span>RootMe</span>
+            </a>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => scrollToSection('projects')}
+            >
+              {translations.hero.viewProjects}
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => scrollToSection('contact')}
+            >
+              {translations.hero.contactMe}
+            </Button>
+          </div>
+        </motion.div>
 
         {/* Scroll Indicator */}
         <motion.div
