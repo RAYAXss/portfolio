@@ -1,33 +1,33 @@
 import React from 'react';
-import Layout from './components/Layout';
+import Navigation from './components/layout/Navigation';
+import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Education from './components/sections/Education';
 import Experience from './components/sections/Experience';
+import Skills from './components/sections/Skills';
 import Projects from './components/sections/Projects';
-import Volunteer from './components/sections/Volunteer';
-// import Interests from './components/sections/Interests';
 import Contact from './components/sections/Contact';
+import { useLanguage } from './hooks/useLanguage';
 
 function App() {
-  // Update document title
+  const { lang } = useLanguage();
+
+  // Update document lang attribute
   React.useEffect(() => {
-    document.title = "Quentin Colpart | Ingénieur - Chef de projet";
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   return (
-    <Layout>
+    <div className="min-h-screen">
+      <Navigation />
       <Hero />
       <About />
-      <Skills />
-      <Education />
       <Experience />
+      <Skills />
       <Projects />
-      <Volunteer />
-      {/* <Interests /> */}
       <Contact />
-    </Layout>
+      <Footer />
+    </div>
   );
 }
 
