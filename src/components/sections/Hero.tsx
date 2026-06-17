@@ -1,58 +1,134 @@
 import React from 'react';
-import { ArrowDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, ExternalLink, ArrowDown } from 'lucide-react';
+import { useLanguage } from '../../hooks/useLanguage';
 import Button from '../ui/Button';
+import translationsFR from '../../data/translations/fr.json';
+import translationsEN from '../../data/translations/en.json';
 
 const Hero: React.FC = () => {
-  const scrollToAbout = () => {
-    document.getElementById('a propos')?.scrollIntoView({ behavior: 'smooth' });
+  const { lang } = useLanguage();
+  const translations = lang === 'fr' ? translationsFR : translationsEN;
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <section 
-      id="hero" 
-      className="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white"
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-16"
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/fond.jpg')] bg-cover bg-center opacity-20"></div>
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+          {/* Left Column - Content */}
+          <motion.div
+            className="lg:col-span-3"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {translations.hero.name}
+            </h1>
+            <h2 className="text-2xl md:text-3xl text-gray-700 mb-6">
+              {translations.hero.title}
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-xl leading-relaxed">
+              {translations.hero.description}
+            </p>
 
-      <div className="container mx-auto px-4 z-10 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">
-          Quentin COLPART
-        </h1>
-        <h2 className="text-xl md:text-3xl text-blue-200 mb-8 max-w-3xl mx-auto animate-fadeIn animation-delay-200">
-          Ingénieur en Systèmes d'information | Chef de projet SI
-        </h2>
-        <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 animate-fadeIn animation-delay-400">
-          Concevoir et piloter des solutions techniques dans des environnements exigeants et réglementés
-        </p>
-        <div className="flex justify-center space-x-4 animate-fadeIn animation-delay-600">
-          <Button 
-            variant="primary" 
-            size="lg"
-            onClick={scrollToAbout}
+            {/* Social Buttons */}
+            <div className="flex flex-wrap gap-4 mb-8">
+              <a
+                href="https://github.com/RAYAXss"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full text-gray-700 hover:border-blue-600 hover:text-blue-600 transition-all"
+              >
+                <Github size={20} />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/quentin-colpart/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full text-gray-700 hover:border-blue-600 hover:text-blue-600 transition-all"
+              >
+                <Linkedin size={20} />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://www.root-me.org/RAYAX?lang=fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full text-gray-700 hover:border-blue-600 hover:text-blue-600 transition-all"
+              >
+                <ExternalLink size={20} />
+                <span>RootMe</span>
+              </a>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => scrollToSection('projects')}
+              >
+                {translations.hero.viewProjects}
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => scrollToSection('contact')}
+              >
+                {translations.hero.contactMe}
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Photo */}
+          <motion.div
+            className="lg:col-span-2 flex justify-center"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Découvrir mes travaux
-          </Button>
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-white text-white hover:bg-white hover:bg-opacity-10"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Me contacter
-          </Button>
+            <motion.div
+              className="relative w-64 h-64 md:w-80 md:h-80"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 p-1 shadow-2xl">
+                <div className="w-full h-full rounded-2xl bg-white flex items-center justify-center">
+                  {/* Placeholder - Replace with actual photo */}
+                  <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center text-blue-600">
+                    <span className="text-6xl font-bold">QC</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
 
-      <div className="absolute bottom-8 w-full text-center animate-bounce">
-        <button
-          onClick={scrollToAbout}
-          className="text-white opacity-80 hover:opacity-100 transition-opacity"
-          aria-label="Scroll down"
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <ArrowDown size={28} />
-        </button>
+          <button
+            onClick={() => scrollToSection('about')}
+            className="text-gray-600 hover:text-blue-600 transition-colors"
+            aria-label="Scroll to about section"
+          >
+            <ArrowDown size={32} />
+          </button>
+        </motion.div>
       </div>
     </section>
   );

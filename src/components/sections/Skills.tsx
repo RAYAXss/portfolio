@@ -1,129 +1,95 @@
 import React from 'react';
-import Section from '../ui/Section';
+import { motion } from 'framer-motion';
+import { Code2, Cloud, Briefcase, Users } from 'lucide-react';
+import { useLanguage } from '../../hooks/useLanguage';
+import { getSkills } from '../../data/skills';
+import FadeInOnScroll from '../animations/FadeInOnScroll';
+import translationsFR from '../../data/translations/fr.json';
+import translationsEN from '../../data/translations/en.json';
 
-interface Skill {
-  name: string;
-  level: number;
-  category: 'technical' | 'healthcare' | 'soft' | 'mecanical' | 'langue';
-}
-
-const skills: Skill[] = [
-  // Technical skills
-  { name: 'Python et SQL', level: 90, category: 'technical' },
-  { name: 'Microsoft 365 et Power Platform', level: 90, category: 'technical' },
-  { name: 'Outils collaboratifs', level: 80, category: 'technical' }, // Trello, Jira, Confluence
-  { name: 'Scripting et automatisation', level: 65, category: 'technical' },       // VBA + Batch
-
-  // Healthcare skills
-  { name: 'Pilotage de projet', level: 70, category: 'healthcare' }, // Gestion de projet + animation de réunion
-  { name: 'Conduite du changement', level: 90, category: 'healthcare' }, 
-  { name: 'Communication et coordination', level: 70, category: 'healthcare' }, // interactions + communication
-  { name: 'Exploitation des données', level: 80, category: 'healthcare' }, // Capitalisation + Dashboard
-
-  // Mecanical skills
-  { name: 'Test de traction', level: 75, category: 'mecanical' },
-  { name: 'Eléments finis', level: 80, category: 'mecanical' },
-  { name: 'Logiciels CAO: CATIA V5, Fusion 360, Solidworks', level: 80, category: 'mecanical' },
-  { name: 'Matlab', level: 60, category: 'mecanical' },
-  { name: 'Impression 3D: Slicer 3D', level: 80, category: 'mecanical' },
-
-  // Soft skills
-  { name: 'Autonomie', level: 100, category: 'soft' },
-  { name: 'Rigueur', level: 80, category: 'soft' },
-  { name: 'Capacité d’adaptation', level: 100, category: 'soft' },
-  { name: "Esprit d'initiative", level: 90, category: 'soft' },
-  { name: "Proactivité", level: 90, category: 'soft' },
-
-  // Langues
-  { name: 'Français: Natif', level: 100, category: 'langue' },
-  { name: 'Anglais: Professionnel', level: 90, category: 'langue' },
-];
-
-const categoryColors: Record<string, string> = {
-  technical: 'bg-blue-600',
-  healthcare: 'bg-green-600',
-  soft: 'bg-purple-600',
-  mecanical: 'bg-red-600',
-  langue: 'bg-yellow-500',
-};
-
-const categoryTitles = {
-  technical: 'Informatique et Programmation',
-  healthcare: 'Professionnelles',
-  soft: 'Soft Skills',
-  mecanical: 'Modélisation et Simulation',
-  langue: 'Langues',
+const iconMap: Record<string, React.FC<{ className?: string }>> = {
+  Code2,
+  Cloud,
+  Briefcase,
+  Users
 };
 
 const Skills: React.FC = () => {
-  const renderSkillBar = (skill: Skill) => (
-    <div key={skill.name} className="mb-4 group">
-      <div className="text-gray-800 font-medium group-hover:scale-105 transition-transform mb-2">
-        {skill.name}
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
-        <div
-          className={`h-2.5 rounded-full ${categoryColors[skill.category]}`}
-          style={{ width: `${skill.level}%`, transition: 'width 1s ease-in-out' }}
-        ></div>
-      </div>
-    </div>
-  );
-
-  const groupedSkills = skills.reduce((acc, skill) => {
-    if (!acc[skill.category]) acc[skill.category] = [];
-    acc[skill.category].push(skill);
-    return acc;
-  }, {} as Record<string, Skill[]>);
-
-  const languageSkills = groupedSkills['langue'] || [];
-  delete groupedSkills['langue'];
+  const { lang } = useLanguage();
+  const translations = lang === 'fr' ? translationsFR : translationsEN;
+  const skills = getSkills(lang);
 
   return (
-    <Section
-      id="compétences"
-      title="Mes compétences"
-      subtitle="Une vue d'ensemble de mes capacités et de mon expertise"
-      className="bg-gray-50"
-    >
-      <div className="max-w-8xl mx-auto flex flex-wrap justify-center gap-6">
-        {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-          <div
-            key={category}
-            className="w-full sm:w-[48%] lg:w-[22%] bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-all duration-300"
-          >
-            <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-200">
-              {categoryTitles[category as keyof typeof categoryTitles]}
-            </h3>
-            {categorySkills.map(renderSkillBar)}
-          </div>
-        ))}
-      </div>
-  
-      {languageSkills.length > 0 && (
-        <div className="mt-12 max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
-          <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-200">Langues</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {languageSkills.map((lang) => {
-              const [langName, langLevel] = lang.name.split(':');
-              return (
-                <div
-                  key={lang.name}
-                  className="w-[90px] h-[80px] bg-gray-100 rounded-lg shadow hover:shadow-md transition-all flex flex-col justify-center items-center group"
-                >
-                  <div className="text-gray-800 font-semibold text-center group-hover:scale-105 transition-transform">
-                    {langName}
+    <section id="skills" className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeInOnScroll>
+          <h2 className="text-4xl font-bold text-center mb-16">
+            {translations.skills.title}
+          </h2>
+        </FadeInOnScroll>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skills.map((category, index) => {
+            const Icon = iconMap[category.icon] || Code2;
+            const isSoftSkills = category.category.toLowerCase().includes('soft');
+
+            return (
+              <FadeInOnScroll key={index} delay={index * 0.15}>
+                <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-600 hover:-translate-y-1 hover:shadow-xl transition-all">
+                  <div className="flex items-center gap-4 mb-6">
+                    <Icon className="w-12 h-12 text-blue-600" />
+                    <h3 className="text-xl font-bold">{category.category}</h3>
                   </div>
-                  <div className="text-sm text-gray-600 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {langLevel}
-                  </div>
+
+                  {isSoftSkills ? (
+                    // Soft skills as badges
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill, idx) => (
+                        <motion.span
+                          key={idx}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 }}
+                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                        >
+                          {skill.name}
+                        </motion.span>
+                      ))}
+                    </div>
+                  ) : (
+                    // Technical skills as progress bars
+                    <div className="space-y-4">
+                      {category.skills.map((skill, idx) => (
+                        <div key={idx}>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-sm font-medium text-gray-700">
+                              {skill.name}
+                            </span>
+                            <span className="text-xs text-gray-500">
+                              {skill.level}%
+                            </span>
+                          </div>
+                          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.level}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 1, delay: idx * 0.1, ease: "easeOut" }}
+                              className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              );
-            })}
-          </div>
+              </FadeInOnScroll>
+            );
+          })}
         </div>
-      )}
-    </Section>
+      </div>
+    </section>
   );
 };
 
