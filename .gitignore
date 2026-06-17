@@ -1,1 +1,24 @@
+# Dependencies
 node_modules
+
+# Build
+dist
+*.local
+
+# Personal data - DO NOT COMMIT
+public/doc/*.pdf
+public/doc/*.png
+public/images/profile*
+public/images/pp_*
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
