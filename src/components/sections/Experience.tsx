@@ -20,7 +20,7 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-gray-50">
+    <section id="experience" className="py-20 bg-gray-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInOnScroll>
           <h2 className="text-4xl font-bold text-center mb-16">
@@ -54,13 +54,13 @@ const Experience: React.FC = () => {
                         {/* Header */}
                         <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                           <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                            <h3 className="text-2xl font-bold text-white mb-2">
                               {exp.title}
                             </h3>
-                            <h4 className="text-lg text-blue-600 mb-3">
+                            <h4 className="text-lg text-blue-400 mb-3">
                               {exp.company}
                             </h4>
-                            <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                            <div className="flex flex-wrap gap-4 text-sm text-gray-400">
                               <div className="flex items-center gap-2">
                                 <Calendar size={16} />
                                 <span>{exp.period}</span>
@@ -69,7 +69,7 @@ const Experience: React.FC = () => {
                                 <MapPin size={16} />
                                 <span>{exp.location}</span>
                               </div>
-                              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">
+                              <span className="px-3 py-1 bg-blue-900 text-blue-300 rounded-full text-xs font-medium">
                                 {exp.contractType}
                               </span>
                             </div>
@@ -77,19 +77,19 @@ const Experience: React.FC = () => {
                         </div>
 
                         {/* Description */}
-                        <p className="text-gray-700 mb-4 leading-relaxed">
+                        <p className="text-gray-300 mb-4 leading-relaxed">
                           {exp.description}
                         </p>
 
                         {/* Responsibilities */}
                         <div className="mb-4">
-                          <h5 className="text-lg font-medium mb-3 text-gray-800">
+                          <h5 className="text-lg font-medium mb-3 text-gray-200">
                             {lang === 'fr' ? 'Missions :' : 'Responsibilities:'}
                           </h5>
                           <ul className="space-y-2">
                             {visibleResponsibilities.map((resp, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-gray-700">
-                                <span className="text-blue-600 mt-1">•</span>
+                              <li key={idx} className="flex items-start gap-2 text-gray-300">
+                                <span className="text-blue-400 mt-1">•</span>
                                 <span className="text-sm">{resp}</span>
                               </li>
                             ))}
@@ -99,7 +99,7 @@ const Experience: React.FC = () => {
                         {/* Expand/Collapse Button */}
                         {exp.responsibilities.length > 4 && (
                           <button
-                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm mt-4"
+                            className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium text-sm mt-4"
                             onClick={(e) => {
                               e.stopPropagation();
                               toggleExpand(exp.id);

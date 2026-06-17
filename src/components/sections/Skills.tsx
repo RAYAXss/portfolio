@@ -20,7 +20,7 @@ const Skills: React.FC = () => {
   const skills = getSkills(lang);
 
   return (
-    <section id="skills" className="py-20 bg-white">
+    <section id="skills" className="py-20 bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInOnScroll>
           <h2 className="text-4xl font-bold text-center mb-16">
@@ -35,9 +35,9 @@ const Skills: React.FC = () => {
 
             return (
               <FadeInOnScroll key={index} delay={index * 0.15}>
-                <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-600 hover:-translate-y-1 hover:shadow-xl transition-all">
+                <div className="bg-gray-900 rounded-xl shadow-2xl p-8 border-t-4 border-blue-600 hover:-translate-y-1 hover:shadow-xl transition-all">
                   <div className="flex items-center gap-4 mb-6">
-                    <Icon className="w-12 h-12 text-blue-600" />
+                    <Icon className="w-12 h-12 text-blue-400" />
                     <h3 className="text-xl font-bold">{category.category}</h3>
                   </div>
 
@@ -51,7 +51,7 @@ const Skills: React.FC = () => {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 }}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                          className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm hover:bg-blue-50 hover:text-blue-300 transition-colors"
                         >
                           {skill.name}
                         </motion.span>
@@ -63,7 +63,7 @@ const Skills: React.FC = () => {
                       {category.skills.map((skill, idx) => (
                         <div key={idx}>
                           <div className="flex justify-between items-center mb-2">
-                            <span className="text-sm font-medium text-gray-700">
+                            <span className="text-sm font-medium text-gray-300">
                               {skill.name}
                             </span>
                             <span className="text-xs text-gray-500">

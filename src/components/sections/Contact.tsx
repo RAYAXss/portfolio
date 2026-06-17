@@ -30,7 +30,7 @@ const Contact: React.FC = () => {
             <Button
               variant="primary"
               size="lg"
-              className="bg-white text-blue-900 hover:bg-gray-100 shadow-xl mb-8"
+              className="bg-blue-600 text-white hover:bg-blue-500 shadow-xl mb-8"
             >
               <Mail size={20} className="mr-2" />
               {translations.contact.button}

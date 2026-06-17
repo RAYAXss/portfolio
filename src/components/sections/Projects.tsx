@@ -79,7 +79,7 @@ const Projects: React.FC = () => {
       id="projets" 
       title="Projets scolaires"
       subtitle="Solutions innovantes développées au cours de mon parcours académique"
-      className="bg-gray-50"
+      className="bg-gray-800"
     >
       <div className="flex justify-center mb-8">
         <div className="flex flex-wrap gap-2">
@@ -90,7 +90,7 @@ const Projects: React.FC = () => {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 filter === category 
                   ? 'bg-blue-600 text-white' 
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                  : 'bg-gray-900 text-gray-300 hover:bg-gray-700'
               }`}
             >
               {category === 'all' ? 'Tous les projets' : category}
@@ -114,7 +114,7 @@ const Projects: React.FC = () => {
             </div>
             <div className="p-6 flex-grow flex flex-col">
               <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-gray-600 mb-4 flex-grow">{project.summary}</p>
+              <p className="text-gray-400 mb-4 flex-grow">{project.summary}</p>
               <div className="flex justify-between text-sm text-gray-500 mb-4">
                 <div className="flex items-center">
                   <Clock size={14} className="mr-1" />
@@ -140,7 +140,7 @@ const Projects: React.FC = () => {
       {/* Project Details Modal */}
       {activeProject && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-900 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="aspect-video w-full relative">
               <img 
                 src={activeProject.image} 
@@ -163,29 +163,29 @@ const Projects: React.FC = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-2xl font-bold">{activeProject.title}</h3>
-                  <span className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded mt-2">
+                  <span className="inline-block bg-blue-900 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded mt-2">
                     {activeProject.category}
                   </span>
                 </div>
               </div>
               
-              <div className="flex flex-wrap gap-6 my-4 text-gray-600 text-sm">
+              <div className="flex flex-wrap gap-6 my-4 text-gray-400 text-sm">
                 <div className="flex items-center">
-                  <Clock size={16} className="mr-2 text-blue-600" />
+                  <Clock size={16} className="mr-2 text-blue-400" />
                   <span>{activeProject.period}</span>
                 </div>
                 <div className="flex items-center">
-                  <Users size={16} className="mr-2 text-blue-600" />
+                  <Users size={16} className="mr-2 text-blue-400" />
                   <span>{activeProject.team}</span>
                 </div>
               </div>
               
               <div className="mt-6">
                 <h4 className="text-lg font-semibold mb-2">Description</h4>
-                <p className="text-gray-700 mb-6">{activeProject.description}</p>
+                <p className="text-gray-300 mb-6">{activeProject.description}</p>
                 
                 <h4 className="text-lg font-semibold mb-2">Etapes clés</h4>
-                <ul className="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
                   {activeProject.outcomes.map((outcome, idx) => (
                     <li key={idx}>{outcome}</li>
                   ))}
