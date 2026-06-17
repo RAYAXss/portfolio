@@ -20,10 +20,10 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-gray-800">
+    <section id="experience" className="py-16 bg-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInOnScroll>
-          <h2 className="text-4xl font-bold text-center mb-16">
+          <h2 className="text-3xl font-bold text-center mb-10">
             {translations.experience.title}
           </h2>
         </FadeInOnScroll>
@@ -43,21 +43,21 @@ const Experience: React.FC = () => {
                 <FadeInOnScroll key={exp.id} delay={index * 0.15}>
                   <div className="relative">
                     {/* Timeline dot */}
-                    <div className="hidden md:block absolute left-8 top-6 w-4 h-4 -translate-x-1/2 rounded-full bg-blue-600 border-4 border-blue-100" />
+                    <div className="hidden md:block absolute left-8 top-4 w-4 h-4 -translate-x-1/2 rounded-full bg-blue-600 border-4 border-blue-100" />
 
                     <Card
                       hover
-                      className="md:ml-20 border-l-4 border-blue-600 overflow-hidden cursor-pointer"
+                      className="md:ml-20 border-l-4 border-blue-500 overflow-hidden cursor-pointer"
                       onClick={() => toggleExpand(exp.id)}
                     >
-                      <div className="p-6">
+                      <div className="p-4">
                         {/* Header */}
                         <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                           <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-white mb-2">
+                            <h3 className="text-xl font-bold text-white mb-2">
                               {exp.title}
                             </h3>
-                            <h4 className="text-lg text-blue-400 mb-3">
+                            <h4 className="text-base text-blue-400 mb-3">
                               {exp.company}
                             </h4>
                             <div className="flex flex-wrap gap-4 text-sm text-gray-400">
@@ -83,7 +83,7 @@ const Experience: React.FC = () => {
 
                         {/* Responsibilities */}
                         <div className="mb-4">
-                          <h5 className="text-lg font-medium mb-3 text-gray-200">
+                          <h5 className="text-base font-medium mb-3 text-gray-200">
                             {lang === 'fr' ? 'Missions :' : 'Responsibilities:'}
                           </h5>
                           <ul className="space-y-2">

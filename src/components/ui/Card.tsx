@@ -13,8 +13,8 @@ const Card: React.FC<CardProps> = ({
   onClick,
   children
 }) => {
-  const baseClasses = 'bg-white rounded-xl shadow-md transition-all duration-200';
-  const hoverClasses = hover ? 'hover:-translate-y-1 hover:shadow-xl cursor-pointer' : '';
+  const baseClasses = 'bg-gray-800 rounded-xl shadow-xl transition-all duration-200 border border-gray-700';
+  const hoverClasses = hover ? 'hover:-translate-y-1 hover:shadow-2xl hover:border-gray-600 cursor-pointer' : '';
 
   return (
     <div
