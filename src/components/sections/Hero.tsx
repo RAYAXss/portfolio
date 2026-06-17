@@ -19,22 +19,20 @@ const Hero: React.FC = () => {
 
   return (
     <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center bg-gray-900 pt-16"
+    >
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
         {/* Animated Welcome Text */}
         <motion.div
-          className="mb-6"
+          className="mb-8 inline-block px-4 py-1.5 border border-gray-700 rounded-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <h3 className="text-sm tracking-wide font-medium animate-gradient bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto]">
-            {lang === "fr" ? "BIENVENUE SUR MON PORTFOLIO" : "WELCOME TO MY PORTFOLIO"}
-          </h3>
-        </motion.div>
-              <span className="text-sm text-gray-300">
-                {lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}
-              </span>
-            </div>
-          </div>
+          <span className="text-xs tracking-wider font-normal animate-gradient bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto]">
+            {lang === 'fr' ? 'Bienvenue' : 'Welcome'}
+          </span>
         </motion.div>
 
         <motion.div
@@ -51,16 +49,6 @@ const Hero: React.FC = () => {
           <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
             {translations.hero.description}
           </p>
-
-          {/* Stack badges */}
-          <div className="flex justify-center gap-3 mb-8">
-            <span className="px-4 py-2 bg-blue-600/20 border border-blue-500 text-blue-300 rounded-full text-sm font-medium">
-              Python
-            </span>
-            <span className="px-4 py-2 bg-purple-600/20 border border-purple-500 text-purple-300 rounded-full text-sm font-medium">
-              Bash
-            </span>
-          </div>
 
           {/* Social Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">

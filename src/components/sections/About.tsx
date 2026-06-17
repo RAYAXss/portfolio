@@ -44,6 +44,18 @@ const About: React.FC = () => {
           </div>
         </FadeInOnScroll>
 
+        {/* Stack */}
+        <FadeInOnScroll delay={0.3}>
+          <div className="flex justify-center gap-3 mb-10">
+            <span className="px-4 py-2 bg-blue-600/10 border border-blue-500/50 text-blue-300 rounded-md text-sm font-medium">
+              Python
+            </span>
+            <span className="px-4 py-2 bg-purple-600/10 border border-purple-500/50 text-purple-300 rounded-md text-sm font-medium">
+              Bash
+            </span>
+          </div>
+        </FadeInOnScroll>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {stats.map((stat, index) => (
