@@ -27,7 +27,7 @@ const Projects: React.FC = () => {
             <FadeInOnScroll key={project.id} delay={index * 0.2}>
               <Card hover className="overflow-hidden h-full flex flex-col group bg-gray-800 border border-gray-700">
                 {/* Project Image */}
-                <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-gray-700 to-gray-800">
+                <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-gray-700 to-gray-800">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -44,16 +44,16 @@ const Projects: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-5 flex-grow flex flex-col">
-                  <h3 className="text-lg font-bold mb-2 text-white">
+                <div className="p-4 flex-grow flex flex-col">
+                  <h3 className="text-base font-bold mb-2 text-white">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-3 flex-grow">
+                  <p className="text-gray-400 text-xs mb-3 flex-grow">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.techStack.map((tech, idx) => (
                       <span
                         key={idx}

@@ -46,13 +46,16 @@ const About: React.FC = () => {
 
         {/* Stack */}
         <FadeInOnScroll delay={0.3}>
-          <div className="flex justify-center gap-3 mb-10">
-            <span className="px-4 py-2 bg-blue-600/10 border border-blue-500/50 text-blue-300 rounded-md text-sm font-medium">
-              Python
-            </span>
-            <span className="px-4 py-2 bg-purple-600/10 border border-purple-500/50 text-purple-300 rounded-md text-sm font-medium">
-              Bash
-            </span>
+          <div className="mb-10">
+            <p className="text-xs text-gray-500 uppercase tracking-wider mb-3 text-center">Stack principale</p>
+            <div className="flex justify-center gap-3">
+              <span className="px-4 py-2 bg-blue-600/10 border border-blue-500/50 text-blue-300 rounded-md text-sm font-medium">
+                Python
+              </span>
+              <span className="px-4 py-2 bg-purple-600/10 border border-purple-500/50 text-purple-300 rounded-md text-sm font-medium">
+                Bash
+              </span>
+            </div>
           </div>
         </FadeInOnScroll>
 

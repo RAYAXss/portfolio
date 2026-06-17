@@ -20,9 +20,9 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gray-900 pt-16"
+      className="h-screen flex items-center justify-center bg-gray-900"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Animated Welcome Text */}
         <motion.div
           className="mb-8 inline-block px-4 py-1.5 border border-gray-700 rounded-full"
@@ -40,18 +40,18 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             {translations.hero.name}
           </h1>
-          <h2 className="text-2xl md:text-3xl text-gray-300 mb-6">
+          <h2 className="text-xl md:text-2xl text-gray-300 mb-4">
             {translations.hero.title}
           </h2>
-          <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-400 mb-6 max-w-xl mx-auto leading-relaxed">
             {translations.hero.description}
           </p>
 
           {/* Social Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
             <a
               href="https://github.com/RAYAXss"
               target="_blank"
@@ -85,14 +85,14 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <Button
               variant="primary"
-              size="lg"
+              size="md"
               onClick={() => scrollToSection('projects')}
             >
               {translations.hero.viewProjects}
             </Button>
             <Button
               variant="outline"
-              size="lg"
+              size="md"
               onClick={() => scrollToSection('contact')}
             >
               {translations.hero.contactMe}
