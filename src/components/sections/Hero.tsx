@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-16"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black pt-16"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
@@ -31,13 +31,13 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               {translations.hero.name}
             </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-700 mb-6">
+            <h2 className="text-2xl md:text-3xl text-gray-300 mb-6">
               {translations.hero.title}
             </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-xl leading-relaxed">
+            <p className="text-lg text-gray-400 mb-8 max-w-xl leading-relaxed">
               {translations.hero.description}
             </p>
 
@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
                 href="https://github.com/RAYAXss"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full text-gray-700 hover:border-blue-600 hover:text-blue-600 transition-all"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
               >
                 <Github size={20} />
                 <span>GitHub</span>
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
                 href="https://www.linkedin.com/in/quentin-colpart/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full text-gray-700 hover:border-blue-600 hover:text-blue-600 transition-all"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
               >
                 <Linkedin size={20} />
                 <span>LinkedIn</span>
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
                 href="https://www.root-me.org/RAYAX?lang=fr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full text-gray-700 hover:border-blue-600 hover:text-blue-600 transition-all"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
               >
                 <ExternalLink size={20} />
                 <span>RootMe</span>
@@ -103,10 +103,10 @@ const Hero: React.FC = () => {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 p-1 shadow-2xl">
-                <div className="w-full h-full rounded-2xl bg-white flex items-center justify-center">
+              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-400 to-purple-400 p-1 shadow-2xl">
+                <div className="w-full h-full rounded-2xl bg-gray-800 flex items-center justify-center">
                   {/* Placeholder - Replace with actual photo */}
-                  <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center text-blue-600">
+                  <div className="w-full h-full rounded-2xl bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-blue-400">
                     <span className="text-6xl font-bold">QC</span>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const Hero: React.FC = () => {
         >
           <button
             onClick={() => scrollToSection('about')}
-            className="text-gray-600 hover:text-blue-600 transition-colors"
+            className="text-gray-400 hover:text-blue-400 transition-colors"
             aria-label="Scroll to about section"
           >
             <ArrowDown size={32} />

@@ -7,7 +7,7 @@ const LanguageToggle: React.FC = () => {
   return (
     <button
       onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
-      className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+      className="px-3 py-1 text-sm font-medium bg-gray-800 text-gray-200 hover:bg-blue-600 hover:text-white rounded-md transition-all"
       aria-label="Toggle language"
     >
       {lang === 'fr' ? 'EN' : 'FR'}
