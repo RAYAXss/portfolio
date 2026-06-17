@@ -37,7 +37,7 @@ const Experience: React.FC = () => {
               const isExpanded = expandedIds.includes(exp.id);
               const visibleResponsibilities = isExpanded
                 ? exp.responsibilities
-                : exp.responsibilities.slice(0, 4);
+                : exp.responsibilities.slice(0, 3);
 
               return (
                 <FadeInOnScroll key={exp.id} delay={index * 0.15}>
@@ -76,28 +76,21 @@ const Experience: React.FC = () => {
                           </div>
                         </div>
 
-                        {/* Description */}
-                        <p className="text-gray-300 mb-4 leading-relaxed">
-                          {exp.description}
-                        </p>
 
                         {/* Responsibilities */}
-                        <div className="mb-4">
-                          <h5 className="text-base font-medium mb-3 text-gray-200">
-                            {lang === 'fr' ? 'Missions :' : 'Responsibilities:'}
-                          </h5>
-                          <ul className="space-y-2">
+                        <div className="mb-2">
+                          <ul className="space-y-1.5">
                             {visibleResponsibilities.map((resp, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-gray-300">
-                                <span className="text-blue-400 mt-1">•</span>
-                                <span className="text-sm">{resp}</span>
+                              <li key={idx} className="flex items-start gap-2 text-gray-400">
+                                <span className="text-blue-400 mt-0.5 text-xs">•</span>
+                                <span className="text-xs">{resp}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
                         {/* Expand/Collapse Button */}
-                        {exp.responsibilities.length > 4 && (
+                        {exp.responsibilities.length > 3 && (
                           <button
                             className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium text-sm mt-4"
                             onClick={(e) => {

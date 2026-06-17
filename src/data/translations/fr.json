@@ -19,12 +19,12 @@
     "profile": "Ingénieur diplômé avec une formation initiale dans le domaine de la santé, j'ai évolué dans des environnements techniques complexes, notamment autour du cloud et du traitement de données. J'y ai développé une compréhension des systèmes d'information et de leurs enjeux en matière de sécurité et de gestion des risques.\n\nAdmis en Master Cybersécurité des Infrastructures et des Systèmes d'Information à ESIEA, je souhaite aujourd'hui m'orienter vers la cybersécurité afin de développer mes compétences et construire progressivement mon projet professionnel dans ce domaine.",
     "stats": {
       "experience": {
-        "value": "3+ ans",
-        "label": "Expérience professionnelle"
+        "value": "2 ans",
+        "label": "Expérience"
       },
       "education": {
-        "value": "Master 2026",
-        "label": "Cybersécurité @ ESIEA"
+        "value": "EPF + ESIEA",
+        "label": "Ingénieur + Master Cyber"
       },
       "expertise": {
         "value": "Data & Cloud",
@@ -55,7 +55,7 @@
     "title": "Expériences Professionnelles"
   },
   "skills": {
-    "title": "Compétences Techniques",
+    "title": "Compétences",
     "categories": {
       "programming": "Programmation & Informatique",
       "cloud": "Cloud & Data Engineering",
@@ -64,7 +64,7 @@
     }
   },
   "projects": {
-    "title": "Projets Personnels",
+    "title": "Projets",
     "viewCode": "Voir le code",
     "liveDemo": "Démo en ligne",
     "viewProfile": "Voir le profil",

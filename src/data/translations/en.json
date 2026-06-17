@@ -19,12 +19,12 @@
     "profile": "Engineering graduate with initial training in healthcare, I have evolved in complex technical environments, particularly around cloud and data processing. I developed an understanding of information systems and their security and risk management challenges.\n\nAdmitted to the Master's in Cybersecurity of Infrastructures and Information Systems at ESIEA, I now want to move towards cybersecurity to develop my skills and progressively build my professional project in this field.",
     "stats": {
       "experience": {
-        "value": "3+ Years",
-        "label": "Professional Experience"
+        "value": "2 Years",
+        "label": "Experience"
       },
       "education": {
-        "value": "Master's 2026",
-        "label": "Cybersecurity @ ESIEA"
+        "value": "EPF + ESIEA",
+        "label": "Engineering + Cyber Master"
       },
       "expertise": {
         "value": "Data & Cloud",
@@ -55,7 +55,7 @@
     "title": "Professional Experience"
   },
   "skills": {
-    "title": "Technical Skills",
+    "title": "Skills",
     "categories": {
       "programming": "Programming & IT",
       "cloud": "Cloud & Data Engineering",
@@ -64,7 +64,7 @@
     }
   },
   "projects": {
-    "title": "Personal Projects",
+    "title": "Projects",
     "viewCode": "View Code",
     "liveDemo": "Live Demo",
     "viewProfile": "View Profile",
