@@ -1,22 +1,26 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 interface CardProps {
-  children: ReactNode;
-  className?: string;
   hover?: boolean;
+  className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({ 
-  children, 
+const Card: React.FC<CardProps> = ({
+  hover = false,
   className = '',
-  hover = false
+  onClick,
+  children
 }) => {
+  const baseClasses = 'bg-white rounded-xl shadow-md transition-all duration-200';
+  const hoverClasses = hover ? 'hover:-translate-y-1 hover:shadow-xl cursor-pointer' : '';
+
   return (
-    <div className={`
-      bg-white rounded-lg shadow-md overflow-hidden
-      ${hover ? 'transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg' : ''}
-      ${className}
-    `}>
+    <div
+      className={`${baseClasses} ${hoverClasses} ${className}`}
+      onClick={onClick}
+    >
       {children}
     </div>
   );
