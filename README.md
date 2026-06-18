@@ -1,132 +1,132 @@
 # Portfolio - Quentin COLPART
 
-Portfolio personnel développé avec React + TypeScript + Vite + Tailwind CSS + Framer Motion.
+Personal portfolio built with React + TypeScript + Vite + Tailwind CSS + Framer Motion.
 
-## 🚀 Setup Initial
+## 🚀 Initial Setup
 
-### 1. Cloner le repo
+### 1. Clone the repository
 ```bash
 git clone https://github.com/RAYAXss/portfolio.git
 cd portfolio
 git checkout portfolio-redesign
 ```
 
-### 2. Installer les dépendances
+### 2. Install dependencies
 ```bash
 npm install
 ```
 
-Ceci installera toutes les librairies définies dans `package.json` :
+This will install all libraries defined in `package.json`:
 - React 18
 - TypeScript
 - Vite
 - Tailwind CSS
 - Framer Motion (animations)
-- Lucide React (icônes)
+- Lucide React (icons)
 
-**Note:** Le dossier `node_modules/` est ignoré par git (défini dans `.gitignore`) et ne sera jamais poussé sur GitHub.
+**Note:** The `node_modules/` folder is git-ignored (defined in `.gitignore`) and will never be pushed to GitHub.
 
-### 3. Ajouter vos fichiers personnels
+### 3. Add your personal files
 
-#### CV et Documents
-Créer le dossier et ajouter vos PDFs :
+#### CV and Documents
+Create the folder and add your PDFs:
 ```bash
 mkdir -p public/doc
-# Placer vos fichiers CV ici
-cp /chemin/vers/votre/CV.pdf public/doc/
+# Place your CV files here
+cp /path/to/your/CV.pdf public/doc/
 ```
 
 #### Images
-Ajouter vos photos/images :
+Add your photos/images:
 ```bash
 mkdir -p public/images
-# Placer vos images ici
-cp /chemin/vers/vos/images/* public/images/
+# Place your images here
+cp /path/to/your/images/* public/images/
 ```
 
-**Fichiers personnels protégés :** Les fichiers suivants ne seront **jamais** commités (définis dans `.gitignore`) :
-- `public/doc/*.pdf` - CVs et documents
-- `public/doc/*.png` - Screenshots de CV
-- `public/images/profile*` - Photos de profil
-- `public/images/pp_*` - Photos personnelles
+**Protected personal files:** The following files will **never** be committed (defined in `.gitignore`):
+- `public/doc/*.pdf` - CVs and documents
+- `public/doc/*.png` - CV screenshots
+- `public/images/profile*` - Profile photos
+- `public/images/pp_*` - Personal photos
 
-### 4. Lancer le serveur de développement
+### 4. Start development server
 ```bash
 npm run dev
 ```
 
-Ouvre automatiquement sur `http://localhost:5173/portfolio/`
+Opens automatically at `http://localhost:5173/portfolio/`
 
-## 📁 Structure des Fichiers Personnels
+## 📁 Personal Files Structure
 
 ```
 public/
-├── doc/                    # ← Ajouter vos CVs ici
+├── doc/                    # ← Add your CVs here
 │   ├── CV.pdf
 │   └── CV.png
-└── images/                 # ← Ajouter vos images ici
+└── images/                 # ← Add your images here
     ├── profile.jpg
     ├── fond.jpg
     ├── pp_solutec.jpg
-    └── favicon.ico         (déjà présent)
+    └── favicon.ico         (already present)
 ```
 
-## 🔧 Commandes Disponibles
+## 🔧 Available Commands
 
 ```bash
-npm run dev        # Lancer serveur de développement
-npm run build      # Build production dans dist/
-npm run preview    # Preview du build production
-npm run lint       # Linter ESLint
-npm run typecheck  # Vérification TypeScript
+npm run dev        # Start development server
+npm run build      # Production build in dist/
+npm run preview    # Preview production build
+npm run lint       # ESLint linter
+npm run typecheck  # TypeScript type checking
 ```
 
-## 📦 Ce qui est dans Git vs Ignoré
+## 📦 What's in Git vs Ignored
 
-### ✅ Commité dans Git
-- Code source (`src/`)
+### ✅ Committed to Git
+- Source code (`src/`)
 - Configuration (Vite, TypeScript, Tailwind, ESLint)
-- `package.json` et `package-lock.json`
+- `package.json` and `package-lock.json`
 - `public/images/favicon.ico`
 
-### ❌ Ignoré par Git (`.gitignore`)
-- `node_modules/` - Dépendances (réinstallées via `npm install`)
-- `dist/` - Build de production
-- `public/doc/` - CVs et documents personnels
-- `public/images/*.jpg`, `*.png` - Photos personnelles
-- `.vscode/`, `.idea/` - Config IDE
-- Logs et fichiers temporaires
+### ❌ Ignored by Git (`.gitignore`)
+- `node_modules/` - Dependencies (reinstalled via `npm install`)
+- `dist/` - Production build
+- `public/doc/` - CVs and personal documents
+- `public/images/*.jpg`, `*.png` - Personal photos
+- `.vscode/`, `.idea/` - IDE config
+- Logs and temporary files
 
-## 🌐 Déploiement
+## 🌐 Deployment
 
-### Build pour production
+### Build for production
 ```bash
 npm run build
 ```
 
-Le dossier `dist/` contient les fichiers prêts à déployer sur :
+The `dist/` folder contains files ready to deploy to:
 - GitHub Pages
 - Vercel
 - Netlify
-- Tout hébergeur statique
+- Any static host
 
-**Important :** Avant de déployer, vérifier que vos fichiers personnels (CVs, photos) sont bien présents localement dans `public/`.
+**Important:** Before deploying, verify that your personal files (CVs, photos) are present locally in `public/`.
 
-## 🔄 Workflow Git
+## 🔄 Git Workflow
 
 ```bash
-# Après avoir ajouté vos fichiers personnels localement
-git status                           # Vérifier qu'ils ne sont PAS listés
-git add src/ package.json README.md  # Ajouter uniquement le code
+# After adding your personal files locally
+git status                           # Verify they are NOT listed
+git add src/ package.json README.md  # Add only the code
 git commit -m "Update: description"
 git push origin portfolio-redesign
 ```
 
-Les fichiers dans `public/doc/` et `public/images/` resteront **uniquement sur votre machine** et ne seront jamais poussés.
+Files in `public/doc/` and `public/images/` will remain **only on your machine** and will never be pushed.
 
 ## 📝 Notes
 
-- **Node.js requis :** Version 18+ recommandée
-- **Première installation :** `npm install` peut prendre 1-2 minutes
-- **Hot reload :** Les modifications de code se reflètent instantanément dans le navigateur
-- **TypeScript :** Typage strict activé pour meilleure qualité de code
+- **Node.js required:** Version 18+ recommended
+- **First install:** `npm install` may take 1-2 minutes
+- **Hot reload:** Code changes reflect instantly in browser
+- **TypeScript:** Strict typing enabled for better code quality
