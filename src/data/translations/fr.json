@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "about": "À propos",
+    "experience": "Expériences",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "resume": "CV",
+    "language": "EN"
+  },
+  "hero": {
+    "name": "Quentin COLPART",
+    "title": "Ingénieur Cybersécurité",
+    "description": "Transition du data engineering vers la cybersécurité. Passionné par la sécurité cloud, l'automatisation et la construction de systèmes sécurisés.",
+    "viewProjects": "Voir mes projets",
+    "contactMe": "Me contacter"
+  },
+  "about": {
+    "title": "À propos",
+    "profile": "Ingénieur diplômé avec une formation initiale dans le domaine de la santé, j'ai évolué dans des environnements techniques complexes, notamment autour du cloud et du traitement de données. J'y ai développé une compréhension des systèmes d'information et de leurs enjeux en matière de sécurité et de gestion des risques.\n\nAdmis en Master Cybersécurité des Infrastructures et des Systèmes d'Information à ESIEA, je souhaite aujourd'hui m'orienter vers la cybersécurité afin de développer mes compétences et construire progressivement mon projet professionnel dans ce domaine.",
+    "stats": {
+      "experience": {
+        "value": "2 ans",
+        "label": "Expérience"
+      },
+      "education": {
+        "value": "EPF + ESIEA",
+        "label": "Ingénieur + Master Cyber"
+      },
+      "expertise": {
+        "value": "Data & Cloud",
+        "label": "Background ingénierie"
+      },
+      "languages": {
+        "value": "FR • EN",
+        "label": "Natif • Professionnel"
+      }
+    },
+    "interests": {
+      "title": "Centres d'intérêt",
+      "sport": {
+        "title": "Sport",
+        "items": ["Musculation", "Course à pied", "Calisthenics"]
+      },
+      "art": {
+        "title": "Art",
+        "items": ["Dessin", "Poterie"]
+      },
+      "tech": {
+        "title": "Technologie",
+        "items": ["Modélisation 3D", "IA générative (ComfyUI)"]
+      }
+    }
+  },
+  "experience": {
+    "title": "Expériences Professionnelles"
+  },
+  "skills": {
+    "title": "Compétences",
+    "categories": {
+      "programming": "Programmation & Informatique",
+      "cloud": "Cloud & Data Engineering",
+      "management": "Gestion de projet",
+      "soft": "Soft Skills"
+    }
+  },
+  "projects": {
+    "title": "Projets",
+    "viewCode": "Voir le code",
+    "liveDemo": "Démo en ligne",
+    "viewProfile": "Voir le profil",
+    "inDevelopment": "En développement"
+  },
+  "contact": {
+    "title": "Me contacter",
+    "message": "Envie de discuter de mes projets, de calisthenics, de génération IA ou d'impression 3D ?",
+    "button": "M'envoyer un email",
+    "backToTop": "Retour en haut"
+  },
+  "footer": {
+    "copyright": "© 2026 Quentin COLPART",
+    "builtWith": "Construit avec React + TypeScript"
+  }
+}

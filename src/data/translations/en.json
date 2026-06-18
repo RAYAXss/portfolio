@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "resume": "Resume",
+    "language": "FR"
+  },
+  "hero": {
+    "name": "Quentin COLPART",
+    "title": "Cybersecurity Engineer",
+    "description": "Transitioning from data engineering to cybersecurity. Passionate about cloud security, automation, and building secure systems.",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "profile": "Engineering graduate with initial training in healthcare, I have evolved in complex technical environments, particularly around cloud and data processing. I developed an understanding of information systems and their security and risk management challenges.\n\nAdmitted to the Master's in Cybersecurity of Infrastructures and Information Systems at ESIEA, I now want to move towards cybersecurity to develop my skills and progressively build my professional project in this field.",
+    "stats": {
+      "experience": {
+        "value": "2 Years",
+        "label": "Experience"
+      },
+      "education": {
+        "value": "EPF + ESIEA",
+        "label": "Engineering + Cyber Master"
+      },
+      "expertise": {
+        "value": "Data & Cloud",
+        "label": "Engineering Background"
+      },
+      "languages": {
+        "value": "FR • EN",
+        "label": "Native • Professional"
+      }
+    },
+    "interests": {
+      "title": "Interests",
+      "sport": {
+        "title": "Sport",
+        "items": ["Weight training", "Running", "Calisthenics"]
+      },
+      "art": {
+        "title": "Art",
+        "items": ["Drawing", "Pottery"]
+      },
+      "tech": {
+        "title": "Technology",
+        "items": ["3D Modeling", "Generative AI (ComfyUI)"]
+      }
+    }
+  },
+  "experience": {
+    "title": "Professional Experience"
+  },
+  "skills": {
+    "title": "Skills",
+    "categories": {
+      "programming": "Programming & IT",
+      "cloud": "Cloud & Data Engineering",
+      "management": "Project Management",
+      "soft": "Soft Skills"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo",
+    "viewProfile": "View Profile",
+    "inDevelopment": "In Development"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "message": "Want to discuss about my projects, calisthenics, AI generation, or 3D printing?",
+    "button": "Send me an Email",
+    "backToTop": "Back to top"
+  },
+  "footer": {
+    "copyright": "© 2026 Quentin COLPART",
+    "builtWith": "Built with React + TypeScript"
+  }
+}

@@ -1,90 +1,80 @@
 import React from 'react';
-import Section from '../ui/Section';
-import { Wrench, ShieldCheck, Activity, FileText, Download} from 'lucide-react';
-import Button from '../ui/Button';
+import { Briefcase, GraduationCap, Languages } from 'lucide-react';
+import { useLanguage } from '../../hooks/useLanguage';
+import FadeInOnScroll from '../animations/FadeInOnScroll';
+import translationsFR from '../../data/translations/fr.json';
+import translationsEN from '../../data/translations/en.json';
 
 const About: React.FC = () => {
+  const { lang } = useLanguage();
+  const translations = lang === 'fr' ? translationsFR : translationsEN;
+
+  const stats = [
+    {
+      icon: Briefcase,
+      value: translations.about.stats.experience.value,
+      label: translations.about.stats.experience.label
+    },
+    {
+      icon: GraduationCap,
+      value: translations.about.stats.education.value,
+      label: translations.about.stats.education.label
+    },
+    {
+      icon: Languages,
+      value: translations.about.stats.languages.value,
+      label: translations.about.stats.languages.label
+    }
+  ];
+
   return (
-    <Section 
-      id="a propos" 
-      title="A propos de moi"
-      subtitle="Engagé pour une ingénierie exigeante, tournée vers des solutions robustes, sécurisées et interconnectées."
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="col-span-1">
-          <div className="aspect-square rounded-xl overflow-hidden mb-6 shadow-lg transform transition-transform duration-500 hover:rotate-2">
-            <img 
-              src="./images/pp_solutec.jpg" 
-              alt="Quentin COLPART" 
-              className="w-full h-full object-cover"
-            />
+    <section id="about" className="py-16 bg-black">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeInOnScroll>
+          <h2 className="text-3xl font-bold text-center mb-10 text-white">
+            {translations.about.title}
+          </h2>
+        </FadeInOnScroll>
+
+        <FadeInOnScroll delay={0.2}>
+          <div className="max-w-3xl mx-auto mb-10">
+            <p className="text-base text-gray-300 leading-relaxed whitespace-pre-line text-center">
+              {translations.about.profile}
+            </p>
           </div>
-          <div className="flex flex-col gap-3">
-            <Button
-              onClick={() => window.open('/portfolio/doc/CV_Quentin_COLPART.pdf', '_blank')}
-              className="w-full"
-            >
-              <FileText size={18} className="mr-2" />
-              Voir mon CV
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => {
-                const link = document.createElement('a');
-                link.href = '/portfolio/doc/CV_Quentin_COLPART.pdf';
-                link.download = 'CV_Quentin_COLPART.pdf';
-                document.body.appendChild(link); // <- petit bonus pour iOS
-                link.click();
-                document.body.removeChild(link); // nettoyage propre
-              }}
-              className="w-full"
-            >
-              <Download size={18} className="mr-2" />
-              Télécharger mon CV
-            </Button>
-          </div>
-          </div>
-          <div className="col-span-1 lg:col-span-2">
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg leading-relaxed mb-6">
-                🎓 Diplômé récent de l’EPF avec une spécialisation en Santé & Ingénierie, je joue un rôle central entre les besoins des utilisateurs et les solutions techniques. Mon parcours inclut la modélisation de dispositifs médicaux, la visualisation de données, et l’automatisation des processus métiers. J'ai développé une expertise dans la collecte des besoins, le cadrage des projets, la rédaction de spécifications, et la conduite du changement, notamment dans des environnements régulés.
-              </p>
-              
-              <p className="text-lg leading-relaxed mb-6">
-                💡 Je suis également impliqué dans la mise en œuvre de solutions techniques, avec une solide expérience en Python (traitement d’image, interfaces, analyse de données), Business Intelligence (Power BI, Power Automate), et conception mécanique (CAO, FEM).
-              </p>
-              
-              <p className="text-lg leading-relaxed">
-                Actuellement, je suis à la recherche d'une équipe dynamique dans le secteur de la santé ou numérique, afin de contribuer à des projets à fort impact, en combinant sens, technologie, et collaboration.
-              </p>
+        </FadeInOnScroll>
+
+        {/* Stack */}
+        <FadeInOnScroll delay={0.3}>
+          <div className="mb-10">
+            <p className="text-xs text-gray-500 uppercase tracking-wider mb-3 text-center">Stack principale</p>
+            <div className="flex justify-center gap-3">
+              <span className="px-4 py-2 bg-blue-600/10 border border-blue-500/50 text-blue-300 rounded-md text-sm font-medium">
+                Python
+              </span>
+              <span className="px-4 py-2 bg-purple-600/10 border border-purple-500/50 text-purple-300 rounded-md text-sm font-medium">
+                Bash
+              </span>
             </div>
-            
-            <div className="mt-10">
-              <h3 className="text-xl font-semibold mb-6">Mes intérêts</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
-                <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                  <Wrench className="text-indigo-600 mb-4" size={32} />
-                  <h4 className="font-medium text-lg mb-2">Ingénierie appliquée</h4>
-                  <p className="text-gray-600">Concevoir des solutions concrètes face à des problématiques terrain à fort enjeu technique et réglementaire.</p>
+          </div>
+        </FadeInOnScroll>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          {stats.map((stat, index) => (
+            <FadeInOnScroll key={index} delay={0.3 + index * 0.1}>
+              <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-5 text-center border border-gray-800 hover:border-blue-500 transition-all">
+                <stat.icon className="w-10 h-10 mx-auto mb-3 text-blue-400" />
+                <div className="text-2xl font-bold text-blue-400 mb-1">
+                  {stat.value}
                 </div>
-                
-                <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                  <ShieldCheck className="text-green-600 mb-4" size={32} />
-                  <h4 className="font-medium text-lg mb-2">Sécurité et qualité</h4>
-                  <p className="text-gray-600">Approfondir la maîtrise des environnements normés et contribuer à des systèmes robustes et interopérables.</p>
-                </div>
-                
-                <div className="bg-gray-50 p-6 rounded-lg hover:shadow-md transition-shadow">
-                  <Activity className="text-purple-600 mb-4" size={32} />
-                  <h4 className="font-medium text-lg mb-2">Pilotage de projets</h4>
-                  <p className="text-gray-600">Travailler en équipe pluridisciplinaire pour transformer des idées en solutions concrètes et impactantes.</p>
-                </div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
               </div>
-            </div>
-          </div>
+            </FadeInOnScroll>
+          ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 };
 

@@ -1,143 +1,124 @@
 import React, { useState } from 'react';
-import Section from '../ui/Section';
-import { Calendar, MapPin, ArrowRight } from 'lucide-react';
-
-interface Experience {
-  id: number;
-  title: string;
-  company: string;
-  location: string;
-  period: string;
-  description: string;
-  responsibilities: string[];
-}
-
-// Placeholder experiences to be updated later
-const experienceData: Experience[] = [
-  {
-    id: 1,
-    title: "Responsable d'application",
-    company: "ME3D Graft - Your Anastomosis",
-    location: "Pécs, Hongrie",
-    period: "Février 2024 - Mars 2025",
-    description: "Comment optimiser les simulateurs pour améliorer la précision des résultats et assurer une intégration efficace avec les systèmes existants ?",
-    responsibilities: [
-      "Conduite du cadrage fonctionnel et recueil des besoins utilisateurs (chirurgiens, ingénieurs 3D)",
-      "Développement d’une application Python pour l’analyse d’images et la reconstruction 3D",
-      "Mise en place d’une gestion Agile : backlog, user stories, sprints",
-      "Accompagnement au changement des parties prenantes",
-      "Suivi post-livraison : tests fonctionnels, maintenance corrective et évolutive, coordination technique"
-    ]
-  },
-  {
-    id: 2,
-    title: "Chef de projet",
-    company: "Assistance Publique - Hôpitaux de Paris",
-    location: "Garches, France",
-    period: "Septembre 2023 - Janvier 2024",
-    description: "Exploiter l’IA afin de développer un outil d’aide au diagnostic et au suivi des patients atteints d’AVC sur une base d’IRM.",
-    responsibilities: [
-      "Recueil des besoins auprès de radiologues et cliniciens, animation d’ateliers",
-      "Rédaction de spécifications fonctionnelles, gestion du backlog Agile (Trello)",
-      "Formation des utilisateurs finaux, support fonctionnel, documentation",
-      "Préparation des jeux de données (anonymisation DICOM, traitement via Python)",
-      "Conception et entraînement de modèles de segmentation (TensorFlow)"
-    ]
-  },
-  {
-    id: 3,
-    title: "Data Analyst",
-    company: "Equans",
-    location: "Courbevoie, France",
-    period: "Septembre 2022 - Janvier 2023",
-    description: "Participation à la construction des Dashboard Security et outils de Reporting des risques cyber",
-    responsibilities: [
-      "Coordination en interne, animation des rituels agiles (daily, sprint review, rétro)",
-      "Déploiement de campagnes de sensibilisation cyber: planning, supports, communication interne",
-      "Création de tableaux de bord Power BI pour le suivi d’indicateurs de maturité et d’engagement",
-      "Automatisation de processus (formulaires, workflows, alertes) avec Power Automate",
-      "Élaboration d’analyses de risques en interne via matrices impact/vraisemblance"
-    ]
-  }
-];
+import { Calendar, MapPin, ChevronDown } from 'lucide-react';
+import { useLanguage } from '../../hooks/useLanguage';
+import { getExperiences } from '../../data/experiences';
+import FadeInOnScroll from '../animations/FadeInOnScroll';
+import Card from '../ui/Card';
+import translationsFR from '../../data/translations/fr.json';
+import translationsEN from '../../data/translations/en.json';
 
 const Experience: React.FC = () => {
-  const [activeId, setActiveId] = useState<number>(experienceData[0].id);
+  const { lang } = useLanguage();
+  const translations = lang === 'fr' ? translationsFR : translationsEN;
+  const experiences = getExperiences(lang);
+  const [expandedIds, setExpandedIds] = useState<number[]>([]);
+
+  const toggleExpand = (id: number) => {
+    setExpandedIds(prev =>
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
 
   return (
-    <Section 
-      id="expériences" 
-      title="Expériences Professionnelles"
-      subtitle="Mon parcours professionnel en Ingénierie"
-    >
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-1/3">
-          <div className="border-l-2 border-gray-200">
-            {experienceData.map((exp) => (
-              <button
-                key={exp.id}
-                onClick={() => setActiveId(exp.id)}
-                className={`block w-full text-left pl-6 py-4 relative transition-all hover:bg-gray-50 ${
-                  activeId === exp.id ? 'text-blue-600' : 'text-gray-700'
-                }`}
-              >
-                <div 
-                  className={`absolute w-4 h-4 rounded-full left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
-                    activeId === exp.id ? 'bg-blue-600 border-4 border-blue-100' : 'bg-gray-300'
-                  }`}
-                ></div>
-                <h3 className="font-medium text-lg">{exp.title}</h3>
-                <p className="text-sm text-gray-500">{exp.company}</p>
-                <p className="text-xs text-gray-400">{exp.period}</p>
-              </button>
-            ))}
+    <section id="experience" className="py-16 bg-black">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeInOnScroll>
+          <h2 className="text-3xl font-bold text-center mb-10">
+            {translations.experience.title}
+          </h2>
+        </FadeInOnScroll>
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-blue-300" />
+
+          <div className="space-y-8">
+            {experiences.map((exp, index) => {
+              const isExpanded = expandedIds.includes(exp.id);
+              const visibleResponsibilities = isExpanded
+                ? exp.responsibilities
+                : exp.responsibilities.slice(0, 3);
+
+              return (
+                <FadeInOnScroll key={exp.id} delay={index * 0.15}>
+                  <div className="relative">
+                    {/* Timeline dot */}
+                    <div className="hidden md:block absolute left-8 top-4 w-4 h-4 -translate-x-1/2 rounded-full bg-blue-600 border-4 border-blue-100" />
+
+                    <Card
+                      hover
+                      className="md:ml-20 border-l-4 border-blue-500 overflow-hidden cursor-pointer"
+                      onClick={() => toggleExpand(exp.id)}
+                    >
+                      <div className="p-4">
+                        {/* Header */}
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                          <div className="flex-1">
+                            <h3 className="text-xl font-bold text-white mb-2">
+                              {exp.title}
+                            </h3>
+                            <h4 className="text-base text-blue-400 mb-3">
+                              {exp.company}
+                            </h4>
+                            <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                              <div className="flex items-center gap-2">
+                                <Calendar size={16} />
+                                <span>{exp.period}</span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <MapPin size={16} />
+                                <span>{exp.location}</span>
+                              </div>
+                              <span className="px-3 py-1 bg-blue-900 text-blue-300 rounded-full text-xs font-medium">
+                                {exp.contractType}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        {/* Responsibilities */}
+                        <div className="mb-2">
+                          <ul className="space-y-1.5">
+                            {visibleResponsibilities.map((resp, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-gray-400">
+                                <span className="text-blue-400 mt-0.5 text-xs">•</span>
+                                <span className="text-xs">{resp}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Expand/Collapse Button */}
+                        {exp.responsibilities.length > 3 && (
+                          <button
+                            className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium text-sm mt-4"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleExpand(exp.id);
+                            }}
+                          >
+                            <span>
+                              {isExpanded
+                                ? lang === 'fr' ? 'Voir moins' : 'View less'
+                                : lang === 'fr' ? 'Voir plus' : 'View more'}
+                            </span>
+                            <ChevronDown
+                              size={16}
+                              className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                            />
+                          </button>
+                        )}
+                      </div>
+                    </Card>
+                  </div>
+                </FadeInOnScroll>
+              );
+            })}
           </div>
         </div>
-        
-        <div className="lg:w-2/3">
-          {experienceData.map((exp) => (
-            <div 
-              key={exp.id}
-              className={`bg-white rounded-lg p-6 shadow-lg transition-opacity duration-300 ${
-                activeId === exp.id ? 'opacity-100' : 'hidden'
-              }`}
-            >
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-gray-800">{exp.title}</h3>
-                <h4 className="text-lg text-blue-600 mb-4">{exp.company}</h4>
-                
-                <div className="flex flex-wrap gap-4 text-gray-600 mb-6">
-                  <div className="flex items-center">
-                    <Calendar size={16} className="mr-2" />
-                    <span>{exp.period}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin size={16} className="mr-2" />
-                    <span>{exp.location}</span>
-                  </div>
-                </div>
-              </div>
-              
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                {exp.description}
-              </p>
-              
-              <div>
-                <h5 className="text-lg font-medium mb-3 text-gray-800">Missions:</h5>
-                <ul className="space-y-3">
-                  {exp.responsibilities.map((item, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <ArrowRight size={16} className="mr-2 mt-1 text-blue-600 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
-    </Section>
+    </section>
   );
 };
 

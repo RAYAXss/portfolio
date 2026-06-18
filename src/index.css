@@ -8,11 +8,11 @@
   }
 
   body {
-    @apply text-gray-800 antialiased;
+    @apply bg-gray-900 text-gray-100 antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans;
+    @apply font-sans text-white;
   }
 }
 
@@ -43,4 +43,17 @@
 
 .animate-fadeIn {
   animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 10s linear infinite;
 }
