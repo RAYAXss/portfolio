@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
           <div className="flex items-center space-x-3">
             {hasProfileImage ? (
               <img
-                src="/images/profile.jpg"
+                src={`${import.meta.env.BASE_URL}/images/profile.jpg`}
                 alt="Quentin COLPART"
                 className="w-10 h-10 rounded-full object-cover shadow-md"
                 onError={() => setHasProfileImage(false)}
@@ -93,7 +93,7 @@ const Navigation: React.FC = () => {
           <div className="flex items-center space-x-4">
             {/* Resume Download */}
             <a
-              href="/doc/CV_Cybersécurité_Quentin_Colpart.pdf"
+              href={`${import.meta.env.BASE_URL}/doc/CV_Cybersécurité_Quentin_Colpart.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors"
@@ -170,7 +170,7 @@ const Navigation: React.FC = () => {
               </button>
             ))}
             <a
-              href="/doc/CV_Cybersécurité.pdf"
+              href={`${import.meta.env.BASE_URL}/doc/CV_Cybersécurité_Quentin_Colpart.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-left py-2 px-4 text-gray-300 hover:bg-gray-800 transition-colors"
