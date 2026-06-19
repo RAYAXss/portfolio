@@ -7,7 +7,7 @@ const projectsFR: Project[] = [
     title: "TimeUp - Jeu de Navigateur",
     description: "Jeu multijoueur basé sur le navigateur avec synchronisation en temps réel",
     techStack: ["React", "TypeScript", "Supabase", "TailwindCSS"],
-    image: "/images/timesup-preview.png",
+    image: "public/images/timesup-preview.png",
     links: {
       github: "https://github.com/RAYAXss/timesup"
     }
@@ -17,7 +17,7 @@ const projectsFR: Project[] = [
     title: "Générateur de Clips Verticaux",
     description: "Outil automatisé pour générer du contenu vidéo vertical pour les réseaux sociaux",
     techStack: ["Python", "HTML", "CSS"],
-    image: "/images/vertical-clips-preview.png",
+    image: "public/images/vertical-clips-preview.png",
     status: "En développement",
     links: {}
   },
@@ -26,7 +26,7 @@ const projectsFR: Project[] = [
     title: "RootMe - Défis Cybersécurité",
     description: "Défis de cybersécurité et développement de compétences sur la plateforme RootMe",
     techStack: ["Security", "CTF", "Pentesting"],
-    image: "/images/rootme-preview.png",
+    image: "public/images/rootme-preview.png",
     links: {
       external: "https://www.root-me.org/RAYAX?lang=fr"
     }
@@ -39,7 +39,7 @@ const projectsEN: Project[] = [
     title: "TimeUp - Browser Game",
     description: "Multiplayer browser-based game with real-time synchronization",
     techStack: ["React", "TypeScript", "Supabase", "TailwindCSS"],
-    image: "/images/timesup-preview.png",
+    image: "public/images/timesup-preview.png",
     links: {
       github: "https://github.com/RAYAXss/timesup"
     }
@@ -49,7 +49,7 @@ const projectsEN: Project[] = [
     title: "Vertical Clips Generator",
     description: "Automated tool for generating vertical video content for social media",
     techStack: ["Python", "HTML", "CSS"],
-    image: "/images/vertical-clips-preview.png",
+    image: "public/images/vertical-clips-preview.png",
     status: "In Development",
     links: {}
   },
@@ -58,7 +58,7 @@ const projectsEN: Project[] = [
     title: "RootMe - Cyber Challenges",
     description: "Cybersecurity challenges and skill development on RootMe platform",
     techStack: ["Security", "CTF", "Pentesting"],
-    image: "/images/rootme-preview.png",
+    image: "public/images/rootme-preview.png",
     links: {
       external: "https://www.root-me.org/RAYAX?lang=en"
     }

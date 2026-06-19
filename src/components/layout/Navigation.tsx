@@ -93,7 +93,7 @@ const Navigation: React.FC = () => {
           <div className="flex items-center space-x-4">
             {/* Resume Download */}
             <a
-              href="/doc/CV_Cybersécurité.pdf"
+              href="/doc/CV_Cybersécurité_Quentin_Colpart.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors"
