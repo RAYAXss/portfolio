@@ -10,6 +10,7 @@ const Navigation: React.FC = () => {
   const { lang } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hasProfileImage, setHasProfileImage] = useState(true);
 
   const translations = lang === 'fr' ? translationsFR : translationsEN;
   const sections = ['hero', 'about', 'experience', 'skills', 'projects'];
@@ -51,9 +52,18 @@ const Navigation: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Left: Avatar + Name */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-md">
-              QC
-            </div>
+            {hasProfileImage ? (
+              <img
+                src="/images/profile.jpg"
+                alt="Quentin COLPART"
+                className="w-10 h-10 rounded-full object-cover shadow-md"
+                onError={() => setHasProfileImage(false)}
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-md">
+                QC
+              </div>
+            )}
             <span className="font-semibold text-gray-100 text-lg hidden sm:block">
               Quentin COLPART
             </span>

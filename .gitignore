@@ -5,11 +5,6 @@ node_modules
 dist
 *.local
 
-# Personal data - DO NOT COMMIT
-public/doc/*.pdf
-public/doc/*.png
-public/images/profile*
-public/images/pp_*
 
 # IDE
 .vscode
