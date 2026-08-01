@@ -37,7 +37,7 @@ const projectsFR: Project[] = [
     title: "VideoLoader - Chargeur de Vidéo",
     description: "Outil pour charger et gérer des vidéos encryptées sur une interface locale",
     techStack: ["Python", "HTML", "CSS"],
-    image: "/images/video-loader-preview.png",
+    image: `${import.meta.env.BASE_URL}/images/video-loader-preview.png`,
     links: {
       github: "https://github.com/RAYAXss/VideoLoader"
     }
@@ -47,7 +47,7 @@ const projectsFR: Project[] = [
     title: "Disk Analyzer",
     description: "Outil pour analyser l'utilisation du disque et identifier les fichiers volumineux",
     techStack: ["Python"],
-    image: "/images/disk-analyzer-preview.png",
+    image: `${import.meta.env.BASE_URL}/images/disk-analyzer-preview.png`,
     status: "En développement",
     links: {
       github: "https://github.com/RAYAXss/disk_analyzer"
@@ -71,8 +71,7 @@ const projectsEN: Project[] = [
     title: "Vertical Clips Generator",
     description: "Automated tool for generating vertical video content for social media",
     techStack: ["Python", "HTML", "CSS"],
-    image: "/images/vertical-clips-preview.png",
-    status: "In Development",
+    image: `${import.meta.env.BASE_URL}/images/vertical-clips-preview.png`,
     links: {}
   },
   {
@@ -90,7 +89,7 @@ const projectsEN: Project[] = [
     title: "VideoLoader - Video Loader",
     description: "Tool for loading and managing encrypted videos on a local interface",
     techStack: ["Python", "Tkinter"],
-    image: "/images/video-loader-preview.png",
+    image: `${import.meta.env.BASE_URL}/images/video-loader-preview.png`,
     links: {
       github: "https://github.com/RAYAXss/VideoLoader"
     }
@@ -100,7 +99,7 @@ const projectsEN: Project[] = [
     title: "Disk Analyzer",
     description: "Tool for analyzing disk usage and identifying large files",
     techStack: ["Python", "Tkinter"],
-    image: "/images/disk-analyzer-preview.png",
+    image: `${import.meta.env.BASE_URL}/images/disk-analyzer-preview.png`,
     status: "In progress",
     links: {
       github: "https://github.com/RAYAXss/disk_analyzer"
