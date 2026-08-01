@@ -14,12 +14,14 @@ const projectsFR: Project[] = [
   },
   {
     id: 2,
-    title: "Générateur de Clips Verticaux",
+    title: "CutClips - Générateur de Clips Verticaux",
     description: "Outil automatisé pour générer du contenu vidéo vertical pour les réseaux sociaux",
     techStack: ["Python", "HTML", "CSS"],
     image: `${import.meta.env.BASE_URL}/images/vertical-clips-preview.png`,
     status: "En développement",
-    links: {}
+    links: {
+      github: "https://github.com/RAYAXss/CutClips"
+    }
   },
   {
     id: 3,
@@ -29,6 +31,16 @@ const projectsFR: Project[] = [
     image: `${import.meta.env.BASE_URL}/images/rootme-preview.png`,
     links: {
       external: "https://www.root-me.org/RAYAX?lang=fr"
+    }
+  },
+  {
+    id: 4,
+    title: "VideoLoader - Chargeur de Vidéo",
+    description: "Outil pour charger et gérer des vidéos sur une interface locale",
+    techStack: ["Python", "HTML", "CSS"],
+    image: "/images/video-loader-preview.png",
+    links: {
+      github: "https://github.com/RAYAXss/VideoLoader"
     }
   }
 ];
@@ -49,7 +61,7 @@ const projectsEN: Project[] = [
     title: "Vertical Clips Generator",
     description: "Automated tool for generating vertical video content for social media",
     techStack: ["Python", "HTML", "CSS"],
-    image: `${import.meta.env.BASE_URL}/images/vertical-clips-preview.png`,
+    image: "/images/vertical-clips-preview.png",
     status: "In Development",
     links: {}
   },
@@ -61,6 +73,16 @@ const projectsEN: Project[] = [
     image: `${import.meta.env.BASE_URL}/images/rootme-preview.png`,
     links: {
       external: "https://www.root-me.org/RAYAX?lang=en"
+    }
+  },
+  {
+    id: 4,
+    title: "VideoLoader - Video Loader",
+    description: "Tool for loading and managing videos on a local interface",
+    techStack: ["Python", "HTML", "CSS"],
+    image: "/images/video-loader-preview.png",
+    links: {
+      github: "https://github.com/RAYAXss/VideoLoader"
     }
   }
 ];
