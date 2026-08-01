@@ -18,7 +18,6 @@ const projectsFR: Project[] = [
     description: "Outil automatisé pour générer du contenu vidéo vertical pour les réseaux sociaux",
     techStack: ["Python", "HTML", "CSS"],
     image: `${import.meta.env.BASE_URL}/images/vertical-clips-preview.png`,
-    status: "En développement",
     links: {
       github: "https://github.com/RAYAXss/CutClips"
     }
@@ -36,11 +35,22 @@ const projectsFR: Project[] = [
   {
     id: 4,
     title: "VideoLoader - Chargeur de Vidéo",
-    description: "Outil pour charger et gérer des vidéos sur une interface locale",
+    description: "Outil pour charger et gérer des vidéos encryptées sur une interface locale",
     techStack: ["Python", "HTML", "CSS"],
     image: "/images/video-loader-preview.png",
     links: {
       github: "https://github.com/RAYAXss/VideoLoader"
+    }
+  },
+  {
+    id: 5,
+    title: "Disk Analyzer",
+    description: "Outil pour analyser l'utilisation du disque et identifier les fichiers volumineux",
+    techStack: ["Python"],
+    image: "/images/disk-analyzer-preview.png",
+    status: "En développement",
+    links: {
+      github: "https://github.com/RAYAXss/disk_analyzer"
     }
   }
 ];
@@ -78,11 +88,22 @@ const projectsEN: Project[] = [
   {
     id: 4,
     title: "VideoLoader - Video Loader",
-    description: "Tool for loading and managing videos on a local interface",
-    techStack: ["Python", "HTML", "CSS"],
+    description: "Tool for loading and managing encrypted videos on a local interface",
+    techStack: ["Python", "Tkinter"],
     image: "/images/video-loader-preview.png",
     links: {
       github: "https://github.com/RAYAXss/VideoLoader"
+    }
+  },
+  {
+    id: 5,
+    title: "Disk Analyzer",
+    description: "Tool for analyzing disk usage and identifying large files",
+    techStack: ["Python", "Tkinter"],
+    image: "/images/disk-analyzer-preview.png",
+    status: "In progress",
+    links: {
+      github: "https://github.com/RAYAXss/disk_analyzer"
     }
   }
 ];
