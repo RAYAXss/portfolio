@@ -128,10 +128,24 @@ const Hero: React.FC = () => {
               - overflow-visible sur le wrapper pour que le canvas WebGL ne soit pas rogné
               - On utilise w-full avec une hauteur fixe généreuse
               - On ne contraint pas la largeur max ici (le canvas s'adapte au wrapper) */}
-          <motion.h1 variants={item} className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {translations.hero.name}
+          <motion.h1
+              variants={item}
+              className="
+                  text-4xl
+                  md:text-5xl
+                  font-bold
+                  mb-3
+                  bg-gradient-to-r
+                  from-blue-400
+                  to-purple-400
+                  bg-clip-text
+                  text-transparent
+                  [-webkit-background-clip:text]
+                  [-webkit-text-fill-color:transparent]
+              "
+          >
+              {translations.hero.name}
           </motion.h1>
-          
           {/* Title */}
           <motion.h2 variants={item} className="text-xl md:text-2xl text-gray-400 mb-5 font-light">
             {translations.hero.title}
