@@ -135,7 +135,6 @@ const Hero: React.FC = () => {
                 from-blue-400
                 to-purple-400
                 bg-clip-text
-                text-transparent
                 [-webkit-background-clip:text]
                 [-webkit-text-fill-color:transparent]
               "
