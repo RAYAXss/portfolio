@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import FadeInOnScroll from '../animations/FadeInOnScroll';
@@ -10,63 +11,69 @@ const Contact: React.FC = () => {
   const { lang } = useLanguage();
   const translations = lang === 'fr' ? translationsFR : translationsEN;
 
+  const socials = [
+    { href: 'https://www.linkedin.com/in/quentin-colpart/', icon: Linkedin,     label: 'LinkedIn' },
+    { href: 'https://github.com/RAYAXss',                   icon: Github,       label: 'GitHub'   },
+    { href: 'https://www.root-me.org/RAYAX?lang=fr',         icon: ExternalLink, label: 'RootMe'   },
+  ];
+
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section
+      id="contact"
+      className="relative py-24 overflow-hidden"
+    >
+      
+
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <FadeInOnScroll>
-          <h2 className="text-4xl font-bold mb-8">
+          <h2 className="text-4xl font-bold text-white mb-4">
             {translations.contact.title}
           </h2>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-8 rounded-full" />
         </FadeInOnScroll>
 
-        <FadeInOnScroll delay={0.2}>
-          <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+        <FadeInOnScroll delay={0.15}>
+          <p className="text-lg text-gray-400 mb-10 leading-relaxed">
             {translations.contact.message}
           </p>
         </FadeInOnScroll>
 
-        <FadeInOnScroll delay={0.4}>
-          <a href="mailto:qcolpart@gmail.com">
-            <Button
-              variant="primary"
-              size="lg"
-              className="bg-blue-600 text-white hover:bg-blue-500 shadow-xl mb-8"
-            >
-              <Mail size={20} className="mr-2" />
+        <FadeInOnScroll delay={0.25}>
+          <motion.a
+            href="mailto:qcolpart@gmail.com"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            className="inline-block mb-10"
+          >
+            <Button variant="primary" size="lg" className="shadow-lg shadow-blue-500/20">
+              <Mail size={18} className="mr-2" />
               {translations.contact.button}
             </Button>
-          </a>
+          </motion.a>
         </FadeInOnScroll>
 
-        <FadeInOnScroll delay={0.6}>
+        {/* Social icons */}
+        <FadeInOnScroll delay={0.35}>
           <div className="flex justify-center gap-4">
-            <a
-              href="https://www.linkedin.com/in/quentin-colpart/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://github.com/RAYAXss"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110"
-              aria-label="GitHub"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://www.root-me.org/RAYAX?lang=fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110"
-              aria-label="RootMe"
-            >
-              <ExternalLink size={24} />
-            </a>
+            {socials.map(({ href, icon: Icon, label }, i) => (
+              <motion.a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + i * 0.08, type: 'spring', stiffness: 300, damping: 22 }}
+                whileHover={{ y: -5, scale: 1.15 }}
+                whileTap={{ scale: 0.92 }}
+                className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-blue-400/40 transition-colors"
+              >
+                <Icon size={22} />
+              </motion.a>
+            ))}
           </div>
         </FadeInOnScroll>
       </div>
