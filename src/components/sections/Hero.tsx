@@ -1,120 +1,187 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Github, Linkedin, ExternalLink, ArrowDown } from 'lucide-react';
+
 import { useLanguage } from '../../hooks/useLanguage';
 import Button from '../ui/Button';
+
 import translationsFR from '../../data/translations/fr.json';
 import translationsEN from '../../data/translations/en.json';
+
+/* ─────────────────────────────────────────────
+   Magnetic social link
+───────────────────────────────────────────── */
+
+const MagneticLink: React.FC<{
+  href: string;
+  children: React.ReactNode;
+  label: string;
+}> = ({ href, children, label }) => {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 300, damping: 20 });
+  const springY = useSpring(y, { stiffness: 300, damping: 20 });
+
+  const handleMouseMove = (event: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    x.set((event.clientX - rect.left - rect.width / 2) * 0.35);
+    y.set((event.clientY - rect.top - rect.height / 2) * 0.35);
+  };
+
+  const handleMouseLeave = () => { x.set(0); y.set(0); };
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      style={{ x: springX, y: springY }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.94 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+      className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700 text-gray-400 text-sm hover:border-blue-400/60 hover:text-blue-300 hover:bg-blue-400/5 transition-colors"
+    >
+      {children}
+    </motion.a>
+  );
+};
+
+/* ─────────────────────────────────────────────
+   Letter wave
+───────────────────────────────────────────── */
+
+const WaveText: React.FC<{ children: string }> = ({ children }) => (
+  <span className="inline-flex">
+    {Array.from(children).map((char, index) => (
+      <motion.span
+        key={`${char}-${index}`}
+        className="inline-block"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: [0, -6, 0] }}
+        transition={{
+          opacity: { delay: 0.15 + index * 0.035, duration: 0.25 },
+          y: { delay: 0.4 + index * 0.055, duration: 0.65, ease: 'easeInOut', repeat: Infinity, repeatDelay: 5 },
+        }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </motion.span>
+    ))}
+  </span>
+);
+
+/* ─────────────────────────────────────────────
+   Hero
+───────────────────────────────────────────── */
 
 const Hero: React.FC = () => {
   const { lang } = useLanguage();
   const translations = lang === 'fr' ? translationsFR : translationsEN;
 
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const socials = [
+    { href: 'https://github.com/RAYAXss', icon: Github, label: 'GitHub' },
+    { href: 'https://www.linkedin.com/in/quentin-colpart/', icon: Linkedin, label: 'LinkedIn' },
+    { href: 'https://www.root-me.org/RAYAX?lang=fr', icon: ExternalLink, label: 'RootMe' },
+  ];
+
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 28 },
+    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 220, damping: 22 } },
   };
 
   return (
-    <section
-      id="hero"
-      className="h-screen flex items-center justify-center bg-gray-900"
-    >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Animated Welcome Text */}
-        <motion.div
-          className="mb-8 inline-block px-4 py-1.5 border border-gray-700 rounded-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <span className="text-xs tracking-wider font-normal animate-gradient bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto]">
-            {lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}
-          </span>
-        </motion.div>
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden pointer-events-none">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pointer-events-auto">
+        <motion.div variants={container} initial="hidden" animate="show">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          {/* Welcome badge */}
+          <motion.div variants={item} className="mb-7 inline-flex">
+            <motion.span
+              animate={{
+                borderColor: ['rgba(59,130,246,0.3)', 'rgba(168,85,247,0.55)', 'rgba(59,130,246,0.3)'],
+                boxShadow: ['0 0 0 rgba(59,130,246,0)', '0 0 24px rgba(59,130,246,0.08)', '0 0 0 rgba(59,130,246,0)'],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="px-4 py-1.5 rounded-full border text-xs tracking-widest font-medium text-blue-300 bg-blue-500/5"
+            >
+              <span className="mr-2">✦</span>
+              <WaveText>{lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}</WaveText>
+              <span className="ml-2">✦</span>
+            </motion.span>
+          </motion.div>
+
+          {/* Name avec MeshTextHover — FIX :
+              - overflow-visible sur le wrapper pour que le canvas WebGL ne soit pas rogné
+              - On utilise w-full avec une hauteur fixe généreuse
+              - On ne contraint pas la largeur max ici (le canvas s'adapte au wrapper) */}
+          <motion.h1 variants={item} className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             {translations.hero.name}
-          </h1>
-          <h2 className="text-xl md:text-2xl text-gray-300 mb-4">
+          </motion.h1>
+          
+          {/* Title */}
+          <motion.h2 variants={item} className="text-xl md:text-2xl text-gray-400 mb-5 font-light">
             {translations.hero.title}
-          </h2>
-          <p className="text-base text-gray-400 mb-6 max-w-xl mx-auto leading-relaxed">
+          </motion.h2>
+
+          {/* Description */}
+          <motion.p variants={item} className="text-base text-gray-500 mb-8 max-w-xl mx-auto leading-relaxed">
             {translations.hero.description}
-          </p>
+          </motion.p>
 
-          {/* Social Buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <a
-              href="https://github.com/RAYAXss"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
-            >
-              <Github size={20} />
-              <span>GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/quentin-colpart/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
-            >
-              <Linkedin size={20} />
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="https://www.root-me.org/RAYAX?lang=fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 border-2 border-gray-600 rounded-full text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all"
-            >
-              <ExternalLink size={20} />
-              <span>RootMe</span>
-            </a>
-          </div>
+          {/* Social links */}
+          <motion.div variants={item} className="flex flex-wrap justify-center gap-3 mb-8">
+            {socials.map(({ href, icon: Icon, label }) => (
+              <MagneticLink key={label} href={href} label={label}>
+                <Icon size={16} />
+                {label}
+              </MagneticLink>
+            ))}
+          </motion.div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
-              variant="primary"
-              size="md"
-              onClick={() => scrollToSection('projects')}
-            >
-              {translations.hero.viewProjects}
-            </Button>
-            <Button
-              variant="outline"
-              size="md"
-              onClick={() => scrollToSection('contact')}
-            >
-              {translations.hero.contactMe}
-            </Button>
-          </div>
-        </motion.div>
+          {/* CTAs */}
+          <motion.div variants={item} className="flex flex-wrap justify-center gap-4">
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+              <Button variant="primary" size="md" onClick={() => scrollTo('projects')}>
+                {translations.hero.viewProjects}
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+              <Button variant="outline" size="md" onClick={() => scrollTo('contact')}>
+                {translations.hero.contactMe}
+              </Button>
+            </motion.div>
+          </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <button
-            onClick={() => scrollToSection('about')}
-            className="text-gray-400 hover:text-blue-400 transition-colors"
-            aria-label="Scroll to about section"
-          >
-            <ArrowDown size={32} />
-          </button>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.button
+        onClick={() => scrollTo('about')}
+        aria-label="Scroll down"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-600 hover:text-blue-400 transition-colors group z-10 pointer-events-auto"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <span className="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+          {lang === 'fr' ? 'Défiler' : 'Scroll'}
+        </span>
+        <ArrowDown size={24} />
+      </motion.button>
     </section>
   );
 };
