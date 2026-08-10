@@ -3,6 +3,7 @@ import { Github, Linkedin, Download } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import LanguageToggle from '../ui/LanguageToggle';
+import { getCvUrl } from '../../utils/cv';
 import translationsFR from '../../data/translations/fr.json';
 import translationsEN from '../../data/translations/en.json';
 
@@ -13,6 +14,7 @@ const Navigation: React.FC = () => {
   const [hasProfileImage, setHasProfileImage] = useState(true);
 
   const translations = lang === 'fr' ? translationsFR : translationsEN;
+  const cvHref = getCvUrl(lang);
   const sections = ['hero', 'about', 'experience', 'skills', 'projects'];
   const activeSection = useScrollSpy(sections);
 
@@ -54,7 +56,7 @@ const Navigation: React.FC = () => {
           <div className="flex items-center space-x-3">
             {hasProfileImage ? (
               <img
-                src={`${import.meta.env.BASE_URL}/images/profile.jpg`}
+                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
                 alt="Quentin COLPART"
                 className="w-10 h-10 rounded-full object-cover shadow-md"
                 onError={() => setHasProfileImage(false)}
@@ -65,7 +67,7 @@ const Navigation: React.FC = () => {
               </div>
             )}
             <span className="font-semibold text-gray-100 text-lg hidden sm:block">
-              Quentin COLPART
+              {translations.hero.name}
             </span>
           </div>
 
@@ -92,15 +94,17 @@ const Navigation: React.FC = () => {
           {/* Right: Resume, Social, Language */}
           <div className="flex items-center space-x-4">
             {/* Resume Download */}
-            <a
-              href={`${import.meta.env.BASE_URL}/doc/CV_Cybersécurité_Quentin_Colpart.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors"
-            >
-              <Download size={18} />
-              <span>{translations.nav.resume}</span>
-            </a>
+            {cvHref && (
+              <a
+                href={cvHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors"
+              >
+                <Download size={18} />
+                <span>{translations.nav.resume}</span>
+              </a>
+            )}
 
             {/* Social Icons */}
             <a
@@ -169,14 +173,16 @@ const Navigation: React.FC = () => {
                 {item.label}
               </button>
             ))}
-            <a
-              href={`${import.meta.env.BASE_URL}/doc/CV_Cybersécurité_Quentin_Colpart.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-left py-2 px-4 text-gray-300 hover:bg-gray-800 transition-colors"
-            >
-              {translations.nav.resume}
-            </a>
+            {cvHref && (
+              <a
+                href={cvHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-left py-2 px-4 text-gray-300 hover:bg-gray-800 transition-colors"
+              >
+                {translations.nav.resume}
+              </a>
+            )}
           </div>
         )}
       </div>

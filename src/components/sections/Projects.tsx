@@ -11,7 +11,7 @@ import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from 'lucide-react
 
 import { useLanguage } from '../../hooks/useLanguage';
 import { getProjects } from '../../data/projects';
-import FadeInOnScroll from '../animations/FadeInOnScroll';
+import SectionHeader from '../ui/SectionHeader';
 import Button from '../ui/Button';
 
 import translationsFR from '../../data/translations/fr.json';
@@ -93,14 +93,31 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeInOnScroll>
-          <h2 className="text-3xl font-bold text-center mb-3 text-white">
-            {translations.projects.title}
-          </h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-16 rounded-full" />
-        </FadeInOnScroll>
+        <SectionHeader
+          eyebrow={translations.projects.eyebrow}
+          title={translations.projects.title}
+          className="mb-16"
+        />
 
         <div className="relative" style={{ height: 480, perspective: 1000 }}>
+          {/* Side navigation zones — sit above side cards (z-0) but below the
+              centered card (z-20), so a click anywhere on a neighbour navigates
+              to it while the centered card still opens the modal. */}
+          <button
+            type="button"
+            aria-label={translations.projects.prev}
+            onClick={() => move(-1)}
+            className="absolute left-0 top-0 bottom-0 z-10 cursor-pointer"
+            style={{ width: 'calc(50% - 160px)' }}
+          />
+          <button
+            type="button"
+            aria-label={translations.projects.next}
+            onClick={() => move(1)}
+            className="absolute right-0 top-0 bottom-0 z-10 cursor-pointer"
+            style={{ width: 'calc(50% - 160px)' }}
+          />
+
           <button
             type="button"
             onClick={() => move(-1)}
@@ -143,7 +160,6 @@ const Projects: React.FC = () => {
                 return (
                   <motion.div
                     key={`${index}-${project.title}`}
-                    layoutId={isCenter ? `project-card-${realIndex}` : undefined}
                     style={{
                       width: CARD_W,
                       minWidth: CARD_W,
@@ -167,8 +183,7 @@ const Projects: React.FC = () => {
                       onClick={() => handleCardClick(index, realIndex)}
                       className="w-full h-full cursor-pointer"
                     >
-                      <motion.div
-                        layoutId={isCenter ? `project-img-${realIndex}` : undefined}
+                      <div
                         className="relative overflow-hidden"
                         style={{ height: 200, background: '#0f172a' }}
                       >
@@ -184,18 +199,12 @@ const Projects: React.FC = () => {
                             {project.status}
                           </span>
                         )}
-                      </motion.div>
+                      </div>
 
                       <div className="p-4">
-                        <motion.h3
-                          layoutId={isCenter ? `project-title-${realIndex}` : undefined}
-                          className="text-base font-bold text-white mb-2 truncate"
-                        >
+                        <h3 className="text-base font-bold text-white mb-3 truncate">
                           {project.title}
-                        </motion.h3>
-                        <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 mb-3">
-                          {project.description}
-                        </p>
+                        </h3>
                         <div className="flex flex-wrap gap-1">
                           {project.techStack.slice(0, 3).map((tech, i) => (
                             <span
@@ -214,12 +223,12 @@ const Projects: React.FC = () => {
                         >
                           {isCenter && (
                             <span className="inline-block px-4 py-1 bg-white/5 rounded-full text-blue-400 text-[10px] font-semibold tracking-widest uppercase">
-                              {lang === 'fr' ? 'Explorer' : 'Explore'}
+                              {translations.projects.explore}
                             </span>
                           )}
                           {isAdjacent && (
                             <span className="inline-block text-gray-600 text-[10px] tracking-widest uppercase">
-                              {lang === 'fr' ? '← Voir' : '← View'}
+                              {translations.projects.view}
                             </span>
                           )}
                         </motion.div>
@@ -262,13 +271,14 @@ const Projects: React.FC = () => {
             />
 
             <motion.div
-              layoutId={`project-card-${expanded}`}
-              className="relative z-50 bg-gray-900 border border-gray-700 overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, scale: 0.9, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 8 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 30, mass: 0.7 }}
+              className="relative z-50 bg-gray-900 border border-white/10 overflow-hidden shadow-2xl"
               style={{ borderRadius: 24, width: 'min(600px, 92vw)', maxHeight: '90vh' }}
-              transition={{ type: 'spring', stiffness: 500, damping: 40 }}
             >
-              <motion.div
-                layoutId={`project-img-${expanded}`}
+              <div
                 className="relative w-full"
                 style={{ height: 250, background: '#0f172a' }}
               >
@@ -284,11 +294,13 @@ const Projects: React.FC = () => {
                 >
                   <X size={16} />
                 </button>
-              </motion.div>
+              </div>
 
               <div className="p-6 md:p-8 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 250px)' }}>
                 <motion.h3
-                  layoutId={`project-title-${expanded}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.03, duration: 0.18 }}
                   className="text-2xl font-bold text-white mb-4"
                 >
                   {projects[expanded].title}
@@ -298,7 +310,7 @@ const Projects: React.FC = () => {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.04, duration: 0.18 }}
-                  className="text-gray-400 text-sm md:text-base leading-relaxed mb-6"
+                  className="text-gray-300 text-sm md:text-base leading-relaxed mb-6"
                 >
                   {projects[expanded].description}
                 </motion.p>

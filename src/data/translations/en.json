@@ -12,10 +12,13 @@
     "title": "Cybersecurity Engineer",
     "description": "Transitioning from data engineering to cybersecurity. Passionate about cloud security, automation, and building secure systems.",
     "viewProjects": "View Projects",
-    "contactMe": "Contact Me"
+    "contactMe": "Contact Me",
+    "welcome": "Welcome to my portfolio",
+    "scroll": "Scroll"
   },
   "about": {
     "title": "About Me",
+    "eyebrow": "ABOUT",
     "profile": "Engineering graduate with initial training in healthcare, I have evolved in complex technical environments, particularly around cloud and data processing. I developed an understanding of information systems and their security and risk management challenges.\n\nAdmitted to the Master's in Cybersecurity of Infrastructures and Information Systems at ESIEA, I now want to move towards cybersecurity to develop my skills and progressively build my professional project in this field.",
     "stats": {
       "experience": {
@@ -35,6 +38,35 @@
         "label": "Native • Professional"
       }
     },
+    "education": {
+      "title": "Education",
+      "hint": "Click to see the related path",
+      "schools": [
+        {
+          "id": "epf",
+          "name": "EPF",
+          "degree": "Engineering Degree",
+          "detail": "Engineering, data & cloud",
+          "experienceIds": [3, 2, 4],
+          "note": ""
+        },
+        {
+          "id": "esiea",
+          "name": "ESIEA",
+          "degree": "Master's in Cybersecurity (CISIS)",
+          "detail": "Infrastructures & Information Systems",
+          "experienceIds": [],
+          "note": "Starting October 2026 — Cybersecurity focus"
+        }
+      ]
+    },
+    "languages": {
+      "title": "Languages",
+      "items": [
+        { "name": "French", "level": 100, "cert": "Voltaire Certificate" },
+        { "name": "English", "level": 85, "cert": "TOEIC 840" }
+      ]
+    },
     "interests": {
       "title": "Interests",
       "sport": {
@@ -52,10 +84,14 @@
     }
   },
   "experience": {
-    "title": "Professional Experience"
+    "title": "Professional Experience",
+    "eyebrow": "CAREER",
+    "viewMore": "View more",
+    "viewLess": "View less"
   },
   "skills": {
     "title": "Skills",
+    "eyebrow": "STACK",
     "categories": {
       "programming": "Programming & IT",
       "cloud": "Cloud & Data Engineering",
@@ -65,18 +101,26 @@
   },
   "projects": {
     "title": "Projects",
+    "eyebrow": "WORK",
     "viewCode": "View Code",
     "liveDemo": "Live Demo",
     "viewProfile": "View Profile",
-    "inDevelopment": "In Development"
+    "inDevelopment": "In Development",
+    "explore": "Explore",
+    "view": "← View",
+    "prev": "Previous project",
+    "next": "Next project"
   },
   "contact": {
     "title": "Get In Touch",
+    "eyebrow": "CONTACT",
     "message": "Want to discuss about my projects, calisthenics, AI generation, or 3D printing?",
     "button": "Send me an Email",
     "backToTop": "Back to top"
   },
   "footer": {
+    "name": "Quentin Colpart",
+    "role": "Data / Cybersecurity Engineer · Paris, France",
     "copyright": "© 2026 Quentin COLPART",
     "builtWith": "Built with React + TypeScript"
   }

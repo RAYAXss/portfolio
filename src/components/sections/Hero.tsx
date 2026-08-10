@@ -104,7 +104,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden pointer-events-none">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 pb-20 pointer-events-none">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pointer-events-auto">
         <motion.div variants={container} initial="hidden" animate="show">
 
@@ -119,7 +119,7 @@ const Hero: React.FC = () => {
               className="px-4 py-1.5 rounded-full border text-xs tracking-widest font-medium text-blue-300 bg-blue-500/5"
             >
               <span className="mr-2">✦</span>
-              <WaveText>{lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}</WaveText>
+              <WaveText>{translations.hero.welcome}</WaveText>
               <span className="ml-2">✦</span>
             </motion.span>
           </motion.div>
@@ -131,24 +131,26 @@ const Hero: React.FC = () => {
                 md:text-5xl
                 font-bold
                 mb-3
+                text-blue-400
                 bg-gradient-to-r
                 from-blue-400
                 to-purple-400
                 bg-clip-text
                 [-webkit-background-clip:text]
-                [-webkit-text-fill-color:transparent]
+                supports-[-webkit-background-clip:text]:[-webkit-text-fill-color:transparent]
+                supports-[background-clip:text]:[-webkit-text-fill-color:transparent]
               "
             >
               {translations.hero.name}
             </h1>
           </motion.div>
           {/* Title */}
-          <motion.h2 variants={item} className="text-xl md:text-2xl text-gray-400 mb-5 font-light">
+          <motion.h2 variants={item} className="text-xl md:text-2xl text-gray-200 mb-5 font-light">
             {translations.hero.title}
           </motion.h2>
 
           {/* Description */}
-          <motion.p variants={item} className="text-base text-gray-500 mb-8 max-w-xl mx-auto leading-relaxed">
+          <motion.p variants={item} className="text-base text-gray-300 mb-8 max-w-xl mx-auto leading-relaxed">
             {translations.hero.description}
           </motion.p>
 
@@ -188,7 +190,7 @@ const Hero: React.FC = () => {
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
         <span className="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-          {lang === 'fr' ? 'Défiler' : 'Scroll'}
+          {translations.hero.scroll}
         </span>
         <ArrowDown size={24} />
       </motion.button>
