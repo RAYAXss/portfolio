@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
       
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <SectionHeader eyebrow={lang === 'fr' ? 'CONTACT' : 'CONTACT'} title={translations.contact.title} />
+        <SectionHeader eyebrow={translations.contact.eyebrow} title={translations.contact.title} />
 
         <FadeInOnScroll delay={0.15}>
           <p className="text-lg text-gray-300 mb-10 leading-relaxed">

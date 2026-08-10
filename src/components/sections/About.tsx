@@ -29,7 +29,7 @@ const About: React.FC = () => {
   return (
     <section id="about" className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow={lang === 'fr' ? 'À PROPOS' : 'ABOUT'} title={about.title} />
+        <SectionHeader eyebrow={about.eyebrow} title={about.title} />
 
         <FadeInOnScroll delay={0.1}>
           <p className="text-base text-gray-300 leading-relaxed whitespace-pre-line text-center max-w-2xl mx-auto mb-12">

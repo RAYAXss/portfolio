@@ -119,7 +119,7 @@ const Hero: React.FC = () => {
               className="px-4 py-1.5 rounded-full border text-xs tracking-widest font-medium text-blue-300 bg-blue-500/5"
             >
               <span className="mr-2">✦</span>
-              <WaveText>{lang === 'fr' ? 'Bienvenue sur mon portfolio' : 'Welcome to my portfolio'}</WaveText>
+              <WaveText>{translations.hero.welcome}</WaveText>
               <span className="ml-2">✦</span>
             </motion.span>
           </motion.div>
@@ -190,7 +190,7 @@ const Hero: React.FC = () => {
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
       >
         <span className="text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-          {lang === 'fr' ? 'Défiler' : 'Scroll'}
+          {translations.hero.scroll}
         </span>
         <ArrowDown size={24} />
       </motion.button>

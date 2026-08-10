@@ -129,7 +129,7 @@ const Skills: React.FC = () => {
     <section id="skills" className="py-20 relative">
       
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow={lang === 'fr' ? 'STACK' : 'STACK'} title={translations.skills.title} />
+        <SectionHeader eyebrow={translations.skills.eyebrow} title={translations.skills.title} />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category, catIdx) => (

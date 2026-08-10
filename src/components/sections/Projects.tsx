@@ -94,7 +94,7 @@ const Projects: React.FC = () => {
     <section id="projects" className="py-20 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow={lang === 'fr' ? 'RÉALISATIONS' : 'WORK'}
+          eyebrow={translations.projects.eyebrow}
           title={translations.projects.title}
           className="mb-16"
         />
@@ -105,14 +105,14 @@ const Projects: React.FC = () => {
               to it while the centered card still opens the modal. */}
           <button
             type="button"
-            aria-label={lang === 'fr' ? 'Projet précédent' : 'Previous project'}
+            aria-label={translations.projects.prev}
             onClick={() => move(-1)}
             className="absolute left-0 top-0 bottom-0 z-10 cursor-pointer"
             style={{ width: 'calc(50% - 160px)' }}
           />
           <button
             type="button"
-            aria-label={lang === 'fr' ? 'Projet suivant' : 'Next project'}
+            aria-label={translations.projects.next}
             onClick={() => move(1)}
             className="absolute right-0 top-0 bottom-0 z-10 cursor-pointer"
             style={{ width: 'calc(50% - 160px)' }}
@@ -223,12 +223,12 @@ const Projects: React.FC = () => {
                         >
                           {isCenter && (
                             <span className="inline-block px-4 py-1 bg-white/5 rounded-full text-blue-400 text-[10px] font-semibold tracking-widest uppercase">
-                              {lang === 'fr' ? 'Explorer' : 'Explore'}
+                              {translations.projects.explore}
                             </span>
                           )}
                           {isAdjacent && (
                             <span className="inline-block text-gray-600 text-[10px] tracking-widest uppercase">
-                              {lang === 'fr' ? '← Voir' : '← View'}
+                              {translations.projects.view}
                             </span>
                           )}
                         </motion.div>

@@ -12,10 +12,13 @@
     "title": "Ingénieur Cybersécurité",
     "description": "Transition du data engineering vers la cybersécurité. Passionné par la sécurité cloud, l'automatisation et la construction de systèmes sécurisés.",
     "viewProjects": "Voir mes projets",
-    "contactMe": "Me contacter"
+    "contactMe": "Me contacter",
+    "welcome": "Bienvenue sur mon portfolio",
+    "scroll": "Défiler"
   },
   "about": {
     "title": "À propos",
+    "eyebrow": "À PROPOS",
     "profile": "Ingénieur diplômé avec une formation initiale dans le domaine biomédical, j'ai évolué dans des environnements techniques complexes, notamment autour du cloud et du traitement de données. J'y ai développé une compréhension des systèmes d'information et de leurs enjeux en matière de sécurité et de gestion des risques.\n\nAdmis en Master Cybersécurité des Infrastructures et des Systèmes d'Information à ESIEA, je souhaite aujourd'hui m'orienter vers la cybersécurité afin de développer mes compétences et construire progressivement mon projet professionnel dans ce domaine.",
     "stats": {
       "experience": {
@@ -81,10 +84,14 @@
     }
   },
   "experience": {
-    "title": "Expériences Professionnelles"
+    "title": "Expériences Professionnelles",
+    "eyebrow": "PARCOURS",
+    "viewMore": "Voir plus",
+    "viewLess": "Voir moins"
   },
   "skills": {
     "title": "Compétences",
+    "eyebrow": "STACK",
     "categories": {
       "programming": "Programmation & Informatique",
       "cloud": "Cloud & Data Engineering",
@@ -94,18 +101,26 @@
   },
   "projects": {
     "title": "Projets",
+    "eyebrow": "RÉALISATIONS",
     "viewCode": "Voir le code",
     "liveDemo": "Démo en ligne",
     "viewProfile": "Voir le profil",
-    "inDevelopment": "En développement"
+    "inDevelopment": "En développement",
+    "explore": "Explorer",
+    "view": "← Voir",
+    "prev": "Projet précédent",
+    "next": "Projet suivant"
   },
   "contact": {
     "title": "Me contacter",
+    "eyebrow": "CONTACT",
     "message": "Envie de discuter de mes projets, de calisthenics, de génération IA ou d'impression 3D ?",
     "button": "M'envoyer un email",
     "backToTop": "Retour en haut"
   },
   "footer": {
+    "name": "Quentin Colpart",
+    "role": "Ingénieur Data / Sécurité · Paris, France",
     "copyright": "© 2026 Quentin COLPART",
     "builtWith": "Construit avec React + TypeScript"
   }

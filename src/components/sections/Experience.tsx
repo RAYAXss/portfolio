@@ -23,7 +23,7 @@ const Experience: React.FC = () => {
     <section id="experience" className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow={lang === 'fr' ? 'PARCOURS' : 'CAREER'}
+          eyebrow={translations.experience.eyebrow}
           title={translations.experience.title}
         />
 
@@ -98,8 +98,8 @@ const Experience: React.FC = () => {
                             onClick={(e) => { e.stopPropagation(); toggle(exp.id); }}
                           >
                             {isExpanded
-                              ? (lang === 'fr' ? 'Voir moins' : 'View less')
-                              : (lang === 'fr' ? 'Voir plus'  : 'View more')}
+                              ? translations.experience.viewLess
+                              : translations.experience.viewMore}
                             <motion.span
                               animate={{ rotate: isExpanded ? 180 : 0 }}
                               transition={{ type: 'spring', stiffness: 300, damping: 24 }}
