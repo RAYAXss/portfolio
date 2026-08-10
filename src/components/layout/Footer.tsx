@@ -22,17 +22,19 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <p className="text-white font-bold text-lg">
-              <span className="text-blue-400">Q</span>
-              <span className="text-purple-400">C</span>
+            <div className="flex items-center justify-center md:justify-start gap-2">
+              <img
+                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
+                alt="Quentin COLPART"
+                className="w-7 h-7 rounded-full object-cover shadow-md"
+              />
               <span className="text-gray-400 font-normal text-sm ml-2">
-                · Quentin Colpart
-              </span>
-            </p>
-            <p className="text-gray-600 text-xs mt-1">
+                · Quentin Colpart</span>
+            </div>
+            <p className="text-gray-500 text-xs mt-1">
               {lang === 'fr'
-                ? 'Ingénieur Data & DevOps · Belfort, France'
-                : 'Data & DevOps Engineer · Belfort, France'}
+                ? 'Ingénieur Data / Sécurité · Paris, France'
+                : 'Data / Cybersecurity Engineer · Paris, France'}
             </p>
           </div>
 
@@ -57,9 +59,7 @@ const Footer: React.FC = () => {
 
           {/* Copyright */}
           <p className="text-gray-600 text-xs flex items-center gap-1">
-            © {year} · {lang === 'fr' ? 'Fait avec' : 'Made with'}
-            <Heart size={11} className="text-pink-500 fill-pink-500 mx-0.5" />
-            {lang === 'fr' ? 'en France' : 'in France'}
+            © {year}
           </p>
         </div>
       </div>

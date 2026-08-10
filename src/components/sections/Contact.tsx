@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import FadeInOnScroll from '../animations/FadeInOnScroll';
+import SectionHeader from '../ui/SectionHeader';
 import Button from '../ui/Button';
 import translationsFR from '../../data/translations/fr.json';
 import translationsEN from '../../data/translations/en.json';
@@ -25,15 +26,10 @@ const Contact: React.FC = () => {
       
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <FadeInOnScroll>
-          <h2 className="text-4xl font-bold text-white mb-4">
-            {translations.contact.title}
-          </h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-8 rounded-full" />
-        </FadeInOnScroll>
+        <SectionHeader eyebrow={lang === 'fr' ? 'CONTACT' : 'CONTACT'} title={translations.contact.title} />
 
         <FadeInOnScroll delay={0.15}>
-          <p className="text-lg text-gray-400 mb-10 leading-relaxed">
+          <p className="text-lg text-gray-300 mb-10 leading-relaxed">
             {translations.contact.message}
           </p>
         </FadeInOnScroll>

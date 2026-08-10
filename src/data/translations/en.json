@@ -35,6 +35,35 @@
         "label": "Native • Professional"
       }
     },
+    "education": {
+      "title": "Education",
+      "hint": "Click to see the related path",
+      "schools": [
+        {
+          "id": "epf",
+          "name": "EPF",
+          "degree": "Engineering Degree",
+          "detail": "Engineering, data & cloud",
+          "experienceIds": [3, 2, 4],
+          "note": ""
+        },
+        {
+          "id": "esiea",
+          "name": "ESIEA",
+          "degree": "Master's in Cybersecurity (CISIS)",
+          "detail": "Infrastructures & Information Systems",
+          "experienceIds": [],
+          "note": "Starting October 2026 — Cybersecurity focus"
+        }
+      ]
+    },
+    "languages": {
+      "title": "Languages",
+      "items": [
+        { "name": "French", "level": 100, "cert": "Voltaire Certificate" },
+        { "name": "English", "level": 85, "cert": "TOEIC 840" }
+      ]
+    },
     "interests": {
       "title": "Interests",
       "sport": {

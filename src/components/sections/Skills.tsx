@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useLanguage } from '../../hooks/useLanguage';
 import FadeInOnScroll from '../animations/FadeInOnScroll';
+import SectionHeader from '../ui/SectionHeader';
 import translationsFR from '../../data/translations/fr.json';
 import translationsEN from '../../data/translations/en.json';
 
@@ -72,7 +73,7 @@ const FloatCard: React.FC<{ children: React.ReactNode; delay?: number }> = ({ ch
       viewport={{ once: true, margin: '-40px' }}
       transition={{ type: 'spring', stiffness: 200, damping: 22, delay }}
       whileHover={{ y: -6 }}
-      className="bg-gray-900/70 border border-gray-800 hover:border-blue-500/30 rounded-2xl p-6 transition-colors relative overflow-hidden group"
+      className="bg-white/5 backdrop-blur-md border border-white/10 hover:border-blue-400/40 rounded-2xl p-6 transition-colors relative overflow-hidden group"
     >
       {/* Ambient glow on hover */}
       <div className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -91,6 +92,11 @@ const Skills: React.FC = () => {
   const skillCategories = lang === 'fr'
     ? [
         {
+          title: 'Cybersécurité & GRC',
+          emoji: '🛡️',
+          skills: ['Analyse de risques', 'GRC', 'Sensibilisation', 'Tableaux de bord sécurité', 'Power BI', 'CTF / RootMe', 'Pentesting'],
+        },
+        {
           title: 'Technologies',
           emoji: '⚙️',
           skills: ['Python', 'SQL', 'Scala', 'Git/GitHub', 'Azure', 'AWS', 'Databricks', 'Jenkins'],
@@ -102,6 +108,11 @@ const Skills: React.FC = () => {
         },
       ]
     : [
+        {
+          title: 'Cybersecurity & GRC',
+          emoji: '🛡️',
+          skills: ['Risk analysis', 'GRC', 'Awareness', 'Security dashboards', 'Power BI', 'CTF / RootMe', 'Pentesting'],
+        },
         {
           title: 'Technologies',
           emoji: '⚙️',
@@ -118,14 +129,9 @@ const Skills: React.FC = () => {
     <section id="skills" className="py-20 relative">
       
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeInOnScroll>
-          <h2 className="text-3xl font-bold text-center mb-3 text-white">
-            {translations.skills.title}
-          </h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-14 rounded-full" />
-        </FadeInOnScroll>
+        <SectionHeader eyebrow={lang === 'fr' ? 'STACK' : 'STACK'} title={translations.skills.title} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category, catIdx) => (
             <FloatCard key={catIdx} delay={catIdx * 0.12}>
               <h3 className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-5 flex items-center gap-2">
@@ -156,7 +162,7 @@ const Skills: React.FC = () => {
               {[...skillCategories.flatMap(c => c.skills), ...skillCategories.flatMap(c => c.skills)].map((s, i) => (
                 <span
                   key={i}
-                  className="shrink-0 px-3 py-1.5 bg-gray-900/60 border border-gray-800 text-gray-600 rounded-full text-xs"
+                  className="shrink-0 px-3 py-1.5 bg-white/5 border border-white/10 text-gray-500 rounded-full text-xs"
                 >
                   {s}
                 </span>
