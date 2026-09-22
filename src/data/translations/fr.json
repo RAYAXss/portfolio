@@ -5,7 +5,8 @@
     "skills": "Compétences",
     "projects": "Projets",
     "resume": "CV",
-    "language": "EN"
+    "language": "EN",
+    "theme": "Thème"
   },
   "hero": {
     "name": "Quentin COLPART",

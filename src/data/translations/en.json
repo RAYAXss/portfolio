@@ -5,7 +5,8 @@
     "skills": "Skills",
     "projects": "Projects",
     "resume": "Resume",
-    "language": "FR"
+    "language": "FR",
+    "theme": "Theme"
   },
   "hero": {
     "name": "Quentin COLPART",
@@ -22,7 +23,7 @@
     "profile": "Engineering graduate with initial training in healthcare, I have evolved in complex technical environments, particularly around cloud and data processing. I developed an understanding of information systems and their security and risk management challenges.\n\nAdmitted to the Master's in Cybersecurity of Infrastructures and Information Systems at ESIEA, I now want to move towards cybersecurity to develop my skills and progressively build my professional project in this field.",
     "stats": {
       "experience": {
-        "value": "2 Years",
+        "value": "3 Years",
         "label": "Experience"
       },
       "education": {

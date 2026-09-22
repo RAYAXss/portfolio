@@ -52,6 +52,51 @@ const projectsFR: Project[] = [
     links: {
       github: "https://github.com/RAYAXss/disk_analyzer"
     }
+  },
+  {
+    id: 6,
+    title: "Password Manager",
+    description: "Gestionnaire de mots de passe : salt, chiffrement SHA-256 et hachage sécurisé",
+    techStack: ["Python", "Cryptographie"],
+    image: "",
+    icon: "🔐",
+    links: {}
+  },
+  {
+    id: 7,
+    title: "Prothèse de Hanche",
+    description: "Étude de faisabilité technico-économique et environnementale d'un stem de prothèse de hanche en titane imprimé 3D : analyse de marché, modélisation CAO, validation mécanique par éléments finis.",
+    techStack: ["CAO", "Éléments finis", "Fabrication additive"],
+    image: "",
+    icon: "🦴",
+    links: {}
+  },
+  {
+    id: 8,
+    title: "Jeu VR Unity",
+    description: "Création d'un jeu en réalité virtuelle sur Unity, codé en C# orienté objet",
+    techStack: ["Unity", "C#", "VR"],
+    image: "",
+    icon: "🥽",
+    links: {}
+  },
+  {
+    id: 9,
+    title: "Pied Prothétique",
+    description: "Conception et impression 3D de deux pieds prothétiques pour enfants et d'un socle de test : modélisation CAO, choix des matériaux, validation mécanique.",
+    techStack: ["CAO", "Impression 3D", "Tests mécaniques"],
+    image: "",
+    icon: "🦶",
+    links: {}
+  },
+  {
+    id: 10,
+    title: "Robot NAO",
+    description: "Programmation d'un robot NAO pour faciliter la vie quotidienne des séniors",
+    techStack: ["NAO", "Python"],
+    image: "",
+    icon: "🤖",
+    links: {}
   }
 ];
 
@@ -104,6 +149,51 @@ const projectsEN: Project[] = [
     links: {
       github: "https://github.com/RAYAXss/disk_analyzer"
     }
+  },
+  {
+    id: 6,
+    title: "Password Manager",
+    description: "Password manager: salt, SHA-256 encryption, and secure hashing",
+    techStack: ["Python", "Cryptography"],
+    image: "",
+    icon: "🔐",
+    links: {}
+  },
+  {
+    id: 7,
+    title: "Hip Prosthesis",
+    description: "Technical, economic and environmental feasibility study of a titanium 3D-printed hip stem: market analysis, CAD modeling, finite element validation.",
+    techStack: ["CAD", "Finite elements", "Additive manufacturing"],
+    image: "",
+    icon: "🦴",
+    links: {}
+  },
+  {
+    id: 8,
+    title: "VR Unity Game",
+    description: "Virtual reality game on Unity, coded in object-oriented C#",
+    techStack: ["Unity", "C#", "VR"],
+    image: "",
+    icon: "🥽",
+    links: {}
+  },
+  {
+    id: 9,
+    title: "Prosthetic Foot",
+    description: "Design and 3D printing of two prosthetic feet for children and a test base: CAD modeling, material selection, mechanical validation.",
+    techStack: ["CAD", "3D Printing", "Mechanical testing"],
+    image: "",
+    icon: "🦶",
+    links: {}
+  },
+  {
+    id: 10,
+    title: "NAO Robot",
+    description: "Programming a NAO robot to help seniors in everyday life",
+    techStack: ["NAO", "Python"],
+    image: "",
+    icon: "🤖",
+    links: {}
   }
 ];
 
