@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/layout/Navigation';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
+import ComfyUIPage from './pages/ComfyUIPage';
 
 import { useLanguage } from './hooks/useLanguage';
 
@@ -20,6 +21,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/comfyui" element={<ComfyUIPage />} />
         </Routes>
         <Footer />
       </div>
