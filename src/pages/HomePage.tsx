@@ -10,7 +10,9 @@ import Skills from '../components/sections/Skills';
 import Projects from '../components/sections/Projects';
 import Contact from '../components/sections/Contact';
 
+import { useLanguage } from '../hooks/useLanguage';
 import { useTheme } from '../hooks/useTheme';
+import ExploreCards from '../components/sections/ExploreCards';
 
 const HomePage: React.FC = () => {
   const { theme } = useTheme();
@@ -42,6 +44,7 @@ const HomePage: React.FC = () => {
         <Experience />
         <Skills />
         <Projects />
+        <ExploreCards />
         <Contact />
       </main>
     </>
