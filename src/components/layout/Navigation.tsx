@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
@@ -10,13 +11,16 @@ import translationsEN from '../../data/translations/en.json';
 
 const Navigation: React.FC = () => {
   const { lang } = useLanguage();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasProfileImage, setHasProfileImage] = useState(true);
 
   const translations = lang === 'fr' ? translationsFR : translationsEN;
   const cvHref = getCvUrl(lang);
-  const sections = ['hero', 'about', 'experience', 'skills', 'projects'];
+  const isHome = location.pathname === '/';
+
+  const sections = isHome ? ['hero', 'about', 'experience', 'skills', 'projects'] : [];
   const activeSection = useScrollSpy(sections);
 
   useEffect(() => {
@@ -28,6 +32,10 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -36,11 +44,16 @@ const Navigation: React.FC = () => {
     }
   };
 
-  const navItems = [
+  const sectionItems = [
     { id: 'about', label: translations.nav.about },
     { id: 'experience', label: translations.nav.experience },
     { id: 'skills', label: translations.nav.skills },
-    { id: 'projects', label: translations.nav.projects }
+    { id: 'projects', label: translations.nav.projects },
+  ];
+
+  const pageItems = [
+    { path: '/comfyui', label: translations.nav.comfyui },
+    { path: '/claude-skills', label: translations.nav.claudeSkills },
   ];
 
   return (
@@ -53,8 +66,8 @@ const Navigation: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Left: Avatar + Name */}
-          <div className="flex items-center space-x-3">
+          {/* Left: Avatar + Name → Home link */}
+          <Link to="/" className="flex items-center space-x-3">
             {hasProfileImage ? (
               <img
                 src={`${import.meta.env.BASE_URL}images/profile.jpg`}
@@ -70,11 +83,11 @@ const Navigation: React.FC = () => {
             <span className="font-semibold text-content text-lg hidden sm:block">
               {translations.hero.name}
             </span>
-          </div>
+          </Link>
 
           {/* Center: Menu items (Desktop) */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-6">
+            {isHome && sectionItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
@@ -90,11 +103,32 @@ const Navigation: React.FC = () => {
                 )}
               </button>
             ))}
+
+            {/* Separator between sections and pages */}
+            {isHome && (
+              <span className="w-px h-4 bg-border/20" />
+            )}
+
+            {pageItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-sm font-medium transition-colors relative ${
+                  location.pathname === item.path
+                    ? 'text-accent'
+                    : 'text-content-muted hover:text-accent'
+                }`}
+              >
+                {item.label}
+                {location.pathname === item.path && (
+                  <span className="absolute bottom-[-4px] left-0 right-0 h-0.5 bg-accent" />
+                )}
+              </Link>
+            ))}
           </div>
 
-          {/* Right: Resume, Social, Language */}
+          {/* Right: Resume, Theme, Language, Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Resume Download */}
             {cvHref && (
               <a
                 href={cvHref}
@@ -107,10 +141,7 @@ const Navigation: React.FC = () => {
               </a>
             )}
 
-            {/* Theme Toggle */}
             <ThemeToggle />
-
-            {/* Language Toggle */}
             <LanguageToggle />
 
             {/* Mobile Menu Button */}
@@ -148,7 +179,7 @@ const Navigation: React.FC = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border/10">
-            {navItems.map((item) => (
+            {isHome && sectionItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
@@ -157,6 +188,21 @@ const Navigation: React.FC = () => {
                 {item.label}
               </button>
             ))}
+
+            {pageItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`block w-full text-left py-2 px-4 transition-colors ${
+                  location.pathname === item.path
+                    ? 'text-accent bg-surface-2'
+                    : 'text-content-muted hover:bg-surface-2'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+
             {cvHref && (
               <a
                 href={cvHref}
