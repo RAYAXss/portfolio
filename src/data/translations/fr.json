@@ -4,6 +4,8 @@
     "experience": "Expériences",
     "skills": "Compétences",
     "projects": "Projets",
+    "comfyui": "ComfyUI",
+    "claudeSkills": "Claude Skills",
     "resume": "CV",
     "language": "EN",
     "theme": "Thème"
@@ -118,6 +120,26 @@
     "message": "Envie de discuter de mes projets, de calisthenics, de génération IA ou d'impression 3D ?",
     "button": "M'envoyer un email",
     "backToTop": "Retour en haut"
+  },
+  "comfyui": {
+    "eyebrow": "IA GÉNÉRATIVE",
+    "title": "Pipeline ComfyUI",
+    "subtitle": "Pipeline modulaire de génération d'images, vidéos et reconstruction 3D construit autour de ComfyUI.",
+    "pipelineTitle": "Pipeline global",
+    "backToPortfolio": "Retour au portfolio"
+  },
+  "claudeSkills": {
+    "eyebrow": "OUTILS IA",
+    "title": "Claude Code Skills",
+    "subtitle": "Les skills Claude Code que j'utilise au quotidien pour structurer ma réflexion, mon design et ma communication.",
+    "whyTitle": "Pourquoi je l'utilise",
+    "exampleTitle": "Exemple concret",
+    "backToPortfolio": "Retour au portfolio"
+  },
+  "home": {
+    "explore": "Explorer",
+    "comfyuiCard": "Mon pipeline de génération IA : images, vidéos et reconstruction 3D avec ComfyUI.",
+    "claudeSkillsCard": "Les skills Claude Code que j'utilise pour booster mon workflow de développement."
   },
   "footer": {
     "name": "Quentin Colpart",
