@@ -41,6 +41,15 @@ const SkillCard: React.FC<{ skill: ClaudeSkill; index: number; translations: typ
           </p>
         </div>
 
+        <div className="mb-4">
+          <h4 className="text-xs font-semibold tracking-wider text-accent mb-1.5">
+            {translations.claudeSkills.usageTitle}
+          </h4>
+          <p className="text-content-faint text-sm font-mono leading-relaxed">
+            {skill.usage}
+          </p>
+        </div>
+
         <div className="bg-surface-2/50 rounded-xl p-4">
           <h4 className="text-xs font-semibold tracking-wider text-accent mb-1.5">
             {translations.claudeSkills.exampleTitle}

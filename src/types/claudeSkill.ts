@@ -3,6 +3,7 @@ export interface ClaudeSkill {
   name: string;
   description: string;
   whyUse: string;
+  usage: string;
   example: string;
   icon: string;
 }
