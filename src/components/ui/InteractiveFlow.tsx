@@ -175,8 +175,8 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
                   type="button"
                   aria-pressed={sel}
                   onClick={() => setSelected(n.id)}
-                  onMouseEnter={() => setHoverId(n.id)}
-                  onMouseLeave={() => setHoverId(null)}
+                  onPointerEnter={(e) => e.pointerType === 'mouse' && setHoverId(n.id)}
+                  onPointerLeave={(e) => e.pointerType === 'mouse' && setHoverId(null)}
                   onFocus={() => setHoverId(n.id)}
                   onBlur={() => setHoverId(null)}
                   style={{ left: n.col * (NODE_W + COL_GAP), top: PAD + n.row * (NODE_H + ROW_GAP), width: NODE_W, height: NODE_H }}
@@ -185,7 +185,7 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
                   }`}
                 >
                   <Icon size={16} aria-hidden="true" className="shrink-0 text-accent" />
-                  <span className="leading-tight">{n.label}</span>
+                  <span className={`min-w-0 leading-tight [overflow-wrap:anywhere] ${n.label.length > 18 ? 'text-xs' : ''}`}>{n.label}</span>
                 </button>
               );
             })}

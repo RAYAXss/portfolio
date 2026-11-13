@@ -99,7 +99,7 @@ const AgentsSkillsPage: React.FC = () => {
                     </h3>
                     <p className="text-content-faint text-sm leading-relaxed italic">{skill.example}</p>
                   </div>
-                  <InteractiveFlow flow={skill.flow} showLegend={false} />
+                  <InteractiveFlow key={skill.id} flow={skill.flow} showLegend={false} />
                 </div>
               );
             }}

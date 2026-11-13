@@ -107,7 +107,7 @@ const ComfyUIPage: React.FC = () => {
                     <h3 className="text-xs font-semibold tracking-wider text-accent mb-2">
                       {translations.comfyui.graphTitle}
                     </h3>
-                    <InteractiveFlow flow={w.flow} showLegend />
+                    <InteractiveFlow key={w.id} flow={w.flow} showLegend />
                   </div>
                   <div>
                     <h3 className="text-xs font-semibold tracking-wider text-accent mb-2">

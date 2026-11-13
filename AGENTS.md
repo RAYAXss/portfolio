@@ -29,14 +29,15 @@ src/
 │   ├── comfyui.ts                   # getComfyUIWorkflows(lang)
 │   ├── agentSkills.ts               # getAgentSkills(lang) — flows des skills (FR/EN)
 │   └── translations/fr.json · en.json   # textes UI (compétences et section Expertise incluses)
-├── types/                           # interfaces (project, experience, comfyui, claudeSkill, language)
+├── types/                           # interfaces (project, experience, comfyui, agentSkill, flow, language)
 ├── utils/cv.ts                      # auto-détection CV src/assets/cv/*.pdf (fr/en dans le nom)
+├── utils/flow.ts                    # topoOrder · validateFlow (graphes des workflows / agents skills)
 ├── pages/                           # HomePage · ComfyUIPage (#/comfyui) · AgentsSkillsPage (#/agents-skills)
 └── components/
     ├── layout/      Navigation.tsx · Footer.tsx
     ├── sections/    Hero · About · Experience · Skills · Projects · ExploreCards · Contact
     ├── ui/          Button · SectionHeader · FlowLine (schéma A → B animé) · InteractiveFlow (graphe cliquable) · Tabs (onglets ?param=) · LanguageToggle · ThemeToggle
-    ├── three/       NodeScene.tsx (graphe 3D décoratif, couleurs = tokens CSS, pause hors écran)
+    ├── three/       NodeScene.tsx (graphe 3D décoratif, couleurs = tokens CSS, pause hors écran) · cssColor.ts (lecture des tokens CSS)
     ├── comfyui/     OutputScene.tsx (+ scenes/ : visualisations three.js)
     ├── reactbits/   Counter · SplitText · SpotlightCard
     └── animations/  FadeInOnScroll.tsx
