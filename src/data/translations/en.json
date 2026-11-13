@@ -260,7 +260,30 @@
       "Image",
       "Video",
       "3D Mesh"
-    ]
+    ],
+    "scene": {
+      "illustrative": "Illustrative visualisation — no model is run.",
+      "steps": "Steps",
+      "cfg": "CFG",
+      "seed": "Seed",
+      "newSeed": "New noise",
+      "frames": "Frames",
+      "rife": "RIFE ×2 interpolation",
+      "duration": "Duration",
+      "fps": "Frame rate",
+      "stage": "Stage",
+      "stages": [
+        "Image",
+        "Voxels",
+        "Shape",
+        "Mesh"
+      ],
+      "captions": {
+        "t2i": "The initial noise resolves into an image step by step; too high a CFG oversaturates and over-contrasts it.",
+        "i2v": "A video is a stack of images over time: the shape moves from frame to frame, and RIFE inserts in-between frames.",
+        "i3d": "The image becomes a sparse voxel cloud, which converges into a shape and then a solid mesh."
+      }
+    }
   },
   "claudeSkills": {
     "eyebrow": "AI TOOLS",

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { cssColor } from './cssColor';
 
 /* ─────────────────────────────────────────────
    NodeScene : graphe 3D décoratif (nœuds + liens + particules
@@ -27,12 +28,6 @@ interface NodeSceneProps {
   distance?: number;
   className?: string;
 }
-
-const cssColor = (name: string) => {
-  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  const [r, g, b] = raw.split(/\s+/).map(Number);
-  return Number.isFinite(r) ? new THREE.Color(r / 255, g / 255, b / 255) : new THREE.Color(0x60a5fa);
-};
 
 const makeGeometry = (shape: NodeShape, size: number) => {
   switch (shape) {

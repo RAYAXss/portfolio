@@ -260,7 +260,30 @@
       "Image",
       "Vidéo",
       "Mesh 3D"
-    ]
+    ],
+    "scene": {
+      "illustrative": "Visualisation illustrative — aucun modèle n’est exécuté.",
+      "steps": "Steps",
+      "cfg": "CFG",
+      "seed": "Seed",
+      "newSeed": "Nouveau bruit",
+      "frames": "Frames",
+      "rife": "Interpolation RIFE ×2",
+      "duration": "Durée",
+      "fps": "Cadence",
+      "stage": "Étape",
+      "stages": [
+        "Image",
+        "Voxels",
+        "Forme",
+        "Mesh"
+      ],
+      "captions": {
+        "t2i": "Le bruit initial se résout palier par palier (steps) en image ; un CFG trop élevé sature et contraste l’image.",
+        "i2v": "Une vidéo est une pile d’images dans le temps : la forme se déplace d’une frame à l’autre, RIFE insère des frames intermédiaires.",
+        "i3d": "L’image devient un nuage de voxels clairsemés, qui converge vers une forme puis un mesh plein."
+      }
+    }
   },
   "claudeSkills": {
     "eyebrow": "OUTILS IA",
