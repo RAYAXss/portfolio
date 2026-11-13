@@ -224,7 +224,9 @@
     "subtitle": "Pipeline modulaire de génération d'images, vidéos et reconstruction 3D construit autour de ComfyUI.",
     "pipelineTitle": "Pipeline global",
     "backToPortfolio": "Retour au portfolio",
-    "graphLabel": "Graphe simplifié",
+    "tabsLabel": "Workflows ComfyUI",
+    "graphTitle": "Graphe interactif",
+    "featuresTitle": "Fonctionnalités",
     "howToEyebrow": "GUIDE",
     "howToTitle": "Comment utiliser un workflow",
     "howToSteps": [

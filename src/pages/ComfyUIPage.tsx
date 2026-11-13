@@ -13,10 +13,11 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { getComfyUIWorkflows } from '../data/comfyui';
-import type { ComfyUIWorkflow } from '../types/comfyui';
 import FadeInOnScroll from '../components/animations/FadeInOnScroll';
 import SectionHeader from '../components/ui/SectionHeader';
-import WorkflowGraph from '../components/comfyui/WorkflowGraph';
+import { Tabs } from '../components/ui/Tabs';
+import { InteractiveFlow } from '../components/ui/InteractiveFlow';
+import { OutputScene } from '../components/comfyui/OutputScene';
 import FlowLine from '../components/ui/FlowLine';
 import NodeScene from '../components/three/NodeScene';
 import type { SceneNode } from '../components/three/NodeScene';
@@ -40,64 +41,6 @@ const PIPELINE_EDGES: [number, number][] = [
   [1, 2],
   [2, 3],
 ];
-
-const WorkflowCard: React.FC<{ workflow: ComfyUIWorkflow; index: number; graphLabel: string }> = ({
-  workflow,
-  index,
-  graphLabel,
-}) => {
-  const Icon = iconMap[workflow.icon] || Image;
-
-  return (
-    <FadeInOnScroll delay={index * 0.1}>
-      <div className="bg-glass border border-border/10 rounded-2xl p-6 hover:border-accent/30 hover:-translate-y-1 transition-all duration-300">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-            <Icon size={20} className="text-accent" />
-          </div>
-          <h3 className="text-lg font-semibold text-content">{workflow.title}</h3>
-        </div>
-
-        <p className="text-content-muted text-sm leading-relaxed mb-4">
-          {workflow.description}
-        </p>
-
-        {/* Animated workflow graph */}
-        <div className="mb-4">
-          <p className="text-xs font-semibold tracking-wider text-accent mb-2">
-            {graphLabel}
-          </p>
-          <div className="bg-surface/50 rounded-xl p-3 border border-border/5">
-            <WorkflowGraph
-              graph={workflow.graph}
-              ariaLabel={`${graphLabel}: ${workflow.graph.nodes.map((n) => n.label).join(' → ')}`}
-            />
-          </div>
-        </div>
-
-        <ul className="space-y-1.5 mb-4">
-          {workflow.features.map((feature) => (
-            <li key={feature} className="text-sm text-content-faint flex items-start gap-2">
-              <ArrowRight size={14} className="text-accent mt-0.5 shrink-0" />
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-wrap gap-2">
-          {workflow.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="text-xs font-medium px-2.5 py-1 rounded-full bg-accent/10 text-accent"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </FadeInOnScroll>
-  );
-};
 
 const ComfyUIPage: React.FC = () => {
   const { lang, t: translations } = useLanguage();
@@ -134,16 +77,55 @@ const ComfyUIPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Workflow Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-          {workflows.map((workflow, i) => (
-            <WorkflowCard
-              key={workflow.id}
-              workflow={workflow}
-              index={i}
-              graphLabel={translations.comfyui.graphLabel}
-            />
-          ))}
+        {/* Workflows à onglets */}
+        <div className="mb-20">
+          <Tabs
+            param="wf"
+            ariaLabel={translations.comfyui.tabsLabel}
+            items={workflows.map((w) => ({ id: w.id, label: w.title, icon: iconMap[w.icon] || Image }))}
+          >
+            {(activeId) => {
+              const w = workflows.find((x) => x.id === activeId) ?? workflows[0];
+              return (
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-2xl font-bold text-content mb-2">{w.title}</h2>
+                    <p className="text-content-muted mb-3">{w.tagline}</p>
+                    <span className="inline-block text-xs font-medium px-3 py-1 rounded-full border border-border/10 bg-glass text-content-muted mb-3">
+                      {w.io}
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {w.techStack.map((tech) => (
+                        <span key={tech} className="text-xs font-medium px-2.5 py-1 rounded-full bg-accent/10 text-accent">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <OutputScene key={w.id} variant={w.id} />
+                  <div>
+                    <h3 className="text-xs font-semibold tracking-wider text-accent mb-2">
+                      {translations.comfyui.graphTitle}
+                    </h3>
+                    <InteractiveFlow flow={w.flow} showLegend />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-semibold tracking-wider text-accent mb-2">
+                      {translations.comfyui.featuresTitle}
+                    </h3>
+                    <ul className="space-y-1.5">
+                      {w.features.map((feature) => (
+                        <li key={feature} className="text-sm text-content-faint flex items-start gap-2">
+                          <ArrowRight size={14} className="text-accent mt-0.5 shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            }}
+          </Tabs>
         </div>
 
         {/* How to use a workflow */}

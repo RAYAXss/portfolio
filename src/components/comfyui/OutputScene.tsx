@@ -106,7 +106,7 @@ export const OutputScene: React.FC<{ variant: WorkflowId }> = ({ variant }) => {
     let visible = true;
 
     const draw = (now: number) => {
-      build.frame((now - t0) / 1000, Math.min((now - last) / 1000, 0.1), paramsRef.current, reduced);
+      build.frame(Math.max(0, now - t0) / 1000, Math.min((now - last) / 1000, 0.1), paramsRef.current, reduced);
       last = now;
       renderer.render(scene, camera);
     };
