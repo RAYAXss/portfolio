@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 import { Cpu, Terminal, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import FadeInOnScroll from '../animations/FadeInOnScroll';
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 const ExploreCards: React.FC = () => {
-  const { lang } = useLanguage();
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
-
+  const { t: translations } = useLanguage();
   const cards = [
     {
       to: '/comfyui',
@@ -34,25 +30,30 @@ const ExploreCards: React.FC = () => {
           </p>
         </FadeInOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {cards.map((card, i) => (
             <FadeInOnScroll key={card.to} delay={i * 0.1}>
               <Link
                 to={card.to}
-                className="group block bg-glass border border-border/10 rounded-2xl p-6 hover:bg-glass-hover transition-all duration-200"
+                className="group block bg-glass border border-border/10 rounded-2xl overflow-hidden hover:border-accent/30 hover:-translate-y-1.5 transition-all duration-300"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
-                    <card.icon size={20} className="text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-lg font-semibold text-content">{card.title}</h3>
-                      <ArrowRight size={16} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Gradient accent bar */}
+                <div className="h-1 bg-gradient-to-r from-accent to-accent-2" />
+
+                <div className="p-8">
+                  <div className="flex items-start gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
+                      <card.icon size={28} className="text-accent" />
                     </div>
-                    <p className="text-content-muted text-sm leading-relaxed">
-                      {card.description}
-                    </p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-3">
+                        <h3 className="text-xl font-bold text-content">{card.title}</h3>
+                        <ArrowRight size={18} className="text-accent opacity-60 group-hover:opacity-100 group-hover:translate-x-1.5 transition-all duration-300" />
+                      </div>
+                      <p className="text-content-muted text-base leading-relaxed">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Link>

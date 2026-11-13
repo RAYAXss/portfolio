@@ -8,12 +8,9 @@ import FadeInOnScroll from '../animations/FadeInOnScroll';
 import SectionHeader from '../ui/SectionHeader';
 import SpotlightCard from '../reactbits/SpotlightCard';
 import Counter from '../reactbits/Counter';
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 const About: React.FC = () => {
-  const { lang } = useLanguage();
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
+  const { lang, t: translations } = useLanguage();
   const about = translations.about;
   const experiences = getExperiences(lang);
   const [openSchool, setOpenSchool] = useState<string | null>(null);
@@ -37,8 +34,8 @@ const About: React.FC = () => {
 
   return (
     <section id="about" className="py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow={about.eyebrow} title={about.title} />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader title={about.title} align="center" />
 
         <FadeInOnScroll delay={0.1}>
           <SpotlightCard className="mb-12 p-6 sm:p-8">
@@ -80,7 +77,7 @@ const About: React.FC = () => {
               <span className="text-[11px] text-content-faint">{about.education.hint}</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
               {about.education.schools.map((school) => {
                 const isOpen = openSchool === school.id;
                 const linked = experiences.filter((e) => school.experienceIds.includes(e.id));
@@ -89,13 +86,15 @@ const About: React.FC = () => {
                   <motion.div
                     key={school.id}
                     onClick={() => setOpenSchool(isOpen ? null : school.id)}
-                    className={`${cardBase} p-5 cursor-pointer ${isOpen ? 'border-accent/40' : ''}`}
+                    className={`${cardBase} p-6 cursor-pointer ${isOpen ? 'border-accent/40' : ''}`}
                   >
-                    <div className="flex items-start gap-3">
-                      <GraduationCap className="w-6 h-6 text-accent shrink-0 mt-0.5" />
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                        <GraduationCap className="w-5 h-5 text-accent" />
+                      </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-2">
-                          <h4 className="text-base font-bold text-content">{school.name}</h4>
+                          <h4 className="text-lg font-bold text-content">{school.name}</h4>
                           {linked.length > 0 && (
                             <motion.span
                               animate={{ rotate: isOpen ? 180 : 0 }}
@@ -184,7 +183,7 @@ const About: React.FC = () => {
           <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-4 text-center">
             {about.interests.title}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {interestKeys.map((key, i) => {
               const group = about.interests[key];
               const Icon = interestIcons[key];
@@ -196,15 +195,17 @@ const About: React.FC = () => {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ type: 'spring', stiffness: 220, damping: 22, delay: i * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className={`${cardBase} p-5 group`}
+                  className={`${cardBase} p-6 group`}
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icon className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
-                    <h4 className="text-sm font-semibold text-content">{group.title}</h4>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
+                      <Icon className="w-5 h-5 text-accent" />
+                    </div>
+                    <h4 className="text-base font-semibold text-content">{group.title}</h4>
                   </div>
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-2">
                     {group.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-xs text-content-muted">
+                      <li key={item} className="flex items-center gap-2 text-sm text-content-muted">
                         <span className="text-accent/70">▸</span>
                         {item}
                       </li>

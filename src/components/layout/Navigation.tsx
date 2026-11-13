@@ -6,17 +6,14 @@ import { useScrollSpy } from '../../hooks/useScrollSpy';
 import LanguageToggle from '../ui/LanguageToggle';
 import ThemeToggle from '../ui/ThemeToggle';
 import { getCvUrl } from '../../utils/cv';
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 const Navigation: React.FC = () => {
-  const { lang } = useLanguage();
+  const { lang, t: translations } = useLanguage();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasProfileImage, setHasProfileImage] = useState(true);
 
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
   const cvHref = getCvUrl(lang);
   const isHome = location.pathname === '/';
 

@@ -1,9 +1,15 @@
 import React, { createContext, useState } from 'react';
 import type { Language } from '../types/language';
+import translationsFR from '../data/translations/fr.json';
+import translationsEN from '../data/translations/en.json';
+
+export type Translations = typeof translationsFR;
 
 interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
+  /** Textes UI de la langue active (fr.json / en.json) */
+  t: Translations;
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -21,8 +27,10 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem(STORAGE_KEY, newLang);
   };
 
+  const t: Translations = lang === 'fr' ? translationsFR : translationsEN;
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang }}>
+    <LanguageContext.Provider value={{ lang, setLang, t }}>
       {children}
     </LanguageContext.Provider>
   );

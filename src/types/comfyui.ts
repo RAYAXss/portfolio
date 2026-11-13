@@ -1,3 +1,13 @@
+export interface WorkflowNode {
+  id: string;
+  label: string;
+}
+
+export interface WorkflowGraph {
+  nodes: WorkflowNode[];
+  edges: [string, string][];
+}
+
 export interface ComfyUIWorkflow {
   id: string;
   title: string;
@@ -5,4 +15,5 @@ export interface ComfyUIWorkflow {
   features: string[];
   techStack: string[];
   icon: string;
+  graph: WorkflowGraph;
 }

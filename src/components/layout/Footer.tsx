@@ -2,12 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 const Footer: React.FC = () => {
-  const { lang } = useLanguage();
-  const t = lang === 'fr' ? translationsFR : translationsEN;
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
   const socials = [

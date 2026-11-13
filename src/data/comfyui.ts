@@ -1,5 +1,78 @@
 import type { Language } from '../types/language';
-import type { ComfyUIWorkflow } from '../types/comfyui';
+import type { ComfyUIWorkflow, WorkflowGraph } from '../types/comfyui';
+
+// Simplified graphs extracted from real ComfyUI workflow JSONs.
+// Node names are technical (not i18n'd).
+const graphs: Record<string, WorkflowGraph> = {
+  flux2: {
+    nodes: [
+      { id: 'ref', label: 'Ref Image' },
+      { id: 'prompt', label: 'Qwen 3 8B' },
+      { id: 'sampler', label: 'FLUX Sampler' },
+      { id: 'vae', label: 'VAE Decode' },
+      { id: 'save', label: 'Save Image' },
+    ],
+    edges: [
+      ['ref', 'sampler'],
+      ['prompt', 'sampler'],
+      ['sampler', 'vae'],
+      ['vae', 'save'],
+    ],
+  },
+  anime: {
+    nodes: [
+      { id: 'ckpt', label: 'Checkpoint + LoRA' },
+      { id: 'clip', label: 'CLIP Encode' },
+      { id: 'sampler', label: 'KSampler' },
+      { id: 'vae', label: 'VAE Decode' },
+      { id: 'upscale', label: '4x Upscale' },
+      { id: 'save', label: 'Save Image' },
+    ],
+    edges: [
+      ['ckpt', 'clip'],
+      ['clip', 'sampler'],
+      ['sampler', 'vae'],
+      ['vae', 'upscale'],
+      ['upscale', 'save'],
+    ],
+  },
+  video: {
+    nodes: [
+      { id: 'input', label: 'Image / Text' },
+      { id: 'clip', label: 'CLIP Encode' },
+      { id: 'wan', label: 'Wan 2.2 14B' },
+      { id: 'vae', label: 'VAE Decode' },
+      { id: 'rife', label: 'RIFE 32fps' },
+      { id: 'audio', label: 'MMAudio' },
+      { id: 'save', label: 'Save Video' },
+    ],
+    edges: [
+      ['input', 'clip'],
+      ['clip', 'wan'],
+      ['wan', 'vae'],
+      ['vae', 'rife'],
+      ['rife', 'audio'],
+      ['audio', 'save'],
+    ],
+  },
+  trellis2: {
+    nodes: [
+      { id: 'load', label: 'Load Image' },
+      { id: 'preprocess', label: 'PreProcess' },
+      { id: 'cond', label: 'Image Cond' },
+      { id: 'shape', label: 'Shape Gen' },
+      { id: 'mesh', label: 'Reconstruct' },
+      { id: 'export', label: 'Export GLB' },
+    ],
+    edges: [
+      ['load', 'preprocess'],
+      ['preprocess', 'cond'],
+      ['cond', 'shape'],
+      ['shape', 'mesh'],
+      ['mesh', 'export'],
+    ],
+  },
+};
 
 const workflowsFR: ComfyUIWorkflow[] = [
   {
@@ -14,6 +87,7 @@ const workflowsFR: ComfyUIWorkflow[] = [
     ],
     techStack: ['FLUX.2', 'Qwen 3 8B', 'ComfyUI'],
     icon: 'image',
+    graph: graphs.flux2,
   },
   {
     id: 'anime',
@@ -27,6 +101,7 @@ const workflowsFR: ComfyUIWorkflow[] = [
     ],
     techStack: ['SDXL', 'LoRA', 'ComfyUI'],
     icon: 'palette',
+    graph: graphs.anime,
   },
   {
     id: 'video',
@@ -40,6 +115,7 @@ const workflowsFR: ComfyUIWorkflow[] = [
     ],
     techStack: ['Wan 2.2', 'RIFE', 'MMAudio', 'ComfyUI'],
     icon: 'video',
+    graph: graphs.video,
   },
   {
     id: 'trellis2',
@@ -53,6 +129,7 @@ const workflowsFR: ComfyUIWorkflow[] = [
     ],
     techStack: ['TRELLIS.2', 'DINOv3', 'ComfyUI'],
     icon: 'box',
+    graph: graphs.trellis2,
   },
 ];
 
@@ -69,6 +146,7 @@ const workflowsEN: ComfyUIWorkflow[] = [
     ],
     techStack: ['FLUX.2', 'Qwen 3 8B', 'ComfyUI'],
     icon: 'image',
+    graph: graphs.flux2,
   },
   {
     id: 'anime',
@@ -82,6 +160,7 @@ const workflowsEN: ComfyUIWorkflow[] = [
     ],
     techStack: ['SDXL', 'LoRA', 'ComfyUI'],
     icon: 'palette',
+    graph: graphs.anime,
   },
   {
     id: 'video',
@@ -95,6 +174,7 @@ const workflowsEN: ComfyUIWorkflow[] = [
     ],
     techStack: ['Wan 2.2', 'RIFE', 'MMAudio', 'ComfyUI'],
     icon: 'video',
+    graph: graphs.video,
   },
   {
     id: 'trellis2',
@@ -108,6 +188,7 @@ const workflowsEN: ComfyUIWorkflow[] = [
     ],
     techStack: ['TRELLIS.2', 'DINOv3', 'ComfyUI'],
     icon: 'box',
+    graph: graphs.trellis2,
   },
 ];
 

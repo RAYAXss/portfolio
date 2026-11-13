@@ -24,4 +24,7 @@ docs/superpowers
 profil.md
 
 # ComfyUI repo (separate git project, not part of portfolio)
-COMFYUI/
+/COMFYUI/
+
+# Graphify output (knowledge graph, not part of portfolio)
+/graphify-out/

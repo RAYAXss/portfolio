@@ -6,20 +6,21 @@
   /* Tokens sémantiques — le mode sombre reste la valeur par défaut */
   :root,
   [data-theme='dark'] {
-    --surface: 17 24 39;          /* gray-900   */
-    --surface-2: 31 41 55;        /* gray-800   */
-    --surface-3: 3 7 12;          /* gray-950   */
-    --content: 243 244 246;       /* gray-100   */
-    --content-muted: 209 213 219; /* gray-300   */
-    --content-faint: 156 163 175; /* gray-400   */
+    /* Noir + rouge sourd : rouge réservé aux accents, jamais en aplat */
+    --surface: 14 13 13;          /* #0e0d0d fond de page     */
+    --surface-2: 27 25 25;        /* #1b1919 cartes           */
+    --surface-3: 8 7 7;           /* #080707 footer           */
+    --content: 237 233 232;       /* #ede9e8 texte principal  */
+    --content-muted: 199 192 190; /* #c7c0be texte secondaire */
+    --content-faint: 150 142 140; /* #968e8c texte tertiaire  */
     --border: 255 255 255;
-    --border-strong: 55 65 81;    /* gray-700   */
-    --accent: 96 165 250;         /* blue-400   */
-    --accent-2: 192 132 252;      /* purple-400 */
-    --action: 37 99 235;          /* blue-600   */
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-hover: rgba(255, 255, 255, 0.1);
-    --glow: rgba(96, 165, 250, 0.35);   /* halo des points/éléments actifs */
+    --border-strong: 58 52 52;    /* #3a3434 bordures fortes  */
+    --accent: 226 112 112;        /* #e27070 rouge doux       */
+    --accent-2: 184 76 76;        /* #b84c4c rouge profond    */
+    --action: 168 52 52;          /* #a83434 boutons primaires */
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-hover: rgba(255, 255, 255, 0.08);
+    --glow: rgba(226, 112, 112, 0.3);   /* halo des points/éléments actifs */
   }
 
   [data-theme='light'] {

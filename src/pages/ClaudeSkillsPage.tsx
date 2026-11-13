@@ -1,26 +1,42 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Lightbulb, MessageSquare, Network, Paintbrush } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { getClaudeSkills } from '../data/claudeSkills';
 import type { ClaudeSkill } from '../types/claudeSkill';
 import FadeInOnScroll from '../components/animations/FadeInOnScroll';
-import translationsFR from '../data/translations/fr.json';
-import translationsEN from '../data/translations/en.json';
+import FlowLine from '../components/ui/FlowLine';
+import NodeScene from '../components/three/NodeScene';
+import type { SceneNode } from '../components/three/NodeScene';
+import type { Translations } from '../contexts/LanguageContext';
 
-const iconMap: Record<string, React.FC<{ size?: number; className?: string }>> = {
+/* Noyau Claude + 4 skills en orbite, reliés au noyau et entre voisins */
+const ORBIT_NODES: SceneNode[] = [
+  { pos: [0, 0, 0], shape: 'sphere', size: 1.8 },
+  ...[0, 1, 2, 3].map((i): SceneNode => {
+    const a = (i * Math.PI) / 2;
+    return { pos: [Math.cos(a) * 3, i % 2 ? 0.7 : -0.7, Math.sin(a) * 3], shape: 'ico', size: 0.8 };
+  }),
+];
+const ORBIT_EDGES: [number, number][] = [
+  [0, 1], [0, 2], [0, 3], [0, 4],
+  [1, 2], [2, 3], [3, 4], [4, 1],
+];
+
+const iconMap: Record<string, LucideIcon> = {
   lightbulb: Lightbulb,
   'message-square': MessageSquare,
   network: Network,
   paintbrush: Paintbrush,
 };
 
-const SkillCard: React.FC<{ skill: ClaudeSkill; index: number; translations: typeof translationsFR }> = ({ skill, index, translations }) => {
+const SkillCard: React.FC<{ skill: ClaudeSkill; index: number; translations: Translations }> = ({ skill, index, translations }) => {
   const Icon = iconMap[skill.icon] || Lightbulb;
 
   return (
     <FadeInOnScroll delay={index * 0.1}>
-      <div className="bg-glass border border-border/10 rounded-2xl p-6 hover:bg-glass-hover transition-all duration-200">
+      <div className="bg-glass border border-border/10 rounded-2xl p-6 hover:bg-glass-hover hover:border-accent/30 hover:-translate-y-1 transition-all duration-300">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
             <Icon size={20} className="text-accent" />
@@ -64,8 +80,7 @@ const SkillCard: React.FC<{ skill: ClaudeSkill; index: number; translations: typ
 };
 
 const ClaudeSkillsPage: React.FC = () => {
-  const { lang } = useLanguage();
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
+  const { lang, t: translations } = useLanguage();
   const skills = getClaudeSkills(lang);
 
   useEffect(() => {
@@ -75,20 +90,29 @@ const ClaudeSkillsPage: React.FC = () => {
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero */}
-        <FadeInOnScroll>
-          <div className="text-center mb-16">
+        {/* Hero : texte + orbite 3D */}
+        <div className="grid lg:grid-cols-2 gap-8 items-center mb-16">
+          <FadeInOnScroll>
             <p className="text-sm font-semibold tracking-widest text-accent mb-3">
               {translations.claudeSkills.eyebrow}
             </p>
-            <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl sm:text-5xl font-bold text-content mb-4">
               {translations.claudeSkills.title}
             </h1>
-            <p className="text-content-muted text-lg max-w-2xl mx-auto">
-              {translations.claudeSkills.subtitle}
+            <p className="text-content-muted text-lg mb-6">{translations.claudeSkills.subtitle}</p>
+            <p className="text-xs font-semibold tracking-widest text-accent uppercase mb-2">
+              {translations.claudeSkills.flowTitle}
             </p>
-          </div>
-        </FadeInOnScroll>
+            <FlowLine steps={translations.claudeSkills.flow} />
+          </FadeInOnScroll>
+          <NodeScene
+            nodes={ORBIT_NODES}
+            edges={ORBIT_EDGES}
+            spin={0.25}
+            distance={8.5}
+            className="h-64 sm:h-80 w-full"
+          />
+        </div>
 
         {/* Skills Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">

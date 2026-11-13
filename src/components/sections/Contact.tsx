@@ -5,13 +5,9 @@ import { useLanguage } from '../../hooks/useLanguage';
 import FadeInOnScroll from '../animations/FadeInOnScroll';
 import SectionHeader from '../ui/SectionHeader';
 import Button from '../ui/Button';
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 const Contact: React.FC = () => {
-  const { lang } = useLanguage();
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
-
+  const { t: translations } = useLanguage();
   const socials = [
     { href: 'https://www.linkedin.com/in/quentin-colpart/', icon: Linkedin,     label: 'LinkedIn' },
     { href: 'https://github.com/RAYAXss',                   icon: Github,       label: 'GitHub'   },
@@ -24,7 +20,7 @@ const Contact: React.FC = () => {
       className="relative py-24 overflow-hidden"
     >
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <SectionHeader eyebrow={translations.contact.eyebrow} title={translations.contact.title} />
+        <SectionHeader title={translations.contact.title} align="center" />
 
         <FadeInOnScroll delay={0.15}>
           <p className="text-lg text-content-muted mb-10 leading-relaxed">

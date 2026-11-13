@@ -1,6 +1,6 @@
 # AGENTS.md — Guide de référence du repo
 
-Portfolio personnel de **Quentin COLPART** (React 18 + TypeScript + Vite + Tailwind 3.4 + Framer Motion + Lucide + Recharts), déployé sur GitHub Pages.
+Portfolio personnel de **Quentin COLPART** (React 18 + TypeScript + Vite + Tailwind 3.4 + Framer Motion + Lucide + three.js + React Router (HashRouter)), déployé sur GitHub Pages.
 
 ## Commandes
 
@@ -8,36 +8,37 @@ Portfolio personnel de **Quentin COLPART** (React 18 + TypeScript + Vite + Tailw
 npm run dev        # serveur de développement (http://localhost:5173)
 npm run build      # build production dans dist/
 npm run preview    # prévisualisation du build
-npm run lint       # ESLint (⚠️ 6 erreurs pré-existantes dans Projects.tsx — pas les corriger sauf demande explicte)
-npm run typecheck  # tsc --noEmit
+npm run lint       # ESLint (doit rester à 0 erreur)
+npm run typecheck  # tsc --noEmit -p tsconfig.app.json (vérifie src/)
 ```
 
 ## Structure
 
 ```
 src/
-├── App.tsx                          # Composition, props du fond KineticGrid (thème)
-├── main.tsx                         # Providers : ThemeProvider > LanguageProvider
+├── App.tsx                          # Routes (sous-pages en React.lazy)
+├── main.tsx                         # Providers : ThemeProvider > LanguageProvider > HashRouter
 ├── index.css                        # ✏️ TOKENS DE THÈME (variables CSS clair/sombre) + body
 ├── contexts/
 │   ├── ThemeContext.tsx             # useTheme : theme light/dark + localStorage + système
-│   └── LanguageContext.tsx          # useLanguage : fr/en + localStorage
-├── hooks/
-│   ├── useScrollSpy.ts              # section active dans la nav
-│   └── useLanguage.ts               # re-export du contexte de langue
+│   └── LanguageContext.tsx          # useLanguage : { lang, setLang, t } — t = textes UI de la langue active
+├── hooks/                           # useScrollSpy · useLanguage · useTheme · useReducedMotion
 ├── data/                            # ✏️ TOUTES les données métier (doublées FR/EN)
-│   ├── projects.ts                  # getProjects(lang)
 │   ├── experiences.ts               # getExperiences(lang)
-│   ├── skills.ts                    # getSkills(lang)
-│   └── translations/fr.json         # textes UI FR
-│   └── translations/en.json         # textes UI EN
-├── types/                           # interfaces (project, experience, skill, language)
+│   ├── projects.ts                  # getProjects(lang) — base commune + textes FR/EN ; rapports PDF publics dans public/docs/projects/
+│   ├── comfyui.ts                   # getComfyUIWorkflows(lang)
+│   ├── claudeSkills.ts              # getClaudeSkills(lang)
+│   └── translations/fr.json · en.json   # textes UI (compétences et section Expertise incluses)
+├── types/                           # interfaces (project, experience, comfyui, claudeSkill, language)
 ├── utils/cv.ts                      # auto-détection CV src/assets/cv/*.pdf (fr/en dans le nom)
+├── pages/                           # HomePage · ComfyUIPage (#/comfyui) · ClaudeSkillsPage (#/claude-skills)
 └── components/
     ├── layout/      Navigation.tsx · Footer.tsx
-    ├── sections/    Hero · About · Experience · Skills · Projects · Contact
-    ├── ui/          Button · Card · Section · SectionHeader · LanguageToggle · ThemeToggle
-    ├── background/  InteractiveBackground.tsx (canvas KineticGrid : points/lignes magnétiques)
+    ├── sections/    Hero · About · Experience · Skills · Projects · ExploreCards · Contact
+    ├── ui/          Button · SectionHeader · FlowLine (schéma A → B animé, sous-pages) · LanguageToggle · ThemeToggle
+    ├── three/       NodeScene.tsx (graphe 3D décoratif, couleurs = tokens CSS, pause hors écran)
+    ├── comfyui/     WorkflowGraph.tsx
+    ├── reactbits/   Counter · SplitText · SpotlightCard
     └── animations/  FadeInOnScroll.tsx
 ```
 
@@ -53,7 +54,9 @@ src/
    - Modifier une palette = ne toucher que `src/index.css` (variables :root/[data-theme]).
 3. **ThemeContext** : le thème est au niveau du `<html data-theme=...>` ; défaut = système, ensuite mémorisé dans `localStorage['preferred-theme']`. Ne pas dupliquer cette logique.
 4. **Rajouter une section** : créer `src/components/sections/X.tsx` → l'ajouter dans `App.tsx` → textes dans les 2 fichiers de traductions.
-5. **Langues** : `useLanguage()` partout (jamais un import direct des json quand ce n'est pas le composant racine).
+5. **Langues** : `const { t } = useLanguage()` partout. Seul `LanguageContext.tsx` importe les JSON.
+6. **Schémas animés** : préférer un schéma animé (Framer Motion / SVG, `FlowLine`, `NodeScene`) à un pavé de texte. Toujours respecter `useReducedMotion`, utiliser de vrais `<button>` pour les éléments cliquables, vérifier à 375 px sans scroll horizontal.
+7. **.gitignore** : git est insensible à la casse sous Windows, donc ancrer les motifs de dossiers racine (`/COMFYUI/`, sinon `src/components/comfyui/` est ignoré).
 
 ## Fichiers à ne JAMAIS commiter
 

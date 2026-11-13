@@ -5,21 +5,15 @@ import { Github, Linkedin, ExternalLink, ArrowDown } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import Button from '../ui/Button';
-import Magnet from '../reactbits/Magnet';
 import SplitText from '../reactbits/SplitText';
-import GradientText from '../reactbits/GradientText';
-import ShinyText from '../reactbits/ShinyText';
 
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 /* ─────────────────────────────────────────────
    Hero
 ───────────────────────────────────────────── */
 
 const Hero: React.FC = () => {
-  const { lang } = useLanguage();
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
+  const { t: translations } = useLanguage();
   const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -75,42 +69,22 @@ const Hero: React.FC = () => {
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="px-4 py-1.5 rounded-full border border-accent/30 text-xs tracking-widest font-medium bg-accent/5"
             >
-              <span className="mr-2">✦</span>
-              <ShinyText
-                text={translations.hero.welcome}
-                speed={2.5}
-                color="rgb(var(--accent))"
-                shineColor="rgb(var(--content))"
-              />
-              <span className="ml-2">✦</span>
+              <span className="relative mr-2 inline-flex w-2 h-2 align-middle">
+                {!reducedMotion && <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-60" />}
+                <span className="relative w-2 h-2 rounded-full bg-accent" />
+              </span>
+              <span className="text-accent">{translations.hero.welcome}</span>
             </motion.span>
           </motion.div>
 
           <motion.div variants={item}>
-            <h1
-              className="
-                text-4xl
-                md:text-6xl
-                font-bold
-                mb-3
-                text-accent
-                bg-gradient-to-r
-                from-accent
-                to-accent-2
-                bg-clip-text
-                [-webkit-background-clip:text]
-                supports-[-webkit-background-clip:text]:[-webkit-text-fill-color:transparent]
-                supports-[background-clip:text]:[-webkit-text-fill-color:transparent]
-              "
-            >
+            <h1 className="text-4xl md:text-6xl font-bold mb-3 text-content">
               <SplitText text={translations.hero.name} className="justify-center" />
             </h1>
           </motion.div>
           {/* Title */}
           <motion.h2 variants={item} className="text-xl md:text-2xl mb-5 font-light">
-            <GradientText className="text-xl md:text-2xl font-light">
-              {translations.hero.title}
-            </GradientText>
+            <span className="text-content-muted">{translations.hero.title}</span>
           </motion.h2>
 
           {/* Description */}
@@ -118,11 +92,20 @@ const Hero: React.FC = () => {
             {translations.hero.description}
           </motion.p>
 
+          {/* Domaines */}
+          <motion.ul variants={item} className="flex flex-wrap justify-center gap-2 mb-8" aria-label={translations.hero.title}>
+            {translations.hero.focus.map((f) => (
+              <li key={f} className="px-3 py-1 rounded-md text-xs font-medium border border-accent/30 bg-accent/5 text-content-muted">
+                {f}
+              </li>
+            ))}
+          </motion.ul>
+
           {/* Social links */}
           <motion.div variants={item} className="flex flex-wrap justify-center gap-3 mb-8">
             {socials.map(({ href, icon: Icon, label }) => (
-              <Magnet key={label} strength={0.45} padding={90}>
-                <a
+              <a
+                  key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -132,7 +115,6 @@ const Hero: React.FC = () => {
                   <Icon size={16} />
                   {label}
                 </a>
-              </Magnet>
             ))}
           </motion.div>
 

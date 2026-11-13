@@ -1,13 +1,41 @@
 import type { Language } from '../types/language';
 import type { Experience } from '../types/experience';
 
-const experiencesFR: Experience[] = [
+type ExperienceText = Omit<Experience, 'start' | 'end'>;
+
+// Dates machine (durée calculée à l'affichage), communes aux deux langues
+const dates: Record<number, Pick<Experience, 'start' | 'end'>> = {
+  5: { start: '2026-10' },
+  1: { start: '2025-07', end: '2026-09' },
+  2: { start: '2024-02', end: '2025-03' },
+  3: { start: '2023-09', end: '2024-01' },
+  4: { start: '2022-09', end: '2023-01' },
+};
+
+const experiencesFR: ExperienceText[] = [
+  {
+    id: 5,
+    title: "Alternant Cybersécurité — Direction SSI",
+    company: "SFR Business",
+    location: "France",
+    period: "Octobre 2026 - Aujourd'hui",
+    contractType: "Alternance",
+    description: "Alternance au sein de la direction Cybersécurité (SSI) de SFR Business : gouvernance, risques et conformité, sécurité dans les projets et suivi opérationnel.",
+    responsibilities: [
+      "GRC : gouvernance, gestion des risques et conformité du système d'information",
+      "Conformité réglementaire et normative : NIS2, DORA, ISO 27001, ISO 27005",
+      "Préparation et accompagnement de l'audit ISO 27001",
+      "Intégration de la sécurité dans les projets et suivi opérationnel",
+      "Création de dashboards et d'interfaces de suivi des projets et de la conformité",
+      "Campagnes de sensibilisation à la cybersécurité"
+    ]
+  },
   {
     id: 1,
     title: "Ingénieur d'études PDA",
     company: "AMADEUS (EEKEM)",
     location: "Nice, France",
-    period: "Juillet 2025 - Aujourd'hui",
+    period: "Juillet 2025 - Septembre 2026",
     contractType: "CDI",
     description: "Product Definition Analyst - Business/Data Analyst dans un environnement Big Data et cloud.",
     responsibilities: [
@@ -68,13 +96,30 @@ const experiencesFR: Experience[] = [
   }
 ];
 
-const experiencesEN: Experience[] = [
+const experiencesEN: ExperienceText[] = [
+  {
+    id: 5,
+    title: "Cybersecurity Work-Study — Information Security Department",
+    company: "SFR Business",
+    location: "France",
+    period: "October 2026 - Present",
+    contractType: "Work-study",
+    description: "Work-study in the Cybersecurity (ISS) department of SFR Business: governance, risk and compliance, security in projects and operational follow-up.",
+    responsibilities: [
+      "GRC: governance, risk management and compliance of the information system",
+      "Regulatory and standards compliance: NIS2, DORA, ISO 27001, ISO 27005",
+      "ISO 27001 audit preparation and support",
+      "Security by design in projects and operational follow-up",
+      "Building dashboards and tracking interfaces for projects and compliance",
+      "Cybersecurity awareness campaigns"
+    ]
+  },
   {
     id: 1,
     title: "Product Definition Analyst Engineer",
     company: "AMADEUS (EEKEM)",
     location: "Nice, France",
-    period: "July 2025 - Present",
+    period: "July 2025 - September 2026",
     contractType: "Full-time",
     description: "Product Definition Analyst - Business/Data Analyst in Big Data and cloud environment.",
     responsibilities: [
@@ -136,5 +181,5 @@ const experiencesEN: Experience[] = [
 ];
 
 export const getExperiences = (lang: Language): Experience[] => {
-  return lang === 'fr' ? experiencesFR : experiencesEN;
+  return (lang === 'fr' ? experiencesFR : experiencesEN).map((e) => ({ ...e, ...dates[e.id] }));
 };
