@@ -1,19 +1,14 @@
-export interface WorkflowNode {
-  id: string;
-  label: string;
-}
+import type { Flow } from './flow';
 
-export interface WorkflowGraph {
-  nodes: WorkflowNode[];
-  edges: [string, string][];
-}
+export type WorkflowId = 't2i' | 'i2v' | 'i3d';
 
 export interface ComfyUIWorkflow {
-  id: string;
+  id: WorkflowId;
   title: string;
-  description: string;
+  tagline: string;
+  io: string;
   features: string[];
   techStack: string[];
   icon: string;
-  graph: WorkflowGraph;
+  flow: Flow;
 }
