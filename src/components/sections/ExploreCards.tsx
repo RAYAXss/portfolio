@@ -14,10 +14,10 @@ const ExploreCards: React.FC = () => {
       description: translations.home.comfyuiCard,
     },
     {
-      to: '/claude-skills',
+      to: '/agents-skills',
       icon: Terminal,
-      title: 'Claude Code Skills',
-      description: translations.home.claudeSkillsCard,
+      title: translations.home.agentSkillsTitle,
+      description: translations.home.agentSkillsCard,
     },
   ];
 

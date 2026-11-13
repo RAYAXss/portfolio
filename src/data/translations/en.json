@@ -5,7 +5,7 @@
     "skills": "Skills",
     "projects": "Projects",
     "comfyui": "ComfyUI",
-    "claudeSkills": "Claude Skills",
+    "agentSkills": "Agents Skills",
     "resume": "Resume",
     "language": "FR",
     "theme": "Theme"
@@ -287,13 +287,14 @@
       }
     }
   },
-  "claudeSkills": {
+  "agentSkills": {
     "eyebrow": "AI TOOLS",
-    "title": "Claude Code Skills",
+    "title": "Agents Skills",
     "subtitle": "The Claude Code skills I use daily to structure my thinking, design and communication.",
     "whyTitle": "Why I use it",
     "usageTitle": "How to use it",
     "exampleTitle": "Concrete example",
+    "tabsLabel": "Agent skills",
     "backToPortfolio": "Back to portfolio",
     "flow": [
       "Idea",
@@ -317,7 +318,8 @@
   "home": {
     "explore": "Explore",
     "comfyuiCard": "My AI generation pipeline: images, videos and 3D reconstruction with ComfyUI.",
-    "claudeSkillsCard": "The Claude Code skills I use to boost my development workflow."
+    "agentSkillsTitle": "Agents Skills",
+    "agentSkillsCard": "The Claude Code skills I use to boost my development workflow."
   },
   "footer": {
     "name": "Quentin Colpart",

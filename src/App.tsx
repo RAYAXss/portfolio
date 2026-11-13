@@ -7,7 +7,7 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 // Sous-pages chargées à la demande : three.js reste hors du bundle de l'accueil
 const ComfyUIPage = React.lazy(() => import('./pages/ComfyUIPage'));
-const ClaudeSkillsPage = React.lazy(() => import('./pages/ClaudeSkillsPage'));
+const AgentsSkillsPage = React.lazy(() => import('./pages/AgentsSkillsPage'));
 
 import { useLanguage } from './hooks/useLanguage';
 
@@ -26,7 +26,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/comfyui" element={<ComfyUIPage />} />
-          <Route path="/claude-skills" element={<ClaudeSkillsPage />} />
+          <Route path="/agents-skills" element={<AgentsSkillsPage />} />
+          <Route path="/claude-skills" element={<Navigate to="/agents-skills" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         </React.Suspense>

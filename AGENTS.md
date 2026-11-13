@@ -27,17 +27,17 @@ src/
 │   ├── experiences.ts               # getExperiences(lang)
 │   ├── projects.ts                  # getProjects(lang) — base commune + textes FR/EN ; rapports PDF publics dans public/docs/projects/
 │   ├── comfyui.ts                   # getComfyUIWorkflows(lang)
-│   ├── claudeSkills.ts              # getClaudeSkills(lang)
+│   ├── agentSkills.ts               # getAgentSkills(lang) — flows des skills (FR/EN)
 │   └── translations/fr.json · en.json   # textes UI (compétences et section Expertise incluses)
 ├── types/                           # interfaces (project, experience, comfyui, claudeSkill, language)
 ├── utils/cv.ts                      # auto-détection CV src/assets/cv/*.pdf (fr/en dans le nom)
-├── pages/                           # HomePage · ComfyUIPage (#/comfyui) · ClaudeSkillsPage (#/claude-skills)
+├── pages/                           # HomePage · ComfyUIPage (#/comfyui) · AgentsSkillsPage (#/agents-skills)
 └── components/
     ├── layout/      Navigation.tsx · Footer.tsx
     ├── sections/    Hero · About · Experience · Skills · Projects · ExploreCards · Contact
-    ├── ui/          Button · SectionHeader · FlowLine (schéma A → B animé, sous-pages) · LanguageToggle · ThemeToggle
+    ├── ui/          Button · SectionHeader · FlowLine (schéma A → B animé) · InteractiveFlow (graphe cliquable) · Tabs (onglets ?param=) · LanguageToggle · ThemeToggle
     ├── three/       NodeScene.tsx (graphe 3D décoratif, couleurs = tokens CSS, pause hors écran)
-    ├── comfyui/     WorkflowGraph.tsx
+    ├── comfyui/     OutputScene.tsx (+ scenes/ : visualisations three.js)
     ├── reactbits/   Counter · SplitText · SpotlightCard
     └── animations/  FadeInOnScroll.tsx
 ```

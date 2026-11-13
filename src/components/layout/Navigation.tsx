@@ -50,7 +50,7 @@ const Navigation: React.FC = () => {
 
   const pageItems = [
     { path: '/comfyui', label: translations.nav.comfyui },
-    { path: '/claude-skills', label: translations.nav.claudeSkills },
+    { path: '/agents-skills', label: translations.nav.agentSkills },
   ];
 
   return (

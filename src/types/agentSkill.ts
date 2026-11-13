@@ -1,4 +1,6 @@
-export interface ClaudeSkill {
+import type { Flow } from './flow';
+
+export interface AgentSkill {
   id: string;
   name: string;
   description: string;
@@ -6,4 +8,5 @@ export interface ClaudeSkill {
   usage: string;
   example: string;
   icon: string;
+  flow: Flow;
 }
