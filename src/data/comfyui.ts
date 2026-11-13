@@ -86,9 +86,10 @@ const base: WorkflowBase[] = [
       n('resize', 'ImageResize', 'post', 1, 0),
       n('pos', 'CLIP Text Encode +', 'text', 1, 1),
       n('neg', 'CLIP Text Encode −', 'text', 1, 2),
-      n('msHigh', 'ModelSamplingSD3 HIGH', 'sampler', 1, 4),
-      n('lora', 'LoRA Lightning', 'loader', 1, 5),
+      n('loraHigh', 'LoRA Lightning HIGH', 'loader', 1, 4),
+      n('loraLow', 'LoRA Lightning LOW', 'loader', 1, 5),
       n('wan', 'WanImageToVideo', 'latent', 2, 1),
+      n('msHigh', 'ModelSamplingSD3 HIGH', 'sampler', 2, 4),
       n('msLow', 'ModelSamplingSD3 LOW', 'sampler', 2, 5),
       n('ksHigh', 'KSamplerAdvanced HIGH', 'sampler', 3, 3),
       n('ksLow', 'KSamplerAdvanced LOW', 'sampler', 4, 4),
@@ -106,9 +107,10 @@ const base: WorkflowBase[] = [
       e('pos', 'wan', 'CONDITIONING'),
       e('neg', 'wan', 'CONDITIONING'),
       e('vae', 'wan', 'VAE'),
-      e('unetHigh', 'msHigh', 'MODEL'),
-      e('unetLow', 'lora', 'MODEL'),
-      e('lora', 'msLow', 'MODEL'),
+      e('unetHigh', 'loraHigh', 'MODEL'),
+      e('loraHigh', 'msHigh', 'MODEL'),
+      e('unetLow', 'loraLow', 'MODEL'),
+      e('loraLow', 'msLow', 'MODEL'),
       e('msHigh', 'ksHigh', 'MODEL'),
       e('msLow', 'ksLow', 'MODEL'),
       // WanImageToVideo envoie conditionnements + latent aux deux samplers ; un câble par paire de nœuds.
@@ -429,7 +431,7 @@ const textFR: Record<WorkflowId, WorkflowText> = {
       unetHigh: {
         summary: "Charge l'expert « bruit fort » de Wan 2.2, qui pose la scène et le mouvement.",
         detail:
-          "Wan 2.2 14B utilise deux experts (Mixture of Experts) : celui-ci traite les premières étapes, très bruitées, où se décident la composition et le mouvement global. Cette version « Remix » intègre déjà l'accélération Lightning, d'où l'absence de LoRA sur cette branche. Les poids en fp8 tiennent sur une carte graphique grand public.",
+          "Wan 2.2 14B utilise deux experts (Mixture of Experts) : celui-ci traite les premières étapes, très bruitées, où se décident la composition et le mouvement global. Il passe ensuite par sa propre LoRA Lightning avant d'arriver au sampler. Les poids en fp8 tiennent sur une carte graphique grand public.",
         params: [
           {
             name: 'unet_name',
@@ -450,10 +452,28 @@ const textFR: Record<WorkflowId, WorkflowText> = {
           },
         ],
       },
-      lora: {
+      loraHigh: {
+        summary: "Ajoute la LoRA Lightning 4 steps à l'expert « bruit fort » pour générer en très peu d'étapes.",
+        detail:
+          "Une LoRA est un petit fichier de poids additionnels qui modifie le comportement d'un modèle sans le réentraîner. Lightning est une distillation : elle apprend au modèle à faire en quelques étapes, avec un CFG proche de 1, ce qui en demandait des dizaines. Chaque expert a sa propre LoRA Lightning, entraînée pour sa plage de bruit : celle-ci pour le bruit fort.",
+        params: [
+          {
+            name: 'lora',
+            value: 'Wan22_A14B_T2V_HIGH_Lightning_4steps (rank 128)',
+            explain: 'Le fichier de la LoRA ; le rang (128) mesure sa capacité à modifier le modèle : plus haut = plus expressif, mais plus lourd.',
+          },
+          {
+            name: 'strength',
+            value: '1',
+            explain:
+              "Intensité de la LoRA. Plus bas = accélération moins efficace (il faut plus d'étapes) ; au-dessus de 1, risque d'artefacts.",
+          },
+        ],
+      },
+      loraLow: {
         summary: "Ajoute la LoRA Lightning 4 steps à l'expert « bruit faible » pour finir en très peu d'étapes.",
         detail:
-          "Une LoRA est un petit fichier de poids additionnels qui modifie le comportement d'un modèle sans le réentraîner. Lightning est une distillation : elle apprend au modèle à faire en quelques étapes, avec un CFG proche de 1, ce qui en demandait des dizaines. Résultat : une vidéo en quelques minutes au lieu de plusieurs dizaines, au prix d'un peu de variété.",
+          "Même principe que sur la branche « bruit fort », avec la LoRA entraînée pour les dernières étapes, peu bruitées. Grâce aux deux LoRA, toute la vidéo tient en 6 étapes : quelques minutes au lieu de plusieurs dizaines, au prix d'un peu de variété.",
         params: [
           {
             name: 'lora',
@@ -1051,7 +1071,7 @@ const textEN: Record<WorkflowId, WorkflowText> = {
       unetHigh: {
         summary: 'Loads the Wan 2.2 "high-noise" expert, which sets the scene and the motion.',
         detail:
-          'Wan 2.2 14B uses two experts (Mixture of Experts): this one handles the first, very noisy steps, where composition and overall motion are decided. This "Remix" version already includes Lightning acceleration, hence no LoRA on this branch. The fp8 weights fit on a consumer graphics card.',
+          'Wan 2.2 14B uses two experts (Mixture of Experts): this one handles the first, very noisy steps, where composition and overall motion are decided. It then goes through its own Lightning LoRA before reaching the sampler. The fp8 weights fit on a consumer graphics card.',
         params: [
           {
             name: 'unet_name',
@@ -1072,10 +1092,27 @@ const textEN: Record<WorkflowId, WorkflowText> = {
           },
         ],
       },
-      lora: {
+      loraHigh: {
+        summary: 'Adds the Lightning 4-steps LoRA to the "high-noise" expert to generate in very few steps.',
+        detail:
+          "A LoRA is a small file of extra weights that changes a model's behavior without retraining it. Lightning is a distillation: it teaches the model to do in a few steps, with a CFG close to 1, what used to take dozens. Each expert has its own Lightning LoRA, trained for its noise range: this one for high noise.",
+        params: [
+          {
+            name: 'lora',
+            value: 'Wan22_A14B_T2V_HIGH_Lightning_4steps (rank 128)',
+            explain: 'The LoRA file; the rank (128) measures how much it can change the model: higher = more expressive, but heavier.',
+          },
+          {
+            name: 'strength',
+            value: '1',
+            explain: 'LoRA intensity. Lower = weaker acceleration (more steps needed); above 1, risk of artifacts.',
+          },
+        ],
+      },
+      loraLow: {
         summary: 'Adds the Lightning 4-steps LoRA to the "low-noise" expert to finish in very few steps.',
         detail:
-          "A LoRA is a small file of extra weights that changes a model's behavior without retraining it. Lightning is a distillation: it teaches the model to do in a few steps, with a CFG close to 1, what used to take dozens. Result: a video in a few minutes instead of tens of minutes, at the cost of some variety.",
+          'Same principle as on the "high-noise" branch, with the LoRA trained for the last, low-noise steps. Thanks to both LoRAs, the whole video fits in 6 steps: a few minutes instead of tens of minutes, at the cost of some variety.',
         params: [
           {
             name: 'lora',
