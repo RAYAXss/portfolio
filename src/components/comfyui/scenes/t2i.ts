@@ -17,7 +17,7 @@ void main() {
     float fk = float(k) + 1.0;
     vec2 c = 0.2 + 0.6 * vec2(hash(vec2(fk, 1.7)), hash(vec2(3.1, fk)));
     float r = 0.1 + 0.16 * hash(vec2(fk, 9.2));
-    img = mix(img, mod(fk, 2.0) < 1.0 ? uB : uA, smoothstep(r, r - 0.015, length(uv - c)));
+    img = mix(img, mod(fk, 2.0) < 1.0 ? uB : uA, 1.0 - smoothstep(r - 0.015, r, length(uv - c)));
   }
   vec2 px = floor(uv * 96.0);
   vec3 noise = vec3(hash(px), hash(px + 17.0), hash(px + 41.0));
