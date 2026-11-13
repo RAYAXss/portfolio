@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Download, Package, Type, Layers, Sparkles, ScanLine, SlidersHorizontal, Flag } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { Flow, FlowEdge, FlowNode, FlowNodeKind, WireType } from '../../types/flow';
@@ -6,10 +6,11 @@ import { topoOrder } from '../../utils/flow';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-const NODE_W = 168;
+const NODE_W = 152;
 const NODE_H = 60;
-const COL_GAP = 48;
+const COL_GAP = 40;
 const ROW_GAP = 20;
+const PAD = 12; // marge haut/bas : les câbles de retour passent dans la gouttière au-delà de la première/dernière rangée
 const STUB = 16; // distance horizontale entre le bord d'un nœud et le virage d'un câble de retour
 
 const ICONS: Record<FlowNodeKind, LucideIcon> = {
@@ -30,9 +31,9 @@ const wireColor = (type?: WireType) => `rgb(var(--wire-${type ? type.toLowerCase
 /** Câble : Bézier horizontale si l'arête avance, sinon contournement par la gouttière entre les rangées. */
 function edgePath(s: FlowNode, t: FlowNode): string {
   const sx = s.col * (NODE_W + COL_GAP) + NODE_W;
-  const sy = s.row * (NODE_H + ROW_GAP) + NODE_H / 2;
+  const sy = PAD + s.row * (NODE_H + ROW_GAP) + NODE_H / 2;
   const tx = t.col * (NODE_W + COL_GAP);
-  const ty = t.row * (NODE_H + ROW_GAP) + NODE_H / 2;
+  const ty = PAD + t.row * (NODE_H + ROW_GAP) + NODE_H / 2;
   if (t.col > s.col) {
     const dx = Math.max(24, (tx - sx) / 2);
     return `M${sx},${sy} C${sx + dx},${sy} ${tx - dx},${ty} ${tx},${ty}`;
@@ -58,9 +59,6 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
 
   // Nouveau graphe : on garde la sélection si le nœud existe encore (changement de langue), sinon retour au premier.
   const selectedId = byId.has(selected) ? selected : order[0]?.id ?? '';
-  useEffect(() => {
-    if (selectedId !== selected) setSelected(selectedId);
-  }, [selectedId, selected]);
 
   const node = byId.get(selectedId);
   const activeId = hoverId ?? selectedId;
@@ -69,7 +67,7 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
   const cols = Math.max(...flow.nodes.map((n) => n.col)) + 1;
   const rows = Math.max(...flow.nodes.map((n) => n.row)) + 1;
   const width = cols * (NODE_W + COL_GAP) - COL_GAP;
-  const height = rows * (NODE_H + ROW_GAP) - ROW_GAP;
+  const height = rows * (NODE_H + ROW_GAP) - ROW_GAP + 2 * PAD;
   const present = WIRE_ORDER.filter((w) => flow.edges.some((e) => e.type === w));
   const hasNeutral = flow.edges.some((e) => !e.type);
 
@@ -95,7 +93,7 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
   };
 
   const panel = node && (
-    <div aria-live="polite" className="rounded-xl border border-border/10 bg-surface-2 p-4 sm:p-5 space-y-4">
+    <div className="rounded-xl border border-border/10 bg-surface-2 p-4 sm:p-5 space-y-4">
       <h3 className="text-base font-semibold text-content">{node.label}</h3>
       <p className="text-sm text-content-muted leading-relaxed">{node.detail}</p>
       <div className="grid sm:grid-cols-2 gap-4">
@@ -142,11 +140,13 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
 
   return (
     <div className="space-y-4">
+      {/* Région live persistante : annonce la sélection (le panneau, lui, est remonté à chaque changement) */}
+      <p className="sr-only" aria-live="polite">{node ? `${node.label} — ${node.summary}` : ''}</p>
       {/* >= lg : graphe câblé */}
       <div className="hidden lg:block">
-        <div className="overflow-x-auto pb-2">
+        <div>
           <div className="relative mx-auto" style={{ width, height }}>
-            <svg className="absolute inset-0" width={width} height={height} aria-hidden="true">
+            <svg className="absolute inset-0 overflow-visible" width={width} height={height} aria-hidden="true">
               {flow.edges.map((e, i) => {
                 const s = byId.get(e.from);
                 const tg = byId.get(e.to);
@@ -179,7 +179,7 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
                   onMouseLeave={() => setHoverId(null)}
                   onFocus={() => setHoverId(n.id)}
                   onBlur={() => setHoverId(null)}
-                  style={{ left: n.col * (NODE_W + COL_GAP), top: n.row * (NODE_H + ROW_GAP), width: NODE_W, height: NODE_H }}
+                  style={{ left: n.col * (NODE_W + COL_GAP), top: PAD + n.row * (NODE_H + ROW_GAP), width: NODE_W, height: NODE_H }}
                   className={`absolute flex items-center gap-2 px-3 rounded-lg border text-left text-sm font-medium text-content transition-colors ${
                     sel ? 'border-accent bg-accent/10' : 'border-border/10 bg-surface-2 hover:border-accent/50'
                   }`}
@@ -193,8 +193,8 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
               <div
                 role="tooltip"
                 style={{
-                  left: Math.min(hoverNode.col * (NODE_W + COL_GAP), width - 224),
-                  top: hoverNode.row * (NODE_H + ROW_GAP) + NODE_H + 4,
+                  left: Math.max(0, Math.min(hoverNode.col * (NODE_W + COL_GAP), width - 224)),
+                  top: PAD + hoverNode.row * (NODE_H + ROW_GAP) + NODE_H + 4,
                 }}
                 className="pointer-events-none absolute z-20 w-56 rounded-lg border border-border-strong bg-surface-2 p-2 text-xs text-content-muted shadow-lg"
               >
