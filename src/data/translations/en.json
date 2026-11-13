@@ -278,6 +278,17 @@
     ],
     "flowTitle": "How a skill fits in"
   },
+  "flowUi": {
+    "legend": "Wire types",
+    "params": "Parameters",
+    "param": "Parameter",
+    "value": "Value",
+    "explain": "Explanation",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "hint": "Hover or click a node",
+    "neutralWire": "Neutral wire"
+  },
   "home": {
     "explore": "Explore",
     "comfyuiCard": "My AI generation pipeline: images, videos and 3D reconstruction with ComfyUI.",

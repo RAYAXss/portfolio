@@ -278,6 +278,17 @@
     ],
     "flowTitle": "Comment un skill s'insère"
   },
+  "flowUi": {
+    "legend": "Types de câbles",
+    "params": "Paramètres",
+    "param": "Paramètre",
+    "value": "Valeur",
+    "explain": "Explication",
+    "inputs": "Entrées",
+    "outputs": "Sorties",
+    "hint": "Survolez ou cliquez un nœud",
+    "neutralWire": "Câble neutre"
+  },
   "home": {
     "explore": "Explorer",
     "comfyuiCard": "Mon pipeline de génération IA : images, vidéos et reconstruction 3D avec ComfyUI.",
