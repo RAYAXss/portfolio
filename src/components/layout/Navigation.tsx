@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Download } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Download } from 'lucide-react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import LanguageToggle from '../ui/LanguageToggle';
+import ThemeToggle from '../ui/ThemeToggle';
 import { getCvUrl } from '../../utils/cv';
-import translationsFR from '../../data/translations/fr.json';
-import translationsEN from '../../data/translations/en.json';
 
 const Navigation: React.FC = () => {
-  const { lang } = useLanguage();
+  const { lang, t: translations } = useLanguage();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasProfileImage, setHasProfileImage] = useState(true);
 
-  const translations = lang === 'fr' ? translationsFR : translationsEN;
   const cvHref = getCvUrl(lang);
-  const sections = ['hero', 'about', 'experience', 'skills', 'projects'];
+  const isHome = location.pathname === '/';
+
+  const sections = isHome ? ['hero', 'about', 'experience', 'skills', 'projects'] : [];
   const activeSection = useScrollSpy(sections);
 
   useEffect(() => {
@@ -27,6 +29,10 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -35,25 +41,30 @@ const Navigation: React.FC = () => {
     }
   };
 
-  const navItems = [
+  const sectionItems = [
     { id: 'about', label: translations.nav.about },
     { id: 'experience', label: translations.nav.experience },
     { id: 'skills', label: translations.nav.skills },
-    { id: 'projects', label: translations.nav.projects }
+    { id: 'projects', label: translations.nav.projects },
+  ];
+
+  const pageItems = [
+    { path: '/comfyui', label: translations.nav.comfyui },
+    { path: '/agents-skills', label: translations.nav.agentSkills },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-gray-900/80 backdrop-blur-md border-b border-gray-700/30'
-          : 'bg-gray-900'
+          ? 'bg-surface/80 backdrop-blur-md border-b border-border/10'
+          : 'bg-surface'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Left: Avatar + Name */}
-          <div className="flex items-center space-x-3">
+          {/* Left: Avatar + Name → Home link */}
+          <Link to="/" className="flex items-center space-x-3">
             {hasProfileImage ? (
               <img
                 src={`${import.meta.env.BASE_URL}images/profile.jpg`}
@@ -62,76 +73,77 @@ const Navigation: React.FC = () => {
                 onError={() => setHasProfileImage(false)}
               />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-md">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent-2 flex items-center justify-center text-white font-bold shadow-md">
                 QC
               </div>
             )}
-            <span className="font-semibold text-gray-100 text-lg hidden sm:block">
+            <span className="font-semibold text-content text-lg hidden sm:block">
               {translations.hero.name}
             </span>
-          </div>
+          </Link>
 
           {/* Center: Menu items (Desktop) */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-6">
+            {isHome && sectionItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={`text-sm font-medium transition-colors relative ${
                   activeSection === item.id
-                    ? 'text-blue-400'
-                    : 'text-gray-300 hover:text-blue-400'
+                    ? 'text-accent'
+                    : 'text-content-muted hover:text-accent'
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
-                  <span className="absolute bottom-[-4px] left-0 right-0 h-0.5 bg-blue-400" />
+                  <span className="absolute bottom-[-4px] left-0 right-0 h-0.5 bg-accent" />
                 )}
               </button>
             ))}
+
+            {/* Separator between sections and pages */}
+            {isHome && (
+              <span className="w-px h-4 bg-border/20" />
+            )}
+
+            {pageItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-sm font-medium transition-colors relative ${
+                  location.pathname === item.path
+                    ? 'text-accent'
+                    : 'text-content-muted hover:text-accent'
+                }`}
+              >
+                {item.label}
+                {location.pathname === item.path && (
+                  <span className="absolute bottom-[-4px] left-0 right-0 h-0.5 bg-accent" />
+                )}
+              </Link>
+            ))}
           </div>
 
-          {/* Right: Resume, Social, Language */}
+          {/* Right: Resume, Theme, Language, Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Resume Download */}
             {cvHref && (
               <a
                 href={cvHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex items-center space-x-2 text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors"
+                className="hidden sm:flex items-center space-x-2 text-sm font-medium text-content-muted hover:text-accent transition-colors"
               >
                 <Download size={18} />
                 <span>{translations.nav.resume}</span>
               </a>
             )}
 
-            {/* Social Icons */}
-            <a
-              href="https://github.com/RAYAXss"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-              aria-label="GitHub"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/quentin-colpart/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-blue-400 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-
-            {/* Language Toggle */}
+            <ThemeToggle />
             <LanguageToggle />
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-gray-300 hover:text-blue-400"
+              className="md:hidden text-content-muted hover:text-accent"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -163,22 +175,37 @@ const Navigation: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-700">
-            {navItems.map((item) => (
+          <div className="md:hidden py-4 border-t border-border/10">
+            {isHome && sectionItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left py-2 px-4 text-gray-300 hover:bg-gray-800 transition-colors"
+                className="block w-full text-left py-2 px-4 text-content-muted hover:bg-surface-2 transition-colors"
               >
                 {item.label}
               </button>
             ))}
+
+            {pageItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`block w-full text-left py-2 px-4 transition-colors ${
+                  location.pathname === item.path
+                    ? 'text-accent bg-surface-2'
+                    : 'text-content-muted hover:bg-surface-2'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+
             {cvHref && (
               <a
                 href={cvHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-left py-2 px-4 text-gray-300 hover:bg-gray-800 transition-colors"
+                className="block w-full text-left py-2 px-4 text-content-muted hover:bg-surface-2 transition-colors"
               >
                 {translations.nav.resume}
               </a>

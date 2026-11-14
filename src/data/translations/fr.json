@@ -4,22 +4,32 @@
     "experience": "Expériences",
     "skills": "Compétences",
     "projects": "Projets",
+    "comfyui": "ComfyUI",
+    "agentSkills": "Agents Skills",
     "resume": "CV",
-    "language": "EN"
+    "language": "EN",
+    "theme": "Thème"
   },
   "hero": {
     "name": "Quentin COLPART",
-    "title": "Ingénieur Cybersécurité",
-    "description": "Transition du data engineering vers la cybersécurité. Passionné par la sécurité cloud, l'automatisation et la construction de systèmes sécurisés.",
+    "title": "Ingénieur Cybersécurité · GRC & Data",
+    "description": "Alternant à la direction Cybersécurité (SSI) de SFR Business et en Mastère Cybersécurité à l'ESIEA. Je relie gouvernance, conformité et technique, avec un background data pour rendre la sécurité mesurable.",
     "viewProjects": "Voir mes projets",
     "contactMe": "Me contacter",
-    "welcome": "Bienvenue sur mon portfolio",
-    "scroll": "Défiler"
+    "welcome": "Alternant cybersécurité · SFR Business",
+    "scroll": "Défiler",
+    "focus": [
+      "GRC",
+      "NIS2",
+      "DORA",
+      "ISO 27001",
+      "ISO 27005",
+      "Sécurité offensive"
+    ]
   },
   "about": {
     "title": "À propos",
-    "eyebrow": "À PROPOS",
-    "profile": "Ingénieur diplômé avec une formation initiale dans le domaine biomédical, j'ai évolué dans des environnements techniques complexes, notamment autour du cloud et du traitement de données. J'y ai développé une compréhension des systèmes d'information et de leurs enjeux en matière de sécurité et de gestion des risques.\n\nAdmis en Master Cybersécurité des Infrastructures et des Systèmes d'Information à ESIEA, je souhaite aujourd'hui m'orienter vers la cybersécurité afin de développer mes compétences et construire progressivement mon projet professionnel dans ce domaine.",
+    "profile": "Ingénieur EPF, j'ai commencé dans la data et le cloud (Big Data, dashboards, automatisation) avant de me spécialiser en cybersécurité.\n\nAujourd'hui en alternance à la direction Cybersécurité (SSI) de SFR Business, je travaille sur la GRC : conformité NIS2, DORA, ISO 27001 et 27005, préparation d'audit, sécurité dans les projets, sensibilisation et dashboards de suivi. En parallèle, le Mastère CISIS de l'ESIEA me forme au versant technique : vulnérabilités web et applicatives, cryptographie, virologie.",
     "stats": {
       "experience": {
         "value": "3 ans",
@@ -30,8 +40,8 @@
         "label": "Ingénieur + Mastère Cybersécurité"
       },
       "expertise": {
-        "value": "Data & Cloud",
-        "label": "Background ingénierie"
+        "value": "GRC × Data",
+        "label": "Conformité mesurable"
       },
       "languages": {
         "value": "FR • EN",
@@ -47,7 +57,11 @@
           "name": "EPF",
           "degree": "Diplôme d'Ingénieur",
           "detail": "Ingénierie, data & cloud",
-          "experienceIds": [3, 2, 4],
+          "experienceIds": [
+            3,
+            2,
+            4
+          ],
           "note": ""
         },
         {
@@ -55,72 +69,261 @@
           "name": "ESIEA",
           "degree": "Mastère Cybersécurité (CISIS)",
           "detail": "Infrastructures & Systèmes d'Information",
-          "experienceIds": [],
-          "note": "Rentrée octobre 2026 — Focus cybersécurité"
+          "experienceIds": [
+            5
+          ],
+          "note": "Depuis octobre 2026 · alternance SFR Business"
         }
       ]
     },
     "languages": {
       "title": "Langues",
       "items": [
-        { "name": "Français", "level": 100, "cert": "Certificat Voltaire" },
-        { "name": "Anglais", "level": 85, "cert": "TOEIC 840" }
+        {
+          "name": "Français",
+          "level": 100,
+          "cert": "Certificat Voltaire"
+        },
+        {
+          "name": "Anglais",
+          "level": 85,
+          "cert": "TOEIC 840"
+        }
       ]
     },
     "interests": {
       "title": "Centres d'intérêt",
       "sport": {
         "title": "Sport",
-        "items": ["Musculation", "Course à pied", "Calisthenics"]
+        "items": [
+          "Musculation",
+          "Course à pied",
+          "Calisthenics"
+        ]
       },
       "art": {
         "title": "Art",
-        "items": ["Dessin", "Poterie"]
+        "items": [
+          "Dessin",
+          "Poterie"
+        ]
       },
       "tech": {
         "title": "Technologie",
-        "items": ["Modélisation / Impression 3D", "IA générative (ComfyUI)"]
+        "items": [
+          "Modélisation / Impression 3D",
+          "IA générative (ComfyUI)"
+        ]
       }
     }
   },
   "experience": {
     "title": "Expériences Professionnelles",
-    "eyebrow": "PARCOURS",
-    "viewMore": "Voir plus",
-    "viewLess": "Voir moins"
+    "viewMore": "Voir tout le détail",
+    "viewLess": "Réduire",
+    "lead": "De la data et du cloud vers la cybersécurité.",
+    "now": "En cours"
   },
   "skills": {
     "title": "Compétences",
-    "eyebrow": "STACK",
-    "categories": {
-      "programming": "Programmation & Informatique",
-      "cloud": "Cloud & Data Engineering",
-      "management": "Gestion de projet",
-      "soft": "Soft Skills"
-    }
+    "groups": [
+      {
+        "id": "grc",
+        "title": "GRC & Conformité",
+        "items": [
+          "ISO 27001",
+          "ISO 27005",
+          "NIS2",
+          "DORA",
+          "Analyse de risques",
+          "Préparation d'audit",
+          "Sécurité dans les projets",
+          "Sensibilisation"
+        ],
+        "context": "SFR Business, EQUANS"
+      },
+      {
+        "id": "tech",
+        "title": "Sécurité technique",
+        "items": [
+          "Vulnérabilités web",
+          "Vulnérabilités applicatives",
+          "Cryptographie",
+          "Virologie",
+          "CTF / RootMe",
+          "Pentesting"
+        ],
+        "context": "ESIEA, RootMe, projets perso"
+      },
+      {
+        "id": "data",
+        "title": "Data & Cloud",
+        "items": [
+          "Python",
+          "SQL",
+          "Scala",
+          "Power BI",
+          "Databricks",
+          "AWS",
+          "Azure",
+          "Jenkins",
+          "Git/GitHub"
+        ],
+        "context": "Amadeus, ME3D Graft, AP-HP"
+      },
+      {
+        "id": "pm",
+        "title": "Pilotage",
+        "items": [
+          "Dashboards de suivi",
+          "Agile/Scrum",
+          "Jira/Trello",
+          "Spécifications",
+          "Coordination"
+        ],
+        "context": "Amadeus (Scrum Master), SFR Business"
+      }
+    ],
+    "lead": "Ce que j'utilise, et où je l'ai mis en pratique."
   },
   "projects": {
     "title": "Projets",
-    "eyebrow": "RÉALISATIONS",
     "viewCode": "Voir le code",
     "liveDemo": "Démo en ligne",
     "viewProfile": "Voir le profil",
     "inDevelopment": "En développement",
-    "explore": "Explorer",
-    "view": "← Voir",
-    "prev": "Projet précédent",
-    "next": "Projet suivant"
+    "lead": "Projets personnels et projets d'école. Ouvrez un projet pour voir le détail, les captures et les liens.",
+    "filters": {
+      "all": "Tous",
+      "cyber": "Cybersécurité",
+      "dev": "Développement",
+      "engineering": "Ingénierie"
+    },
+    "links": {
+      "code": "Voir le code",
+      "demo": "Tester l'application",
+      "report": "Lire le rapport",
+      "profile": "Voir le profil"
+    },
+    "highlights": "Ce que j'ai fait",
+    "stack": "Outils",
+    "noLinks": "Pas de lien public pour ce projet.",
+    "open": "Afficher le détail",
+    "close": "Masquer le détail",
+    "screenshot": "Capture de {title}"
   },
   "contact": {
     "title": "Me contacter",
-    "eyebrow": "CONTACT",
     "message": "Envie de discuter de mes projets, de calisthenics, de génération IA ou d'impression 3D ?",
     "button": "M'envoyer un email",
     "backToTop": "Retour en haut"
   },
+  "comfyui": {
+    "eyebrow": "IA GÉNÉRATIVE",
+    "title": "Pipeline ComfyUI",
+    "subtitle": "Pipeline modulaire de génération d'images, vidéos et reconstruction 3D construit autour de ComfyUI.",
+    "pipelineTitle": "Pipeline global",
+    "backToPortfolio": "Retour au portfolio",
+    "tabsLabel": "Workflows ComfyUI",
+    "graphTitle": "Graphe interactif",
+    "featuresTitle": "Fonctionnalités",
+    "howToEyebrow": "GUIDE",
+    "howToTitle": "Comment utiliser un workflow",
+    "howToSteps": [
+      "Téléchargez les modèles (.safetensors) et placez-les dans les bons dossiers models/",
+      "Glissez le fichier .json sur le canvas ComfyUI — ou chargez une image PNG générée par ComfyUI (le workflow est embarqué)",
+      "Utilisez ComfyUI Manager → Install Missing Custom Nodes pour installer les nœuds manquants",
+      "Cliquez sur Queue Prompt pour lancer la génération"
+    ],
+    "howToApiTip": "Astuce : « Save (API format) » exporte un JSON exécutable via POST /prompt pour l'automatisation.",
+    "safeSourcesEyebrow": "SÉCURITÉ",
+    "safeSourcesTitle": "Sources sûres pour les modèles",
+    "safeSourcesSafetensors": "Préférez toujours le format .safetensors — il ne peut pas exécuter de code, contrairement aux .ckpt/.pt/.bin (pickle).",
+    "safeSourcesList": [
+      {
+        "name": "Hugging Face",
+        "url": "https://huggingface.co",
+        "tip": "Téléchargez depuis les organisations officielles (black-forest-labs, Comfy-Org, microsoft). Vérifiez le statut du scan de sécurité sur chaque fichier."
+      },
+      {
+        "name": "Civitai",
+        "url": "https://civitai.com",
+        "tip": "Téléchargez uniquement en .safetensors. Vérifiez les avis et le nombre de téléchargements. Évitez les fichiers .ckpt."
+      },
+      {
+        "name": "ComfyUI Registry",
+        "url": "https://registry.comfy.org",
+        "tip": "Installez les custom nodes via ComfyUI Manager ou le Registry — vérifiez le dépôt source avant installation (les nodes exécutent du Python arbitraire)."
+      }
+    ],
+    "safeSourcesHashTip": "Comparez le hash SHA256 quand il est publié pour vérifier l'intégrité du fichier.",
+    "pipelineSteps": [
+      "Prompt",
+      "Image",
+      "Vidéo",
+      "Mesh 3D"
+    ],
+    "scene": {
+      "illustrative": "Visualisation illustrative — aucun modèle n’est exécuté.",
+      "steps": "Steps",
+      "cfg": "CFG",
+      "seed": "Seed",
+      "newSeed": "Nouveau bruit",
+      "frames": "Frames",
+      "rife": "Interpolation RIFE ×2",
+      "duration": "Durée",
+      "fps": "Cadence",
+      "stage": "Étape",
+      "stages": [
+        "Image",
+        "Voxels",
+        "Forme",
+        "Mesh"
+      ],
+      "captions": {
+        "t2i": "Le bruit initial se résout palier par palier (steps) en image ; un CFG trop élevé sature et contraste l’image.",
+        "i2v": "Une vidéo est une pile d’images dans le temps : la forme se déplace d’une frame à l’autre, RIFE insère des frames intermédiaires.",
+        "i3d": "L’image devient un nuage de voxels clairsemés, qui converge vers une forme puis un mesh plein."
+      }
+    }
+  },
+  "agentSkills": {
+    "eyebrow": "OUTILS IA",
+    "title": "Agents Skills",
+    "subtitle": "Les skills Claude Code que j'utilise au quotidien pour structurer ma réflexion, mon design et ma communication.",
+    "whyTitle": "Pourquoi je l'utilise",
+    "usageTitle": "Comment l'utiliser",
+    "exampleTitle": "Exemple concret",
+    "tabsLabel": "Skills d'agents",
+    "backToPortfolio": "Retour au portfolio",
+    "flow": [
+      "Idée",
+      "Skill",
+      "Claude Code",
+      "Résultat"
+    ],
+    "flowTitle": "Comment un skill s'insère"
+  },
+  "flowUi": {
+    "legend": "Types de câbles",
+    "params": "Paramètres",
+    "param": "Paramètre",
+    "value": "Valeur",
+    "explain": "Explication",
+    "inputs": "Entrées",
+    "outputs": "Sorties",
+    "hint": "Survolez ou cliquez un nœud",
+    "neutralWire": "Câble neutre"
+  },
+  "home": {
+    "explore": "Explorer",
+    "comfyuiCard": "Mon pipeline de génération IA : images, vidéos et reconstruction 3D avec ComfyUI.",
+    "agentSkillsTitle": "Agents Skills",
+    "agentSkillsCard": "Les skills Claude Code que j'utilise pour booster mon workflow de développement."
+  },
   "footer": {
     "name": "Quentin Colpart",
-    "role": "Ingénieur Data / Sécurité · Paris, France",
+    "role": "Ingénieur Cybersécurité · GRC & Data",
     "copyright": "© 2026 Quentin COLPART",
     "builtWith": "Construit avec React + TypeScript"
   }

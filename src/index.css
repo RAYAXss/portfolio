@@ -3,16 +3,79 @@
 @tailwind utilities;
 
 @layer base {
+  /* Tokens sémantiques — le mode sombre reste la valeur par défaut */
+  :root,
+  [data-theme='dark'] {
+    /* Noir + rouge sourd : rouge réservé aux accents, jamais en aplat */
+    --surface: 14 13 13;          /* #0e0d0d fond de page     */
+    --surface-2: 27 25 25;        /* #1b1919 cartes           */
+    --surface-3: 8 7 7;           /* #080707 footer           */
+    --content: 237 233 232;       /* #ede9e8 texte principal  */
+    --content-muted: 199 192 190; /* #c7c0be texte secondaire */
+    --content-faint: 150 142 140; /* #968e8c texte tertiaire  */
+    --border: 255 255 255;
+    --border-strong: 58 52 52;    /* #3a3434 bordures fortes  */
+    --accent: 226 112 112;        /* #e27070 rouge doux       */
+    --accent-2: 184 76 76;        /* #b84c4c rouge profond    */
+    --action: 168 52 52;          /* #a83434 boutons primaires */
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-hover: rgba(255, 255, 255, 0.08);
+    --glow: rgba(226, 112, 112, 0.3);   /* halo des points/éléments actifs */
+    /* Câbles de flux (types de données) */
+    --wire-model: 255 159 90;
+    --wire-clip: 240 200 80;
+    --wire-vae: 255 120 160;
+    --wire-conditioning: 120 200 130;
+    --wire-latent: 190 140 255;
+    --wire-image: 90 170 255;
+    --wire-video: 70 210 220;
+    --wire-mesh: 200 220 100;
+    --wire-neutral: 150 142 140;
+  }
+
+  [data-theme='light'] {
+    --surface: 255 253 250;       /* #fffdfa fond de page     */
+    --surface-2: 242 239 231;     /* #f2efe7 cartes           */
+    --surface-3: 200 183 159;     /* #c8b79f footer (plus sombre, dérivé) */
+    --content: 45 38 34;          /* #2d2622 texte principal  */
+    --content-muted: 74 65 58;    /* #4a413a texte secondaire */
+    --content-faint: 122 112 100; /* #7a7064 texte tertiaire  */
+    --border: 45 38 34;           /* #2d2622 (via /10, /40…)  */
+    --border-strong: 215 201 184; /* #d7c9b8 bordures fortes  */
+    --accent: 197 107 74;         /* #c56b4a terracotta       */
+    --accent-2: 173 86 55;        /* #ad5637 terracotta profond */
+    --action: 45 38 34;           /* #2d2622 boutons primaires */
+    --glass: rgba(242, 239, 231, 0.92);
+    --glass-hover: rgba(45, 38, 34, 0.05);
+    --glow: rgba(197, 107, 74, 0.25);   /* halo des points/éléments actifs */
+    /* Câbles de flux (types de données) */
+    --wire-model: 185 85 15;
+    --wire-clip: 140 105 0;
+    --wire-vae: 190 40 90;
+    --wire-conditioning: 30 120 60;
+    --wire-latent: 110 60 190;
+    --wire-image: 30 90 190;
+    --wire-video: 0 120 135;
+    --wire-mesh: 90 120 10;
+    --wire-neutral: 122 112 100;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-gray-900 text-gray-100 antialiased;
+    @apply bg-surface text-content antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans text-white;
+    @apply font-sans text-content;
+  }
+
+  /* Focus visible uniforme, basé sur l'accent du thème */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
   }
 }
 

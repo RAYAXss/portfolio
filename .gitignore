@@ -20,3 +20,11 @@ npm-debug.log*
 
 # Superpowers working docs (specs/plans) — not part of the site
 docs/superpowers
+
+profil.md
+
+# ComfyUI repo (separate git project, not part of portfolio)
+/COMFYUI/
+
+# Graphify output (knowledge graph, not part of portfolio)
+/graphify-out/

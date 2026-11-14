@@ -4,9 +4,24 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
     <meta name="description" content="Quentin COLPART - Cybersecurity Engineer Portfolio. Business / Data Analyst transitioning to Cybersecurity with expertise in data engineering and cloud technologies." />
     <title>Quentin COLPART | Cybersecurity Engineer</title>
+    <script>
+      // Appliq le thème avant le premier rendu pour éviter le flash (FOUC)
+      (function () {
+        try {
+          var t = localStorage.getItem('preferred-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.style.colorScheme = 'dark';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,45 +1,36 @@
 import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Navigation from './components/layout/Navigation';
 import Footer from './components/layout/Footer';
 
-import KineticGrid from './components/background/InteractiveBackground';
-
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Experience from './components/sections/Experience';
-import Skills from './components/sections/Skills';
-import Projects from './components/sections/Projects';
-import Contact from './components/sections/Contact';
+import HomePage from './pages/HomePage';
+// Sous-pages chargées à la demande : three.js reste hors du bundle de l'accueil
+const ComfyUIPage = React.lazy(() => import('./pages/ComfyUIPage'));
+const AgentsSkillsPage = React.lazy(() => import('./pages/AgentsSkillsPage'));
 
 import { useLanguage } from './hooks/useLanguage';
 
 function App() {
   const { lang } = useLanguage();
 
-  // Update document lang attribute
   React.useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
   return (
     <div className="min-h-screen">
-      {/* Global interactive background */}
-      <KineticGrid />
-
-      {/* Portfolio content */}
       <div className="relative z-10">
         <Navigation />
-
-        <main>
-          <Hero />
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Contact />
-        </main>
-
+        <React.Suspense fallback={<div className="min-h-screen" />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/comfyui" element={<ComfyUIPage />} />
+          <Route path="/agents-skills" element={<AgentsSkillsPage />} />
+          <Route path="/claude-skills" element={<Navigate to="/agents-skills" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        </React.Suspense>
         <Footer />
       </div>
     </div>

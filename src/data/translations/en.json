@@ -4,25 +4,35 @@
     "experience": "Experience",
     "skills": "Skills",
     "projects": "Projects",
+    "comfyui": "ComfyUI",
+    "agentSkills": "Agents Skills",
     "resume": "Resume",
-    "language": "FR"
+    "language": "FR",
+    "theme": "Theme"
   },
   "hero": {
     "name": "Quentin COLPART",
-    "title": "Cybersecurity Engineer",
-    "description": "Transitioning from data engineering to cybersecurity. Passionate about cloud security, automation, and building secure systems.",
+    "title": "Cybersecurity Engineer · GRC & Data",
+    "description": "Work-study in the Cybersecurity (ISS) department of SFR Business and Cybersecurity MSc student at ESIEA. I connect governance, compliance and technical security, with a data background to make security measurable.",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me",
-    "welcome": "Welcome to my portfolio",
-    "scroll": "Scroll"
+    "welcome": "Cybersecurity work-study · SFR Business",
+    "scroll": "Scroll",
+    "focus": [
+      "GRC",
+      "NIS2",
+      "DORA",
+      "ISO 27001",
+      "ISO 27005",
+      "Offensive security"
+    ]
   },
   "about": {
     "title": "About Me",
-    "eyebrow": "ABOUT",
-    "profile": "Engineering graduate with initial training in healthcare, I have evolved in complex technical environments, particularly around cloud and data processing. I developed an understanding of information systems and their security and risk management challenges.\n\nAdmitted to the Master's in Cybersecurity of Infrastructures and Information Systems at ESIEA, I now want to move towards cybersecurity to develop my skills and progressively build my professional project in this field.",
+    "profile": "EPF engineer, I started in data and cloud (Big Data, dashboards, automation) before specialising in cybersecurity.\n\nI am now a work-study in the Cybersecurity (ISS) department of SFR Business, working on GRC: NIS2, DORA, ISO 27001 and 27005 compliance, audit preparation, security in projects, awareness and tracking dashboards. In parallel, ESIEA's CISIS MSc trains me on the technical side: web and application vulnerabilities, cryptography, malware analysis.",
     "stats": {
       "experience": {
-        "value": "2 Years",
+        "value": "3 Years",
         "label": "Experience"
       },
       "education": {
@@ -30,8 +40,8 @@
         "label": "Engineering + Cyber Master"
       },
       "expertise": {
-        "value": "Data & Cloud",
-        "label": "Engineering Background"
+        "value": "GRC × Data",
+        "label": "Measurable compliance"
       },
       "languages": {
         "value": "FR • EN",
@@ -47,7 +57,11 @@
           "name": "EPF",
           "degree": "Engineering Degree",
           "detail": "Engineering, data & cloud",
-          "experienceIds": [3, 2, 4],
+          "experienceIds": [
+            3,
+            2,
+            4
+          ],
           "note": ""
         },
         {
@@ -55,72 +69,261 @@
           "name": "ESIEA",
           "degree": "Master's in Cybersecurity (CISIS)",
           "detail": "Infrastructures & Information Systems",
-          "experienceIds": [],
-          "note": "Starting October 2026 — Cybersecurity focus"
+          "experienceIds": [
+            5
+          ],
+          "note": "Since October 2026 · work-study at SFR Business"
         }
       ]
     },
     "languages": {
       "title": "Languages",
       "items": [
-        { "name": "French", "level": 100, "cert": "Voltaire Certificate" },
-        { "name": "English", "level": 85, "cert": "TOEIC 840" }
+        {
+          "name": "French",
+          "level": 100,
+          "cert": "Voltaire Certificate"
+        },
+        {
+          "name": "English",
+          "level": 85,
+          "cert": "TOEIC 840"
+        }
       ]
     },
     "interests": {
       "title": "Interests",
       "sport": {
         "title": "Sport",
-        "items": ["Weight training", "Running", "Calisthenics"]
+        "items": [
+          "Weight training",
+          "Running",
+          "Calisthenics"
+        ]
       },
       "art": {
         "title": "Art",
-        "items": ["Drawing", "Pottery"]
+        "items": [
+          "Drawing",
+          "Pottery"
+        ]
       },
       "tech": {
         "title": "Technology",
-        "items": ["3D Modeling", "Generative AI (ComfyUI)"]
+        "items": [
+          "3D Modeling",
+          "Generative AI (ComfyUI)"
+        ]
       }
     }
   },
   "experience": {
     "title": "Professional Experience",
-    "eyebrow": "CAREER",
-    "viewMore": "View more",
-    "viewLess": "View less"
+    "viewMore": "Show full details",
+    "viewLess": "Show less",
+    "lead": "From data and cloud to cybersecurity.",
+    "now": "Current"
   },
   "skills": {
     "title": "Skills",
-    "eyebrow": "STACK",
-    "categories": {
-      "programming": "Programming & IT",
-      "cloud": "Cloud & Data Engineering",
-      "management": "Project Management",
-      "soft": "Soft Skills"
-    }
+    "groups": [
+      {
+        "id": "grc",
+        "title": "GRC & Compliance",
+        "items": [
+          "ISO 27001",
+          "ISO 27005",
+          "NIS2",
+          "DORA",
+          "Risk analysis",
+          "Audit preparation",
+          "Security in projects",
+          "Awareness"
+        ],
+        "context": "SFR Business, EQUANS"
+      },
+      {
+        "id": "tech",
+        "title": "Technical security",
+        "items": [
+          "Web vulnerabilities",
+          "Application vulnerabilities",
+          "Cryptography",
+          "Malware analysis",
+          "CTF / RootMe",
+          "Pentesting"
+        ],
+        "context": "ESIEA, RootMe, side projects"
+      },
+      {
+        "id": "data",
+        "title": "Data & Cloud",
+        "items": [
+          "Python",
+          "SQL",
+          "Scala",
+          "Power BI",
+          "Databricks",
+          "AWS",
+          "Azure",
+          "Jenkins",
+          "Git/GitHub"
+        ],
+        "context": "Amadeus, ME3D Graft, AP-HP"
+      },
+      {
+        "id": "pm",
+        "title": "Delivery",
+        "items": [
+          "Tracking dashboards",
+          "Agile/Scrum",
+          "Jira/Trello",
+          "Specifications",
+          "Coordination"
+        ],
+        "context": "Amadeus (Scrum Master), SFR Business"
+      }
+    ],
+    "lead": "What I use, and where I put it into practice."
   },
   "projects": {
     "title": "Projects",
-    "eyebrow": "WORK",
     "viewCode": "View Code",
     "liveDemo": "Live Demo",
     "viewProfile": "View Profile",
     "inDevelopment": "In Development",
-    "explore": "Explore",
-    "view": "← View",
-    "prev": "Previous project",
-    "next": "Next project"
+    "lead": "Side projects and school projects. Open one to see the details, screenshots and links.",
+    "filters": {
+      "all": "All",
+      "cyber": "Cybersecurity",
+      "dev": "Development",
+      "engineering": "Engineering"
+    },
+    "links": {
+      "code": "View code",
+      "demo": "Try the app",
+      "report": "Read the report",
+      "profile": "View profile"
+    },
+    "highlights": "What I did",
+    "stack": "Tools",
+    "noLinks": "No public link for this project.",
+    "open": "Show details",
+    "close": "Hide details",
+    "screenshot": "Screenshot of {title}"
   },
   "contact": {
     "title": "Get In Touch",
-    "eyebrow": "CONTACT",
     "message": "Want to discuss about my projects, calisthenics, AI generation, or 3D printing?",
     "button": "Send me an Email",
     "backToTop": "Back to top"
   },
+  "comfyui": {
+    "eyebrow": "GENERATIVE AI",
+    "title": "ComfyUI Pipeline",
+    "subtitle": "Modular image, video and 3D reconstruction generation pipeline built around ComfyUI.",
+    "pipelineTitle": "Global Pipeline",
+    "backToPortfolio": "Back to portfolio",
+    "tabsLabel": "ComfyUI workflows",
+    "graphTitle": "Interactive graph",
+    "featuresTitle": "Features",
+    "howToEyebrow": "GUIDE",
+    "howToTitle": "How to use a workflow",
+    "howToSteps": [
+      "Download the models (.safetensors) and place them in the correct models/ folders",
+      "Drag the .json file onto the ComfyUI canvas — or load a ComfyUI-generated PNG image (the workflow is embedded)",
+      "Use ComfyUI Manager → Install Missing Custom Nodes to install any missing nodes",
+      "Click Queue Prompt to start generation"
+    ],
+    "howToApiTip": "Tip: \"Save (API format)\" exports a JSON you can POST to /prompt for automation.",
+    "safeSourcesEyebrow": "SECURITY",
+    "safeSourcesTitle": "Safe sources for models",
+    "safeSourcesSafetensors": "Always prefer .safetensors format — it cannot execute code, unlike .ckpt/.pt/.bin (pickle-based).",
+    "safeSourcesList": [
+      {
+        "name": "Hugging Face",
+        "url": "https://huggingface.co",
+        "tip": "Download from official organizations (black-forest-labs, Comfy-Org, microsoft). Check the file's security scan status before downloading."
+      },
+      {
+        "name": "Civitai",
+        "url": "https://civitai.com",
+        "tip": "Download .safetensors only. Check reviews and download counts. Avoid .ckpt files."
+      },
+      {
+        "name": "ComfyUI Registry",
+        "url": "https://registry.comfy.org",
+        "tip": "Install custom nodes through ComfyUI Manager or the Registry — review the source repo before installing (nodes run arbitrary Python)."
+      }
+    ],
+    "safeSourcesHashTip": "Compare the SHA256 hash when published to verify file integrity.",
+    "pipelineSteps": [
+      "Prompt",
+      "Image",
+      "Video",
+      "3D Mesh"
+    ],
+    "scene": {
+      "illustrative": "Illustrative visualisation — no model is run.",
+      "steps": "Steps",
+      "cfg": "CFG",
+      "seed": "Seed",
+      "newSeed": "New noise",
+      "frames": "Frames",
+      "rife": "RIFE ×2 interpolation",
+      "duration": "Duration",
+      "fps": "Frame rate",
+      "stage": "Stage",
+      "stages": [
+        "Image",
+        "Voxels",
+        "Shape",
+        "Mesh"
+      ],
+      "captions": {
+        "t2i": "The initial noise resolves into an image step by step; too high a CFG oversaturates and over-contrasts it.",
+        "i2v": "A video is a stack of images over time: the shape moves from frame to frame, and RIFE inserts in-between frames.",
+        "i3d": "The image becomes a sparse voxel cloud, which converges into a shape and then a solid mesh."
+      }
+    }
+  },
+  "agentSkills": {
+    "eyebrow": "AI TOOLS",
+    "title": "Agents Skills",
+    "subtitle": "The Claude Code skills I use daily to structure my thinking, design and communication.",
+    "whyTitle": "Why I use it",
+    "usageTitle": "How to use it",
+    "exampleTitle": "Concrete example",
+    "tabsLabel": "Agent skills",
+    "backToPortfolio": "Back to portfolio",
+    "flow": [
+      "Idea",
+      "Skill",
+      "Claude Code",
+      "Result"
+    ],
+    "flowTitle": "How a skill fits in"
+  },
+  "flowUi": {
+    "legend": "Wire types",
+    "params": "Parameters",
+    "param": "Parameter",
+    "value": "Value",
+    "explain": "Explanation",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "hint": "Hover or click a node",
+    "neutralWire": "Neutral wire"
+  },
+  "home": {
+    "explore": "Explore",
+    "comfyuiCard": "My AI generation pipeline: images, videos and 3D reconstruction with ComfyUI.",
+    "agentSkillsTitle": "Agents Skills",
+    "agentSkillsCard": "The Claude Code skills I use to boost my development workflow."
+  },
   "footer": {
     "name": "Quentin Colpart",
-    "role": "Data / Cybersecurity Engineer · Paris, France",
+    "role": "Cybersecurity Engineer · GRC & Data",
     "copyright": "© 2026 Quentin COLPART",
     "builtWith": "Built with React + TypeScript"
   }
