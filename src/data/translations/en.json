@@ -8,15 +8,16 @@
     "agentSkills": "Agents Skills",
     "resume": "Resume",
     "language": "FR",
-    "theme": "Theme"
+    "theme": "Theme",
+    "home": "Portfolio"
   },
   "hero": {
     "name": "Quentin COLPART",
-    "title": "Cybersecurity Engineer · GRC & Data",
-    "description": "Work-study in the Cybersecurity (ISS) department of SFR Business and Cybersecurity MSc student at ESIEA. I connect governance, compliance and technical security, with a data background to make security measurable.",
+    "title": "Data · AI · Cybersecurity Engineer",
+    "description": "EPF graduate engineer working in the Cybersecurity (ISS) department of SFR Business while following the ESIEA Cybersecurity MSc. I connect data, AI and security: governance, compliance and technical work, using data to make security measurable.",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me",
-    "welcome": "Cybersecurity work-study · SFR Business",
+    "welcome": "EPF graduate engineer · Cybersecurity at SFR Business",
     "scroll": "Scroll",
     "focus": [
       "GRC",
@@ -214,7 +215,7 @@
   },
   "contact": {
     "title": "Get In Touch",
-    "message": "Want to discuss about my projects, calisthenics, AI generation, or 3D printing?",
+    "message": "Want to discuss about my projects, cybersecurity, calisthenics, AI generation, or 3D printing?",
     "button": "Send me an Email",
     "backToTop": "Back to top"
   },
@@ -313,7 +314,13 @@
     "inputs": "Inputs",
     "outputs": "Outputs",
     "hint": "Hover or click a node",
-    "neutralWire": "Neutral wire"
+    "neutralWire": "Neutral wire",
+    "step": "Step",
+    "of": "of",
+    "prev": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "tapHint": "Tap a step to see its details"
   },
   "home": {
     "explore": "Explore",
@@ -323,7 +330,7 @@
   },
   "footer": {
     "name": "Quentin Colpart",
-    "role": "Cybersecurity Engineer · GRC & Data",
+    "role": "Data · AI · Cybersecurity Engineer",
     "copyright": "© 2026 Quentin COLPART",
     "builtWith": "Built with React + TypeScript"
   }

@@ -12,7 +12,6 @@ const Navigation: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hasProfileImage, setHasProfileImage] = useState(true);
 
   const cvHref = getCvUrl(lang);
   const isHome = location.pathname === '/';
@@ -49,6 +48,8 @@ const Navigation: React.FC = () => {
   ];
 
   const pageItems = [
+    // Sur les sous-pages : retour explicite au portfolio (desktop + mobile)
+    ...(isHome ? [] : [{ path: '/', label: translations.nav.home }]),
     { path: '/comfyui', label: translations.nav.comfyui },
     { path: '/agents-skills', label: translations.nav.agentSkills },
   ];
@@ -63,21 +64,9 @@ const Navigation: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Left: Avatar + Name → Home link */}
-          <Link to="/" className="flex items-center space-x-3">
-            {hasProfileImage ? (
-              <img
-                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
-                alt="Quentin COLPART"
-                className="w-10 h-10 rounded-full object-cover shadow-md"
-                onError={() => setHasProfileImage(false)}
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent-2 flex items-center justify-center text-white font-bold shadow-md">
-                QC
-              </div>
-            )}
-            <span className="font-semibold text-content text-lg hidden sm:block">
+          {/* Left: Name → Home link */}
+          <Link to="/" className="flex items-center">
+            <span className="font-semibold text-content text-base sm:text-lg whitespace-nowrap">
               {translations.hero.name}
             </span>
           </Link>

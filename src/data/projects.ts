@@ -24,11 +24,24 @@ type ProjectText = Pick<Project, 'title' | 'summary' | 'description' | 'highligh
 
 const base: ProjectBase[] = [
   {
+    id: 'guilty-species',
+    category: 'dev',
+    techStack: ['React', 'TypeScript', 'three.js', 'Vite', 'Vitest'],
+    images: [img('guilty-species-preview.png')],
+    links: [
+      { kind: 'demo', url: 'https://guilty-species.vercel.app' },
+      { kind: 'code', url: 'https://github.com/RAYAXss/guilty_species' },
+    ],
+  },
+  {
     id: 'timeup',
     category: 'dev',
-    techStack: ['React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'three.js', 'dnd-kit', 'Vitest'],
     images: [img('timesup-preview.png')],
-    links: [{ kind: 'code', url: 'https://github.com/RAYAXss/timesup' }],
+    links: [
+      { kind: 'demo', url: 'https://timesup-dusky.vercel.app' },
+      { kind: 'code', url: 'https://github.com/RAYAXss/timesup' },
+    ],
   },
   {
     id: 'cutclips',
@@ -47,7 +60,7 @@ const base: ProjectBase[] = [
   {
     id: 'password-manager',
     category: 'cyber',
-    techStack: ['Python', 'SHA-256'],
+    techStack: ['Python', 'Argon2', 'PBKDF2', 'Fernet (AES)', 'ttkbootstrap'],
     images: [],
     links: [],
   },
@@ -96,12 +109,29 @@ const base: ProjectBase[] = [
 ];
 
 const textFR: Record<string, ProjectText> = {
-  timeup: {
-    title: 'TimeUp',
-    summary: 'Jeu multijoueur dans le navigateur, synchronisé en temps réel.',
+  'guilty-species': {
+    title: 'Guilty Species',
+    summary: 'Jeu de logique et de déduction : trouver le coupable parmi des créatures fantastiques.',
     description:
-      "Jeu multijoueur jouable depuis le navigateur. Les parties sont synchronisées en temps réel entre les joueurs grâce à Supabase.",
-    highlights: ['Interface en React et TypeScript', 'Synchronisation temps réel des parties avec Supabase'],
+      "Chaque énigme réunit des créatures de Fantolia (elfes, orcs, dragons…), leurs déclarations et une règle globale, par exemple « exactement deux personnages disent la vérité ». Le joueur croise les indices pour démasquer le coupable : aucune part de hasard, chaque énigme a une seule solution logique.",
+    highlights: [
+      'Moteur de puzzles indépendant de l’interface : génération, solveur et vérification de l’unicité de la solution',
+      'Trois modes : jeu libre à difficulté croissante, tutoriel guidé et campagne de 18 niveaux',
+      'Fond 3D de cartes flottantes en three.js, audio réglable, interface React responsive',
+    ],
+    context: 'Projet personnel',
+  },
+  timeup: {
+    title: "Time's Up",
+    summary: "Le jeu d'ambiance Time's Up en version web : 2 à 4 équipes, 3 manches, plus de 500 cartes.",
+    description:
+      "Adaptation web du jeu de société : les équipes font deviner les mêmes cartes en trois manches (description libre, un seul mot, mime). Pensé pour se jouer à plusieurs autour d'un même téléphone ou ordinateur.",
+    highlights: [
+      'Plus de 500 cartes en 3 niveaux de difficulté, timer de 30, 45 ou 60 s',
+      'Équipes par glisser-déposer, rotation des joueurs par équipe, scores par manche',
+      'Swipe sur mobile, raccourcis clavier, sons Web Audio et fond animé en three.js',
+      'Réglages sauvegardés en local, logique testée avec Vitest',
+    ],
     context: 'Projet personnel',
   },
   cutclips: {
@@ -122,10 +152,15 @@ const textFR: Record<string, ProjectText> = {
   },
   'password-manager': {
     title: 'Password Manager',
-    summary: 'Gestionnaire de mots de passe avec sel et hachage SHA-256.',
+    summary: 'Coffre-fort de mots de passe local, chiffré et protégé par un mot de passe maître.',
     description:
-      'Gestionnaire de mots de passe local écrit en Python, pour mettre en pratique les bases du stockage sécurisé des secrets.',
-    highlights: ['Salage des mots de passe', 'Hachage SHA-256'],
+      "Application de bureau « Secure Vault » en Python : les identifiants sont stockés dans un coffre chiffré sur le disque, déverrouillé uniquement par le mot de passe maître. Le projet met en pratique les bonnes pratiques de stockage des secrets : hachage lent, sel aléatoire et chiffrement authentifié.",
+    highlights: [
+      'Mot de passe maître haché avec Argon2 (jamais stocké en clair)',
+      'Clé dérivée par PBKDF2-HMAC-SHA256 (600 000 itérations, sel aléatoire de 16 octets)',
+      'Coffre chiffré avec Fernet (AES + HMAC), rechiffré lors du changement de mot de passe maître',
+      'Interface ttkbootstrap : ajout, modification, suppression des entrées, thèmes',
+    ],
     context: 'Projet personnel',
   },
   videoloader: {
@@ -183,11 +218,29 @@ const textFR: Record<string, ProjectText> = {
 };
 
 const textEN: Record<string, ProjectText> = {
+  'guilty-species': {
+    title: 'Guilty Species',
+    summary: 'Logic and deduction game: find the culprit among fantasy creatures.',
+    description:
+      'Each puzzle brings together creatures of Fantolia (elves, orcs, dragons…), their statements and a global rule such as "exactly two characters tell the truth". The player cross-checks the clues to unmask the culprit: no luck involved, every puzzle has exactly one logical solution.',
+    highlights: [
+      'Puzzle engine independent from the UI: generation, solver and uniqueness check',
+      'Three modes: free play with rising difficulty, guided tutorial and an 18-level campaign',
+      'three.js floating-card 3D background, adjustable audio, responsive React interface',
+    ],
+    context: 'Side project',
+  },
   timeup: {
-    title: 'TimeUp',
-    summary: 'Multiplayer browser game, synchronised in real time.',
-    description: 'A multiplayer game played from the browser. Games are kept in sync between players in real time with Supabase.',
-    highlights: ['React and TypeScript interface', 'Real-time game sync with Supabase'],
+    title: "Time's Up",
+    summary: "The Time's Up party game on the web: 2 to 4 teams, 3 rounds, 500+ cards.",
+    description:
+      "Web adaptation of the board game: teams make others guess the same cards over three rounds (free description, one word, mime). Built to be played together around a single phone or computer.",
+    highlights: [
+      '500+ cards in 3 difficulty levels, 30, 45 or 60 s timer',
+      'Drag-and-drop teams, per-team player rotation, scores per round',
+      'Mobile swipe, keyboard shortcuts, Web Audio sounds and a three.js animated background',
+      'Settings saved locally, game logic tested with Vitest',
+    ],
     context: 'Side project',
   },
   cutclips: {
@@ -206,9 +259,15 @@ const textEN: Record<string, ProjectText> = {
   },
   'password-manager': {
     title: 'Password Manager',
-    summary: 'Password manager with salting and SHA-256 hashing.',
-    description: 'A local password manager written in Python, to practise the basics of storing secrets securely.',
-    highlights: ['Password salting', 'SHA-256 hashing'],
+    summary: 'Local encrypted password vault, protected by a master password.',
+    description:
+      'A Python desktop app, "Secure Vault": credentials are stored in an encrypted vault on disk, unlocked only by the master password. The project applies good practice for storing secrets: slow hashing, random salt and authenticated encryption.',
+    highlights: [
+      'Master password hashed with Argon2 (never stored in clear)',
+      'Key derived with PBKDF2-HMAC-SHA256 (600,000 iterations, random 16-byte salt)',
+      'Vault encrypted with Fernet (AES + HMAC), re-encrypted when the master password changes',
+      'ttkbootstrap interface: add, edit and delete entries, themes',
+    ],
     context: 'Side project',
   },
   videoloader: {
