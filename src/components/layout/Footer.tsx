@@ -23,11 +23,6 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
-              <img
-                src={`${import.meta.env.BASE_URL}images/profile.jpg`}
-                alt="Quentin COLPART"
-                className="w-7 h-7 rounded-full object-cover shadow-md"
-              />
               <span className="text-content font-bold text-sm">
                 {t.footer.name}
               </span>

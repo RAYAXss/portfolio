@@ -8,15 +8,16 @@
     "agentSkills": "Agents Skills",
     "resume": "CV",
     "language": "EN",
-    "theme": "Thème"
+    "theme": "Thème",
+    "home": "Portfolio"
   },
   "hero": {
     "name": "Quentin COLPART",
-    "title": "Ingénieur Cybersécurité · GRC & Data",
-    "description": "Alternant à la direction Cybersécurité (SSI) de SFR Business et en Mastère Cybersécurité à l'ESIEA. Je relie gouvernance, conformité et technique, avec un background data pour rendre la sécurité mesurable.",
+    "title": "Ingénieur Data · IA · Cybersécurité",
+    "description": "Ingénieur diplômé de l’EPF, je travaille à la direction Cybersécurité (SSI) de SFR Business et suis le Mastère Cybersécurité de l’ESIEA. Je relie data, IA et sécurité : gouvernance, conformité et technique, avec des données pour rendre la sécurité mesurable.",
     "viewProjects": "Voir mes projets",
     "contactMe": "Me contacter",
-    "welcome": "Alternant cybersécurité · SFR Business",
+    "welcome": "Ingénieur diplômé EPF · Cybersécurité chez SFR Business",
     "scroll": "Défiler",
     "focus": [
       "GRC",
@@ -214,7 +215,7 @@
   },
   "contact": {
     "title": "Me contacter",
-    "message": "Envie de discuter de mes projets, de calisthenics, de génération IA ou d'impression 3D ?",
+    "message": "Envie de discuter de mes projets, de cybersécurité, de calisthenics, de génération IA ou d'impression 3D ?",
     "button": "M'envoyer un email",
     "backToTop": "Retour en haut"
   },
@@ -313,7 +314,13 @@
     "inputs": "Entrées",
     "outputs": "Sorties",
     "hint": "Survolez ou cliquez un nœud",
-    "neutralWire": "Câble neutre"
+    "neutralWire": "Câble neutre",
+    "step": "Étape",
+    "of": "sur",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "close": "Fermer",
+    "tapHint": "Touchez une étape pour voir le détail"
   },
   "home": {
     "explore": "Explorer",
@@ -323,7 +330,7 @@
   },
   "footer": {
     "name": "Quentin Colpart",
-    "role": "Ingénieur Cybersécurité · GRC & Data",
+    "role": "Ingénieur Data · IA · Cybersécurité",
     "copyright": "© 2026 Quentin COLPART",
     "builtWith": "Construit avec React + TypeScript"
   }

@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { Download, Package, Type, Layers, Sparkles, ScanLine, SlidersHorizontal, Flag } from 'lucide-react';
+import React, { useMemo, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight, X, Download, Package, Type, Layers, Sparkles, ScanLine, SlidersHorizontal, Flag } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { Flow, FlowEdge, FlowNode, FlowNodeKind, WireType } from '../../types/flow';
 import { topoOrder } from '../../utils/flow';
@@ -61,6 +61,16 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
   const selectedId = byId.has(selected) ? selected : order[0]?.id ?? '';
 
   const node = byId.get(selectedId);
+  const sheetRef = useRef<HTMLDialogElement>(null);
+  const index = order.findIndex((n) => n.id === selectedId);
+  const openSheet = (id: string) => {
+    setSelected(id);
+    if (!sheetRef.current?.open) sheetRef.current?.showModal();
+  };
+  const step = (d: number) => {
+    const next = order[index + d];
+    if (next) setSelected(next.id);
+  };
   const activeId = hoverId ?? selectedId;
   const neutral = t.flowUi.neutralWire;
   const typeLabel = (type?: WireType) => type ?? neutral;
@@ -207,36 +217,98 @@ export const InteractiveFlow: React.FC<{ flow: Flow; showLegend?: boolean }> = (
         <div className="mt-4">{panel}</div>
       </div>
 
-      {/* < lg : liste ordonnée */}
-      <ol className="lg:hidden space-y-2">
-        {order.map((n) => {
-          const sel = n.id === selectedId;
-          const ins = [...new Set(links('in', n.id).map((e) => e.type))];
-          const outs = [...new Set(links('out', n.id).map((e) => e.type))];
-          return (
-            <li key={n.id}>
-              <button
-                type="button"
-                aria-pressed={sel}
-                onClick={() => setSelected(n.id)}
-                className={`w-full text-left rounded-lg border p-3 transition-colors ${
-                  sel ? 'border-accent bg-accent/10' : 'border-border/10 bg-surface-2'
-                }`}
-              >
-                <span className="block text-sm font-medium text-content">{n.label}</span>
-                <span className="block text-xs text-content-muted mt-0.5">{n.summary}</span>
-                {(ins.length > 0 || outs.length > 0) && (
-                  <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-                    {ins.map((ty) => <WireTag key={`i${ty}`} type={ty} label={`← ${typeLabel(ty)}`} />)}
-                    {outs.map((ty) => <WireTag key={`o${ty}`} type={ty} label={`${typeLabel(ty)} →`} />)}
-                  </span>
+      {/* < lg : étapes numérotées ; le détail s'ouvre dans une feuille en bas d'écran */}
+      <div className="lg:hidden">
+        <p className="mb-3 text-xs text-content-faint">{t.flowUi.tapHint}</p>
+        <ol>
+          {order.map((n, i) => {
+            const Icon = ICONS[n.kind];
+            const sel = n.id === selectedId;
+            const ins = [...new Set(links('in', n.id).map((e) => e.type))];
+            const outs = [...new Set(links('out', n.id).map((e) => e.type))];
+            return (
+              <li key={n.id} className="relative pl-11 pb-3 last:pb-0">
+                {i < order.length - 1 && (
+                  <span aria-hidden="true" className="absolute left-4 top-9 bottom-0 w-px bg-border/20" />
                 )}
-              </button>
-              {sel && <div className="mt-2">{panel}</div>}
-            </li>
-          );
-        })}
-      </ol>
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-0 top-1.5 flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold ${
+                    sel ? 'bg-accent/20 text-accent ring-2 ring-accent' : 'bg-accent/10 text-accent'
+                  }`}
+                >
+                  {i + 1}
+                </span>
+                <button
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={() => openSheet(n.id)}
+                  className={`w-full text-left rounded-lg border p-3 transition-colors ${
+                    sel ? 'border-accent bg-accent/10' : 'border-border/10 bg-surface-2'
+                  }`}
+                >
+                  <span className="flex items-center gap-2 text-sm font-medium text-content">
+                    <Icon size={16} aria-hidden="true" className="shrink-0 text-accent" />
+                    <span className="min-w-0 [overflow-wrap:anywhere]">{n.label}</span>
+                  </span>
+                  <span className="block text-xs text-content-muted mt-1">{n.summary}</span>
+                  {(ins.length > 0 || outs.length > 0) && (
+                    <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                      {ins.map((ty) => <WireTag key={`i${ty}`} type={ty} label={`← ${typeLabel(ty)}`} />)}
+                      {outs.map((ty) => <WireTag key={`o${ty}`} type={ty} label={`${typeLabel(ty)} →`} />)}
+                    </span>
+                  )}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+
+      {/* Feuille modale (dialog natif : focus piégé, Échap, retour du focus) */}
+      <dialog
+        ref={sheetRef}
+        aria-label={node?.label}
+        onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}
+        className="m-0 mt-auto w-full max-w-none max-h-[85dvh] rounded-t-2xl border border-border/10 bg-surface p-0 text-content backdrop:bg-surface/70 backdrop:backdrop-blur-sm"
+      >
+        <div className="flex max-h-[85dvh] flex-col">
+          <div className="flex items-center justify-between gap-3 border-b border-border/10 px-4 py-3">
+            <span className="text-xs font-semibold tracking-wider text-accent">
+              {t.flowUi.step} {index + 1} {t.flowUi.of} {order.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => sheetRef.current?.close()}
+              aria-label={t.flowUi.close}
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-content-muted hover:text-content"
+            >
+              <X size={20} aria-hidden="true" />
+            </button>
+          </div>
+          <div className="overflow-y-auto overscroll-contain p-4">{panel}</div>
+          <div className="flex gap-3 border-t border-border/10 px-4 py-3">
+            <button
+              type="button"
+              disabled={index <= 0}
+              onClick={() => step(-1)}
+              className="flex min-h-[44px] flex-1 items-center justify-center gap-1 rounded-lg border border-border/10 bg-glass text-sm font-medium text-content-muted disabled:opacity-40"
+            >
+              <ChevronLeft size={16} aria-hidden="true" />
+              {t.flowUi.prev}
+            </button>
+            <button
+              type="button"
+              disabled={index >= order.length - 1}
+              onClick={() => step(1)}
+              className="flex min-h-[44px] flex-1 items-center justify-center gap-1 rounded-lg border border-accent/50 bg-accent/10 text-sm font-medium text-content disabled:opacity-40"
+            >
+              {t.flowUi.next}
+              <ChevronRight size={16} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </dialog>
 
       {showLegend && (present.length > 0 || hasNeutral) && (
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
